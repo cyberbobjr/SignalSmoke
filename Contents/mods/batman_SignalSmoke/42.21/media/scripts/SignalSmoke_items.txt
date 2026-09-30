@@ -1,0 +1,159 @@
+module SignalSmoke
+{
+    imports
+    {
+        Base
+    }
+    /* Grenades : copie du script vanilla Base.SmokeBomb, SmokeRange = 0 (pas de fumée grise) et sans
+       risque d'incendie ; la fumée colorée est posée par le serveur à l'éclatement
+       (OnThrowableExplode, SignalSmoke_Server.lua). */
+
+    item SmokeGrenadeGreen
+    {
+        DisplayCategory = Explosives,
+        ItemType = base:weapon,
+        Weight = 0.6,
+        Icon = SignalSmoke_SmokeGrenadeGreen,
+        CanBePlaced = false,
+        ExplosionDuration = 10,
+        ExplosionSound = SmokeBombLoop,
+        FireStartingEnergy = 0,
+        FireStartingChance = 0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        MaxRange = 12.0,
+        MinDamage = 0.0,
+        MinimumSwingtime = 1.5,
+        NoiseDuration = 10,
+        NoiseRange = 10,
+        PhysicsObject = SignalSmoke.SmokeGrenadeGreen,
+        SmokeRange = 0,
+        SwingAmountBeforeImpact = 0.1,
+        SwingAnim = Throw,
+        SwingSound = SmokeBombThrow,
+        Swingtime = 1.5,
+        Tooltip = Tooltip_SignalSmoke_Grenade,
+        triggerExplosionTimer = 50,
+        UseSelf = true,
+        WeaponSprite = SignalSmoke_SmokeGrenadeGreen,
+        WorldStaticModel = SignalSmoke_SmokeGrenadeGreen,
+        ConditionMax = 1,
+    }
+
+    item SmokeGrenadeRed
+    {
+        DisplayCategory = Explosives,
+        ItemType = base:weapon,
+        Weight = 0.6,
+        Icon = SignalSmoke_SmokeGrenadeRed,
+        CanBePlaced = false,
+        ExplosionDuration = 10,
+        ExplosionSound = SmokeBombLoop,
+        FireStartingEnergy = 0,
+        FireStartingChance = 0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        MaxRange = 12.0,
+        MinDamage = 0.0,
+        MinimumSwingtime = 1.5,
+        NoiseDuration = 10,
+        NoiseRange = 10,
+        PhysicsObject = SignalSmoke.SmokeGrenadeRed,
+        SmokeRange = 0,
+        SwingAmountBeforeImpact = 0.1,
+        SwingAnim = Throw,
+        SwingSound = SmokeBombThrow,
+        Swingtime = 1.5,
+        Tooltip = Tooltip_SignalSmoke_Grenade,
+        triggerExplosionTimer = 50,
+        UseSelf = true,
+        WeaponSprite = SignalSmoke_SmokeGrenadeRed,
+        WorldStaticModel = SignalSmoke_SmokeGrenadeRed,
+        ConditionMax = 1,
+    }
+
+    item SmokeGrenadeYellow
+    {
+        DisplayCategory = Explosives,
+        ItemType = base:weapon,
+        Weight = 0.6,
+        Icon = SignalSmoke_SmokeGrenadeYellow,
+        CanBePlaced = false,
+        ExplosionDuration = 10,
+        ExplosionSound = SmokeBombLoop,
+        FireStartingEnergy = 0,
+        FireStartingChance = 0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        MaxRange = 12.0,
+        MinDamage = 0.0,
+        MinimumSwingtime = 1.5,
+        NoiseDuration = 10,
+        NoiseRange = 10,
+        PhysicsObject = SignalSmoke.SmokeGrenadeYellow,
+        SmokeRange = 0,
+        SwingAmountBeforeImpact = 0.1,
+        SwingAnim = Throw,
+        SwingSound = SmokeBombThrow,
+        Swingtime = 1.5,
+        Tooltip = Tooltip_SignalSmoke_Grenade,
+        triggerExplosionTimer = 50,
+        UseSelf = true,
+        WeaponSprite = SignalSmoke_SmokeGrenadeYellow,
+        WorldStaticModel = SignalSmoke_SmokeGrenadeYellow,
+        ConditionMax = 1,
+    }
+
+    item SmokeGrenadePurple
+    {
+        DisplayCategory = Explosives,
+        ItemType = base:weapon,
+        Weight = 0.6,
+        Icon = SignalSmoke_SmokeGrenadePurple,
+        CanBePlaced = false,
+        ExplosionDuration = 10,
+        ExplosionSound = SmokeBombLoop,
+        FireStartingEnergy = 0,
+        FireStartingChance = 0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        MaxRange = 12.0,
+        MinDamage = 0.0,
+        MinimumSwingtime = 1.5,
+        NoiseDuration = 10,
+        NoiseRange = 10,
+        PhysicsObject = SignalSmoke.SmokeGrenadePurple,
+        SmokeRange = 0,
+        SwingAmountBeforeImpact = 0.1,
+        SwingAnim = Throw,
+        SwingSound = SmokeBombThrow,
+        Swingtime = 1.5,
+        Tooltip = Tooltip_SignalSmoke_Grenade,
+        triggerExplosionTimer = 50,
+        UseSelf = true,
+        WeaponSprite = SignalSmoke_SmokeGrenadePurple,
+        WorldStaticModel = SignalSmoke_SmokeGrenadePurple,
+        ConditionMax = 1,
+    }
+
+    /* Fusée de route : allumée et posée au sol par l'action SignalSmoke_LightFlareAction. */
+    item RoadFlare
+    {
+        DisplayCategory = LightSource,
+        ItemType = base:normal,
+        Weight = 0.2,
+        Icon = SignalSmoke_RoadFlare,
+        StaticModel = SignalSmoke_RoadFlare,
+        WorldStaticModel = SignalSmoke_RoadFlare,
+        Tooltip = Tooltip_SignalSmoke_RoadFlare,
+    }
+
+    item RoadFlareLit
+    {
+        DisplayCategory = LightSource,
+        ItemType = base:normal,
+        Weight = 0.2,
+        Icon = SignalSmoke_RoadFlareLit,
+        WorldStaticModel = SignalSmoke_RoadFlareLit,
+    }
+}

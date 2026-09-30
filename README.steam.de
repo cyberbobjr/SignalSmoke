@@ -1,0 +1,56 @@
+[h1]Signal Smoke — Farbige Rauchgranaten und Straßenfackeln[/h1]
+
+[b]Build 42.21 · Einzelspieler und Mehrspieler[/b]
+
+Ein Hubschrauber soll dein Dach entdecken, ein Freund dein Lager finden, oder du willst den Heimweg markieren? Zünde farbigen Rauch oder eine Straßenfackel: weithin sichtbar, für alle.
+
+[h2]Auf einen Blick[/h2]
+
+[list]
+[*][b]Vier Rauchgranaten[/b]: grün, rot, gelb und lila, mit eigenen 3D-Modellen und Symbolen.
+[*][b]Straßenfackeln[/b], die etwa eine Spielstunde lang rot auf dem Boden brennen.
+[*][b]In der Welt zu finden[/b]: keine Herstellung nötig.
+[*][b]Mehrspieler[/b]: Der Server entscheidet, alle Spieler sehen denselben Rauch und dieselben Fackeln.
+[*][b]Eine kleine Bibliothek für andere Mods[/b]: farbiger Rauch und Fackeln per Skript.
+[/list]
+
+[h2]Rauchgranaten[/h2]
+
+[list]
+[*]Wirf sie wie die Rauchbombe des Spiels: Farbiger Rauch steigt etwa anderthalb Minuten lang über einem kleinen Kreuz aus Feldern auf, weithin sichtbar. Nachts leuchtet er in seiner Farbe.
+[*]Zombies im Rauch verlieren ihr Ziel aus den Augen.
+[*]Kein grauer Rauch, kein Feuer, kein Schaden: ein Signal, keine Waffe.
+[*]Zu finden in Armeelagern, Armee-Restpostenläden und Polizeispinden.
+[/list]
+
+[h2]Straßenfackeln[/h2]
+
+[list]
+[*]Rechtsklick auf die Fackel, [b]Anzünden und auf den Boden legen[/b].
+[*]Sie brennt etwa eine Spielstunde lang mit flackerndem rotem Licht, etwas rotem Rauch und einem Knistern, dann ist sie verbraucht.
+[*]Heb sie auf, um sie zu löschen.
+[*]Zu finden in der Notfallausrüstung von Tankstellen, bei Autowerkzeugen sowie in Feuerwehr- und Polizeispinden.
+[/list]
+
+[h2]Mehrspieler[/h2]
+
+Der Server führt die Liste des aktiven Rauchs und der Fackeln und sendet sie an jeden Client: Später ankommende Spieler sehen sie auch, und nach dem Laden eines Spielstands sind sie wieder da.
+
+[h2]Für Modder[/h2]
+
+Füge [b]require=\batman_SignalSmoke[/b] zu deiner mod.info hinzu, dann auf dem Server oder im Einzelspieler:
+[code]
+local SignalSmoke = require "SignalSmoke/SignalSmoke"
+local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
+SignalSmoke.stop(id)
+[/code]
+Benannte Farben: green, red, yellow, purple, orange, blue, white oder eine beliebige Tabelle { r, g, b }. Mit kind = "flare" entsteht eine Straßenfackel.
+
+[h2]Unterstütze das Projekt[/h2]
+
+Gefällt dir die Mod? Ein Kaffee hilft, neue Funktionen und Übersetzungen zu finanzieren.
+[url=https://ko-fi.com/Z8Z8QJV31][img]https://storage.ko-fi.com/cdn/kofi6.png?v=6[/img][/url]
+
+[h2]Credits[/h2]
+
+Eigene Modelle und Texturen, erstellt mit Blender. Rauch und Geräusche aus dem Grundspiel. Quellcode unter MIT-Lizenz: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].

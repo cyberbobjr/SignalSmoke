@@ -1,0 +1,56 @@
+[h1]Signal Smoke — Grenades fumigènes colorées et fusées de route[/h1]
+
+[b]Build 42.21 · Solo et multijoueur[/b]
+
+Un hélicoptère doit repérer votre toit, un ami doit trouver votre camp, ou vous voulez baliser la route du retour ? Lancez une fumée colorée ou allumez une fusée de route : visible de loin, par tout le monde.
+
+[h2]En bref[/h2]
+
+[list]
+[*][b]Quatre grenades fumigènes[/b] : verte, rouge, jaune et violette, avec leurs propres modèles 3D et icônes.
+[*][b]Des fusées de route[/b] qui brûlent en rouge au sol pendant environ une heure de jeu.
+[*][b]À trouver dans le monde[/b] : aucune fabrication nécessaire.
+[*][b]Multijoueur[/b] : le serveur décide, tous les joueurs voient les mêmes fumées et fusées.
+[*][b]Une petite bibliothèque pour d'autres mods[/b] : fumées colorées et fusées posées par script.
+[/list]
+
+[h2]Grenades fumigènes[/h2]
+
+[list]
+[*]Elle se lance comme la bombe fumigène du jeu : une fumée colorée monte sur une petite croix de cases pendant environ une minute et demie, visible de loin. La nuit, elle luit de sa couleur.
+[*]Les zombies dans la fumée perdent leur cible de vue.
+[*]Ni fumée grise, ni feu, ni dégâts : c'est un signal, pas une arme.
+[*]À trouver dans les réserves de l'armée, les surplus militaires et les casiers de police.
+[/list]
+
+[h2]Fusées de route[/h2]
+
+[list]
+[*]Clic droit sur la fusée, [b]Allumer et poser au sol[/b].
+[*]Elle brûle avec une lumière rouge vacillante, un peu de fumée rouge et un grésillement pendant environ une heure de jeu, puis elle disparaît.
+[*]Ramassez-la pour l'éteindre.
+[*]À trouver dans le matériel d'urgence des stations-service, les outils de garage et les casiers de pompiers et de police.
+[/list]
+
+[h2]Multijoueur[/h2]
+
+Le serveur tient la liste des fumées et fusées actives et l'envoie à chaque client : les joueurs qui arrivent plus tard les voient aussi, et elles reviennent au chargement d'une sauvegarde.
+
+[h2]Pour les moddeurs[/h2]
+
+Ajoutez [b]require=\batman_SignalSmoke[/b] à votre mod.info, puis, sur le serveur ou en solo :
+[code]
+local SignalSmoke = require "SignalSmoke/SignalSmoke"
+local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
+SignalSmoke.stop(id)
+[/code]
+Couleurs nommées : green, red, yellow, purple, orange, blue, white, ou toute table { r, g, b }. Utilisez kind = "flare" pour une fusée de route.
+
+[h2]Soutenir le projet[/h2]
+
+Le mod vous plaît ? Un café aide à financer de nouvelles fonctions et des traductions.
+[url=https://ko-fi.com/Z8Z8QJV31][img]https://storage.ko-fi.com/cdn/kofi6.png?v=6[/img][/url]
+
+[h2]Crédits[/h2]
+
+Modèles et textures originaux réalisés avec Blender. Fumée et sons du jeu de base. Code source sous licence MIT : [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].

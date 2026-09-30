@@ -1,0 +1,56 @@
+[h1]Signal Smoke — Granadas de fumaça coloridas e sinalizadores de estrada[/h1]
+
+[b]Build 42.21 · Um jogador e multijogador[/b]
+
+Um helicóptero precisa ver o seu telhado, um amigo precisa achar o seu acampamento, ou você quer marcar o caminho de volta? Solte fumaça colorida ou acenda um sinalizador de estrada: visível de longe, por todos.
+
+[h2]Resumo[/h2]
+
+[list]
+[*][b]Quatro granadas de fumaça[/b]: verde, vermelha, amarela e roxa, com modelos 3D e ícones próprios.
+[*][b]Sinalizadores de estrada[/b] que queimam em vermelho no chão por cerca de uma hora de jogo.
+[*][b]Encontrados pelo mundo[/b]: não precisa fabricar.
+[*][b]Multijogador[/b]: o servidor decide e todos os jogadores veem a mesma fumaça e os mesmos sinalizadores.
+[*][b]Uma pequena biblioteca para outros mods[/b]: fumaça colorida e sinalizadores colocados por script.
+[/list]
+
+[h2]Granadas de fumaça[/h2]
+
+[list]
+[*]Arremesse como a bomba de fumaça do jogo: uma fumaça colorida sobe sobre uma pequena cruz de quadrados por cerca de um minuto e meio, visível de longe. À noite, ela brilha na sua cor.
+[*]Zumbis dentro da fumaça perdem o alvo de vista.
+[*]Sem fumaça cinza, sem fogo, sem dano: é um sinal, não uma arma.
+[*]Encontradas em depósitos do exército, lojas de excedentes militares e armários da polícia.
+[/list]
+
+[h2]Sinalizadores de estrada[/h2]
+
+[list]
+[*]Clique com o botão direito no sinalizador, [b]Acender e colocar no chão[/b].
+[*]Ele queima com uma luz vermelha piscante, um pouco de fumaça vermelha e um chiado por cerca de uma hora de jogo, e depois se apaga de vez.
+[*]Pegue-o do chão para apagá-lo.
+[*]Encontrados no material de emergência dos postos de gasolina, nas ferramentas automotivas e nos armários dos bombeiros e da polícia.
+[/list]
+
+[h2]Multijogador[/h2]
+
+O servidor mantém a lista da fumaça e dos sinalizadores ativos e a envia a cada cliente: jogadores que chegam depois também os veem, e eles voltam ao carregar um jogo salvo.
+
+[h2]Para modders[/h2]
+
+Adicione [b]require=\batman_SignalSmoke[/b] ao seu mod.info e depois, no servidor ou no modo um jogador:
+[code]
+local SignalSmoke = require "SignalSmoke/SignalSmoke"
+local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
+SignalSmoke.stop(id)
+[/code]
+Cores com nome: green, red, yellow, purple, orange, blue, white, ou qualquer tabela { r, g, b }. Use kind = "flare" para um sinalizador de estrada.
+
+[h2]Apoie o projeto[/h2]
+
+Curtiu o mod? Um café ajuda a financiar novos recursos e traduções.
+[url=https://ko-fi.com/Z8Z8QJV31][img]https://storage.ko-fi.com/cdn/kofi6.png?v=6[/img][/url]
+
+[h2]Créditos[/h2]
+
+Modelos e texturas originais feitos no Blender. Fumaça e sons do jogo base. Código-fonte sob licença MIT: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].

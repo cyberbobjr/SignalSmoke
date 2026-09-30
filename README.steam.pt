@@ -1,0 +1,56 @@
+[h1]Signal Smoke — Granadas de fumo coloridas e tochas de sinalização[/h1]
+
+[b]Build 42.21 · Um jogador e multijogador[/b]
+
+Um helicóptero tem de ver o teu telhado, um amigo tem de encontrar o teu acampamento, ou queres marcar o caminho de volta? Lança fumo colorido ou acende uma tocha de sinalização: visível ao longe, por todos.
+
+[h2]Resumo[/h2]
+
+[list]
+[*][b]Quatro granadas de fumo[/b]: verde, vermelha, amarela e roxa, com modelos 3D e ícones próprios.
+[*][b]Tochas de sinalização[/b] que ardem a vermelho no chão durante cerca de uma hora de jogo.
+[*][b]Encontram-se no mundo[/b]: não é preciso fabricá-las.
+[*][b]Multijogador[/b]: o servidor decide e todos os jogadores veem o mesmo fumo e as mesmas tochas.
+[*][b]Uma pequena biblioteca para outros mods[/b]: fumo colorido e tochas colocados por script.
+[/list]
+
+[h2]Granadas de fumo[/h2]
+
+[list]
+[*]Lança-se como a bomba de fumo do jogo: um fumo colorido sobe sobre uma pequena cruz de quadrados durante cerca de um minuto e meio, visível ao longe. À noite, brilha na sua cor.
+[*]Os zombies dentro do fumo perdem o alvo de vista.
+[*]Sem fumo cinzento, sem fogo, sem dano: é um sinal, não uma arma.
+[*]Encontram-se nos armazéns do exército, nas lojas de excedentes militares e nos cacifos da polícia.
+[/list]
+
+[h2]Tochas de sinalização[/h2]
+
+[list]
+[*]Clique direito na tocha, [b]Acender e pousar no chão[/b].
+[*]Arde com uma luz vermelha tremeluzente, um pouco de fumo vermelho e um crepitar durante cerca de uma hora de jogo, e depois consome-se.
+[*]Apanha-a para a apagar.
+[*]Encontram-se no material de emergência das bombas de gasolina, nas ferramentas de automóvel e nos cacifos dos bombeiros e da polícia.
+[/list]
+
+[h2]Multijogador[/h2]
+
+O servidor guarda a lista do fumo e das tochas ativos e envia-a a cada cliente: os jogadores que chegam mais tarde também os veem, e voltam ao carregar um jogo guardado.
+
+[h2]Para modders[/h2]
+
+Adiciona [b]require=\batman_SignalSmoke[/b] ao teu mod.info e depois, no servidor ou em modo de um jogador:
+[code]
+local SignalSmoke = require "SignalSmoke/SignalSmoke"
+local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
+SignalSmoke.stop(id)
+[/code]
+Cores com nome: green, red, yellow, purple, orange, blue, white, ou qualquer tabela { r, g, b }. Usa kind = "flare" para uma tocha de sinalização.
+
+[h2]Apoia o projeto[/h2]
+
+Gostas do mod? Um café ajuda a financiar novas funcionalidades e traduções.
+[url=https://ko-fi.com/Z8Z8QJV31][img]https://storage.ko-fi.com/cdn/kofi6.png?v=6[/img][/url]
+
+[h2]Créditos[/h2]
+
+Modelos e texturas originais feitos com o Blender. Fumo e sons do jogo base. Código-fonte sob licença MIT: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].

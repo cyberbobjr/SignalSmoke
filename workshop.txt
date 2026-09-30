@@ -1,0 +1,61 @@
+version=1
+id=3811010882
+title=Signal Smoke - Colored Smoke Grenades & Road Flares
+description=[h1]Signal Smoke — Colored Smoke Grenades & Road Flares[/h1]
+description=
+description=[b]Build 42.21 · Singleplayer & Multiplayer[/b]
+description=
+description=Need a helicopter to spot your roof, a friend to find your camp, or a way to mark the road home? Pop colored smoke or light a road flare: seen from afar, by everyone.
+description=
+description=[h2]At a glance[/h2]
+description=
+description=[list]
+description=[*][b]Four smoke grenades[/b]: green, red, yellow and purple, with their own 3D models and icons.
+description=[*][b]Road flares[/b] that burn red on the ground for about an hour of game time.
+description=[*][b]Found in the world[/b]: no crafting needed.
+description=[*][b]Multiplayer[/b]: the server decides, every player sees the same smoke and flares.
+description=[*][b]A small library for other mods[/b]: colored smoke and flares placed by script.
+description=[/list]
+description=
+description=[h2]Smoke grenades[/h2]
+description=
+description=[list]
+description=[*]Throw it like the vanilla smoke bomb: colored smoke rises over a small cross of tiles for about a minute and a half, visible from afar. At night, it glows in its color.
+description=[*]Zombies standing in the smoke lose sight of their target.
+description=[*]No grey smoke, no fire, no damage: it is a signal, not a weapon.
+description=[*]Found in army storage, army surplus stores and police lockers.
+description=[/list]
+description=
+description=[h2]Road flares[/h2]
+description=
+description=[list]
+description=[*]Right-click the flare, [b]Light and place on the ground[/b].
+description=[*]It burns with a flickering red light, a little red smoke and a crackling sound for about an hour of game time, then it is gone.
+description=[*]Pick it up to put it out.
+description=[*]Found in gas station emergency supplies, car supply tools, fire department and police lockers.
+description=[/list]
+description=
+description=[h2]Multiplayer[/h2]
+description=
+description=The server keeps the list of active smokes and flares and sends it to every client: players who arrive later see them too, and they come back after loading a save.
+description=
+description=[h2]For modders[/h2]
+description=
+description=Add [b]require=\batman_SignalSmoke[/b] to your mod.info, then, on the server or in singleplayer:
+description=[code]
+description=local SignalSmoke = require "SignalSmoke/SignalSmoke"
+description=local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
+description=SignalSmoke.stop(id)
+description=[/code]
+description=Named colors: green, red, yellow, purple, orange, blue, white, or any { r, g, b } table. Use kind = "flare" for a road flare.
+description=
+description=[h2]Support the project[/h2]
+description=
+description=Enjoying the mod? A coffee helps fund new features and translations.
+description=[url=https://ko-fi.com/Z8Z8QJV31][img]https://storage.ko-fi.com/cdn/kofi6.png?v=6[/img][/url]
+description=
+description=[h2]Credits[/h2]
+description=
+description=Original models and textures made with Blender. Smoke and sounds from the base game. Source code under the MIT license: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].
+tags=Build 42;Items;Military;Multiplayer
+visibility=private

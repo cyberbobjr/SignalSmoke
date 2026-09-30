@@ -1,0 +1,77 @@
+module Base
+{
+    /* Signal Smoke : modèles originaux (recette source/items/build_items.py). Déclarés dans Base
+       sous un nom préfixé : un modèle sans module est cherché dans Base.
+       Échelle : le moteur ignore UnitScaleFactor et applique les transformations de nœud (jassimp,
+       ProcessedAiScene.java). L'export Blender en mètres porte Lcl Scaling = 100 : la grenade (0,40 m
+       dans Blender) vaut 40 unités, × 0.0033 ≈ 0,13 m : moitié de la SmokeBomb vanilla (0,443 × 0.6 ≈ 0,26 m),
+       jugée trop grosse en jeu (fusée de route réduite dans la même proportion).
+       Attaches en main à calibrer en jeu. */
+
+    model SignalSmoke_SmokeGrenadeGreen
+    {
+        mesh = WorldItems/SignalSmoke_SmokeGrenade,
+        texture = WorldItems/SignalSmoke_SmokeGrenadeGreen,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_SmokeGrenadeRed
+    {
+        mesh = WorldItems/SignalSmoke_SmokeGrenade,
+        texture = WorldItems/SignalSmoke_SmokeGrenadeRed,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_SmokeGrenadeYellow
+    {
+        mesh = WorldItems/SignalSmoke_SmokeGrenade,
+        texture = WorldItems/SignalSmoke_SmokeGrenadeYellow,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_SmokeGrenadePurple
+    {
+        mesh = WorldItems/SignalSmoke_SmokeGrenade,
+        texture = WorldItems/SignalSmoke_SmokeGrenadePurple,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_RoadFlare
+    {
+        mesh = WorldItems/SignalSmoke_RoadFlare,
+        texture = WorldItems/SignalSmoke_RoadFlare,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_RoadFlareLit
+    {
+        mesh = WorldItems/SignalSmoke_RoadFlareLit,
+        texture = WorldItems/SignalSmoke_RoadFlareLit,
+        scale = 0.0033,
+    }
+}

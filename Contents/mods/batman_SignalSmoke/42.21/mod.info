@@ -1,0 +1,7 @@
+name=Signal Smoke
+id=batman_SignalSmoke
+description=Colored smoke grenades and road flares for Build 42.21, solo and multiplayer. Also a small library for other mods: server-decided colored smoke and flares that every player sees, restored after loading.
+poster=poster.png
+icon=icon.png
+versionMin=42.21
+modversion=0.1.0
