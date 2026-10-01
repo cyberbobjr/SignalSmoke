@@ -81,4 +81,4 @@ description=[h2]Credits[/h2]
 description=
 description=Original models, textures and icons made with Blender. Smoke and sounds from the base game. Source code under the MIT license: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].
 tags=Build 42;Items;Military;Multiplayer
-visibility=private
+visibility=public
