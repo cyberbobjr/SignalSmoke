@@ -1,4 +1,8 @@
 {
     "Tooltip_SignalSmoke_Grenade": "Lança-a: um fumo colorido sobe durante cerca de um minuto e meio, visível ao longe. Os zombies dentro do fumo perdem o alvo de vista.",
-    "Tooltip_SignalSmoke_RoadFlare": "Arde a vermelho durante cerca de uma hora de jogo, depois de acesa e pousada no chão."
+    "Tooltip_SignalSmoke_RoadFlare": "Arde a vermelho durante cerca de uma hora de jogo, depois de acesa e pousada no chão.",
+    "Tooltip_SignalSmoke_Chemlight": "Ativa-o e pousa-o no chão: um brilho colorido suave durante várias horas, silencioso e sem fumo. Depois de ativado, já não se apaga.",
+    "Tooltip_SignalSmoke_ChemlightLit": "Aceso. No chão, ilumina os arredores; apanhado, continua a brilhar até se esgotar.",
+    "Tooltip_SignalSmoke_ChemlightUsed": "Esgotado: já não brilha.",
+    "Tooltip_SignalSmoke_ImprovisedSmoke": "Lança-a: um fumo colorido, mais curto do que o de uma granada militar. Por ser artesanal, às vezes só crepita sem fumo. Os zombies dentro do fumo perdem o alvo de vista."
 }

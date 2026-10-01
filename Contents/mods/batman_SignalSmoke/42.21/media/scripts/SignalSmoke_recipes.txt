@@ -1,0 +1,102 @@
+module SignalSmoke
+{
+    imports
+    {
+        Base
+    }
+    /* Fumigène artisanal coloré : une boîte de conserve vide, du sucre (combustible), un oxydant (pain
+       de glace, comme la bombe fumigène vanilla MakeSmokeBomb, ou engrais), une dose de peinture de
+       couleur et une mèche (ficelle ou bande de tissu). Pas d'apprentissage : il faut Cuisine 2 (on
+       fait fondre le mélange) ; quelques points de Cuisine gagnés.
+       Quantités : une unité par entrée ; pour un objet consommable (peinture, engrais, ficelle,
+       sucre), une utilisation et non l'objet entier (InputScript.isUsesPartialItem, 42.21).
+       Nom affiché : Recipes.json, clé = nom de la recette. */
+
+    craftRecipe SignalSmoke_MakeImprovisedSmokeGreen
+    {
+        timedAction = Making,
+        time = 120,
+        Tags = InHandCraft,
+        category = Miscellaneous,
+        SkillRequired = Cooking:2,
+        xpAward = Cooking:5,
+        inputs
+        {
+            item 1 tags[base:emptycan] flags[IsEmpty;ItemCount],
+            item 2 tags[base:sugar],
+            item 1 [Base.Coldpack;Base.Fertilizer],
+            item 1 [Base.PaintGreen],
+            item 1 [Base.Twine;Base.RippedSheets;Base.RippedSheetsDirty],
+        }
+        outputs
+        {
+            item 1 SignalSmoke.ImprovisedSmokeGreen,
+        }
+    }
+
+    craftRecipe SignalSmoke_MakeImprovisedSmokeRed
+    {
+        timedAction = Making,
+        time = 120,
+        Tags = InHandCraft,
+        category = Miscellaneous,
+        SkillRequired = Cooking:2,
+        xpAward = Cooking:5,
+        inputs
+        {
+            item 1 tags[base:emptycan] flags[IsEmpty;ItemCount],
+            item 2 tags[base:sugar],
+            item 1 [Base.Coldpack;Base.Fertilizer],
+            item 1 [Base.PaintRed],
+            item 1 [Base.Twine;Base.RippedSheets;Base.RippedSheetsDirty],
+        }
+        outputs
+        {
+            item 1 SignalSmoke.ImprovisedSmokeRed,
+        }
+    }
+
+    craftRecipe SignalSmoke_MakeImprovisedSmokeYellow
+    {
+        timedAction = Making,
+        time = 120,
+        Tags = InHandCraft,
+        category = Miscellaneous,
+        SkillRequired = Cooking:2,
+        xpAward = Cooking:5,
+        inputs
+        {
+            item 1 tags[base:emptycan] flags[IsEmpty;ItemCount],
+            item 2 tags[base:sugar],
+            item 1 [Base.Coldpack;Base.Fertilizer],
+            item 1 [Base.PaintYellow],
+            item 1 [Base.Twine;Base.RippedSheets;Base.RippedSheetsDirty],
+        }
+        outputs
+        {
+            item 1 SignalSmoke.ImprovisedSmokeYellow,
+        }
+    }
+
+    craftRecipe SignalSmoke_MakeImprovisedSmokePurple
+    {
+        timedAction = Making,
+        time = 120,
+        Tags = InHandCraft,
+        category = Miscellaneous,
+        SkillRequired = Cooking:2,
+        xpAward = Cooking:5,
+        inputs
+        {
+            item 1 tags[base:emptycan] flags[IsEmpty;ItemCount],
+            item 2 tags[base:sugar],
+            item 1 [Base.Coldpack;Base.Fertilizer],
+            item 1 [Base.PaintPurple],
+            item 1 [Base.Twine;Base.RippedSheets;Base.RippedSheetsDirty],
+        }
+        outputs
+        {
+            item 1 SignalSmoke.ImprovisedSmokePurple,
+        }
+    }
+}

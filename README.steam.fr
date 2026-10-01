@@ -1,15 +1,17 @@
-[h1]Signal Smoke — Grenades fumigènes colorées et fusées de route[/h1]
+[h1]Signal Smoke — Grenades fumigènes colorées, fusées de route et bâtons lumineux[/h1]
 
 [b]Build 42.21 · Solo et multijoueur[/b]
 
-Un hélicoptère doit repérer votre toit, un ami doit trouver votre camp, ou vous voulez baliser la route du retour ? Lancez une fumée colorée ou allumez une fusée de route : visible de loin, par tout le monde.
+Un hélicoptère doit repérer votre toit, un ami doit trouver votre camp, ou vous voulez baliser la route du retour ? Lancez une fumée colorée, allumez une fusée de route ou posez un bâton lumineux : visible par tout le monde.
 
 [h2]En bref[/h2]
 
 [list]
 [*][b]Quatre grenades fumigènes[/b] : verte, rouge, jaune et violette, avec leurs propres modèles 3D et icônes.
 [*][b]Des fusées de route[/b] qui brûlent en rouge au sol pendant environ une heure de jeu.
-[*][b]À trouver dans le monde[/b] : aucune fabrication nécessaire.
+[*][b]Des bâtons lumineux[/b] en quatre couleurs : une lueur discrète qui dure des heures, pour baliser un chemin ou un sous-sol.
+[*][b]Des bombes fumigènes artisanales[/b] : fabriquez votre propre fumée colorée.
+[*][b]Options sandbox[/b] : durées, ratés, butin.
 [*][b]Multijoueur[/b] : le serveur décide, tous les joueurs voient les mêmes fumées et fusées.
 [*][b]Une petite bibliothèque pour d'autres mods[/b] : fumées colorées et fusées posées par script.
 [/list]
@@ -32,6 +34,26 @@ Un hélicoptère doit repérer votre toit, un ami doit trouver votre camp, ou vo
 [*]À trouver dans le matériel d'urgence des stations-service, les outils de garage et les casiers de pompiers et de police.
 [/list]
 
+[h2]Bâtons lumineux[/h2]
+
+[list]
+[*]Vert, rouge, bleu ou jaune. Clic droit, [b]Activer et poser au sol[/b].
+[*]Une petite lueur colorée (environ 3 cases), sans fumée ni bruit, pendant 8 heures de jeu.
+[*]Une fois activé, il ne s'éteint plus : ramassez-le et reposez-le ailleurs, il brille jusqu'à épuisement.
+[*]À trouver dans les réserves et surplus de l'armée, les casiers de police et de pompiers, le matériel de camping et de survie.
+[/list]
+
+[h2]Bombes fumigènes artisanales[/h2]
+
+[list]
+[*]Recette [b]Fabriquer une bombe fumigène artisanale[/b] (Cuisine 2) : une conserve vide, du sucre, un pain de glace ou de l'engrais, de la peinture de la couleur voulue (verte, rouge, jaune ou violette) et une mèche (ficelle ou tissu déchiré).
+[*]Se lance comme une grenade fumigène, mais moins fiable : fumée plus courte, et 1 sur 5 fait long feu.
+[/list]
+
+[h2]Options sandbox[/h2]
+
+Durées de la fumée, des fusées et des bâtons lumineux, durée et ratés des fumigènes artisanaux, multiplicateur de butin, fusées dans les coffres des voitures de police.
+
 [h2]Multijoueur[/h2]
 
 Le serveur tient la liste des fumées et fusées actives et l'envoie à chaque client : les joueurs qui arrivent plus tard les voient aussi, et elles reviennent au chargement d'une sauvegarde.
@@ -44,7 +66,8 @@ local SignalSmoke = require "SignalSmoke/SignalSmoke"
 local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
 SignalSmoke.stop(id)
 [/code]
-Couleurs nommées : green, red, yellow, purple, orange, blue, white, ou toute table { r, g, b }. Utilisez kind = "flare" pour une fusée de route.
+Couleurs nommées : green, red, yellow, purple, orange, blue, white, ou toute table { r, g, b }. Utilisez kind = "flare" pour une fusée de route, kind = "chemlight" pour un bâton lumineux.
+[b]Événements[/b] : SignalSmoke.onSignal(function(event) ... end) est appelé sur le serveur quand une grenade, une fusée, un bâton lumineux ou un signal de script démarre, s'arrête ou expire (type, id, entry, source, username). API complète sur GitHub.
 
 [h2]Soutenir le projet[/h2]
 
@@ -53,4 +76,4 @@ Le mod vous plaît ? Un café aide à financer de nouvelles fonctions et des tra
 
 [h2]Crédits[/h2]
 
-Modèles et textures originaux réalisés avec Blender. Fumée et sons du jeu de base. Code source sous licence MIT : [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].
+Modèles, textures et icônes originaux réalisés avec Blender. Fumée et sons du jeu de base. Code source sous licence MIT : [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].

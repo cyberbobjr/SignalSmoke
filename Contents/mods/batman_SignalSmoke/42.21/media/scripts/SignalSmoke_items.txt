@@ -156,4 +156,240 @@ module SignalSmoke
         Icon = SignalSmoke_RoadFlareLit,
         WorldStaticModel = SignalSmoke_RoadFlareLit,
     }
+
+    /* Bâtons lumineux : un bâton neuf est activé et posé au sol par SignalSmoke_ActivateChemlightAction
+       (complete() serveur) ; il devient le type « Lit », qui porte son heure d'extinction en ModData.
+       Un objet posé n'éclaire pas : la lumière colorée est une lampe posée par chaque client d'après le
+       registre. Échu, il devient ChemlightUsed. */
+
+    item ChemlightGreen
+    {
+        DisplayCategory = LightSource,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SignalSmoke_ChemlightGreen,
+        StaticModel = SignalSmoke_ChemlightGreen,
+        WorldStaticModel = SignalSmoke_ChemlightGreen,
+        Tooltip = Tooltip_SignalSmoke_Chemlight,
+    }
+
+    item ChemlightGreenLit
+    {
+        DisplayCategory = LightSource,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SignalSmoke_ChemlightGreenLit,
+        StaticModel = SignalSmoke_ChemlightGreenLit,
+        WorldStaticModel = SignalSmoke_ChemlightGreenLit,
+        Tooltip = Tooltip_SignalSmoke_ChemlightLit,
+    }
+
+    item ChemlightRed
+    {
+        DisplayCategory = LightSource,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SignalSmoke_ChemlightRed,
+        StaticModel = SignalSmoke_ChemlightRed,
+        WorldStaticModel = SignalSmoke_ChemlightRed,
+        Tooltip = Tooltip_SignalSmoke_Chemlight,
+    }
+
+    item ChemlightRedLit
+    {
+        DisplayCategory = LightSource,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SignalSmoke_ChemlightRedLit,
+        StaticModel = SignalSmoke_ChemlightRedLit,
+        WorldStaticModel = SignalSmoke_ChemlightRedLit,
+        Tooltip = Tooltip_SignalSmoke_ChemlightLit,
+    }
+
+    item ChemlightBlue
+    {
+        DisplayCategory = LightSource,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SignalSmoke_ChemlightBlue,
+        StaticModel = SignalSmoke_ChemlightBlue,
+        WorldStaticModel = SignalSmoke_ChemlightBlue,
+        Tooltip = Tooltip_SignalSmoke_Chemlight,
+    }
+
+    item ChemlightBlueLit
+    {
+        DisplayCategory = LightSource,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SignalSmoke_ChemlightBlueLit,
+        StaticModel = SignalSmoke_ChemlightBlueLit,
+        WorldStaticModel = SignalSmoke_ChemlightBlueLit,
+        Tooltip = Tooltip_SignalSmoke_ChemlightLit,
+    }
+
+    item ChemlightYellow
+    {
+        DisplayCategory = LightSource,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SignalSmoke_ChemlightYellow,
+        StaticModel = SignalSmoke_ChemlightYellow,
+        WorldStaticModel = SignalSmoke_ChemlightYellow,
+        Tooltip = Tooltip_SignalSmoke_Chemlight,
+    }
+
+    item ChemlightYellowLit
+    {
+        DisplayCategory = LightSource,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SignalSmoke_ChemlightYellowLit,
+        StaticModel = SignalSmoke_ChemlightYellowLit,
+        WorldStaticModel = SignalSmoke_ChemlightYellowLit,
+        Tooltip = Tooltip_SignalSmoke_ChemlightLit,
+    }
+
+    item ChemlightUsed
+    {
+        DisplayCategory = Junk,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SignalSmoke_ChemlightUsed,
+        StaticModel = SignalSmoke_ChemlightUsed,
+        WorldStaticModel = SignalSmoke_ChemlightUsed,
+        Tooltip = Tooltip_SignalSmoke_ChemlightUsed,
+    }
+
+    /* Fumigènes artisanaux (recettes SignalSmoke_recipes.txt) : comme les grenades, SmokeRange = 0 ; la
+       fumée colorée, plus courte, est posée par le serveur, qui peut aussi décider d'un raté (options
+       sandbox SignalSmoke.ImprovisedSmokeSeconds et ImprovisedDudChance). */
+
+    item ImprovisedSmokeGreen
+    {
+        DisplayCategory = Explosives,
+        ItemType = base:weapon,
+        Weight = 0.5,
+        Icon = SignalSmoke_ImprovisedSmokeGreen,
+        CanBePlaced = false,
+        ExplosionDuration = 10,
+        ExplosionSound = SmokeBombLoop,
+        FireStartingEnergy = 0,
+        FireStartingChance = 0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        MaxRange = 10.0,
+        MinDamage = 0.0,
+        MinimumSwingtime = 1.5,
+        NoiseDuration = 10,
+        NoiseRange = 10,
+        PhysicsObject = SignalSmoke.ImprovisedSmokeGreen,
+        SmokeRange = 0,
+        SwingAmountBeforeImpact = 0.1,
+        SwingAnim = Throw,
+        SwingSound = SmokeBombThrow,
+        Swingtime = 1.5,
+        Tooltip = Tooltip_SignalSmoke_ImprovisedSmoke,
+        triggerExplosionTimer = 50,
+        UseSelf = true,
+        WeaponSprite = SignalSmoke_ImprovisedSmokeGreen,
+        WorldStaticModel = SignalSmoke_ImprovisedSmokeGreen,
+        ConditionMax = 1,
+    }
+
+    item ImprovisedSmokeRed
+    {
+        DisplayCategory = Explosives,
+        ItemType = base:weapon,
+        Weight = 0.5,
+        Icon = SignalSmoke_ImprovisedSmokeRed,
+        CanBePlaced = false,
+        ExplosionDuration = 10,
+        ExplosionSound = SmokeBombLoop,
+        FireStartingEnergy = 0,
+        FireStartingChance = 0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        MaxRange = 10.0,
+        MinDamage = 0.0,
+        MinimumSwingtime = 1.5,
+        NoiseDuration = 10,
+        NoiseRange = 10,
+        PhysicsObject = SignalSmoke.ImprovisedSmokeRed,
+        SmokeRange = 0,
+        SwingAmountBeforeImpact = 0.1,
+        SwingAnim = Throw,
+        SwingSound = SmokeBombThrow,
+        Swingtime = 1.5,
+        Tooltip = Tooltip_SignalSmoke_ImprovisedSmoke,
+        triggerExplosionTimer = 50,
+        UseSelf = true,
+        WeaponSprite = SignalSmoke_ImprovisedSmokeRed,
+        WorldStaticModel = SignalSmoke_ImprovisedSmokeRed,
+        ConditionMax = 1,
+    }
+
+    item ImprovisedSmokeYellow
+    {
+        DisplayCategory = Explosives,
+        ItemType = base:weapon,
+        Weight = 0.5,
+        Icon = SignalSmoke_ImprovisedSmokeYellow,
+        CanBePlaced = false,
+        ExplosionDuration = 10,
+        ExplosionSound = SmokeBombLoop,
+        FireStartingEnergy = 0,
+        FireStartingChance = 0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        MaxRange = 10.0,
+        MinDamage = 0.0,
+        MinimumSwingtime = 1.5,
+        NoiseDuration = 10,
+        NoiseRange = 10,
+        PhysicsObject = SignalSmoke.ImprovisedSmokeYellow,
+        SmokeRange = 0,
+        SwingAmountBeforeImpact = 0.1,
+        SwingAnim = Throw,
+        SwingSound = SmokeBombThrow,
+        Swingtime = 1.5,
+        Tooltip = Tooltip_SignalSmoke_ImprovisedSmoke,
+        triggerExplosionTimer = 50,
+        UseSelf = true,
+        WeaponSprite = SignalSmoke_ImprovisedSmokeYellow,
+        WorldStaticModel = SignalSmoke_ImprovisedSmokeYellow,
+        ConditionMax = 1,
+    }
+
+    item ImprovisedSmokePurple
+    {
+        DisplayCategory = Explosives,
+        ItemType = base:weapon,
+        Weight = 0.5,
+        Icon = SignalSmoke_ImprovisedSmokePurple,
+        CanBePlaced = false,
+        ExplosionDuration = 10,
+        ExplosionSound = SmokeBombLoop,
+        FireStartingEnergy = 0,
+        FireStartingChance = 0,
+        MaxDamage = 0.0,
+        MaxHitcount = 0,
+        MaxRange = 10.0,
+        MinDamage = 0.0,
+        MinimumSwingtime = 1.5,
+        NoiseDuration = 10,
+        NoiseRange = 10,
+        PhysicsObject = SignalSmoke.ImprovisedSmokePurple,
+        SmokeRange = 0,
+        SwingAmountBeforeImpact = 0.1,
+        SwingAnim = Throw,
+        SwingSound = SmokeBombThrow,
+        Swingtime = 1.5,
+        Tooltip = Tooltip_SignalSmoke_ImprovisedSmoke,
+        triggerExplosionTimer = 50,
+        UseSelf = true,
+        WeaponSprite = SignalSmoke_ImprovisedSmokePurple,
+        WorldStaticModel = SignalSmoke_ImprovisedSmokePurple,
+        ConditionMax = 1,
+    }
 }

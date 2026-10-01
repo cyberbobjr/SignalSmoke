@@ -1,0 +1,17 @@
+{
+    "Sandbox_SignalSmoke": "Signal Smoke",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds": "Duração do fumo das granadas (segundos reais)",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds_tooltip": "Quanto tempo dura o fumo colorido de uma granada de fumo, em segundos reais.",
+    "Sandbox_SignalSmoke_FlareBurnMinutes": "Duração das tochas de sinalização (minutos de jogo)",
+    "Sandbox_SignalSmoke_FlareBurnMinutes_tooltip": "Quanto tempo arde uma tocha de sinalização acesa, em minutos de jogo.",
+    "Sandbox_SignalSmoke_ChemlightHours": "Duração dos bastões luminosos (horas de jogo)",
+    "Sandbox_SignalSmoke_ChemlightHours_tooltip": "Quanto tempo brilha um bastão luminoso ativado, em horas de jogo. O tempo continua a contar enquanto é transportado.",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds": "Duração do fumo das bombas artesanais (segundos reais)",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds_tooltip": "Quanto tempo dura o fumo de uma bomba de fumo artesanal, em segundos reais.",
+    "Sandbox_SignalSmoke_ImprovisedDudChance": "Probabilidade de falha das bombas de fumo artesanais (%%)",
+    "Sandbox_SignalSmoke_ImprovisedDudChance_tooltip": "Probabilidade, em percentagem, de uma bomba de fumo artesanal crepitar sem fumo.",
+    "Sandbox_SignalSmoke_LootMultiplier": "Multiplicador de saque",
+    "Sandbox_SignalSmoke_LootMultiplier_tooltip": "Multiplica a probabilidade de encontrar granadas de fumo, tochas de sinalização e bastões luminosos nos contentores. 0: nenhum.",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars": "Tochas de sinalização nas bagageiras da polícia",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars_tooltip": "Os carros da polícia podem ter tochas de sinalização na bagageira."
+}

@@ -1,0 +1,17 @@
+{
+    "Sandbox_SignalSmoke": "Signal Smoke",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds": "Duração da fumaça das granadas (segundos reais)",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds_tooltip": "Quanto tempo dura a fumaça colorida de uma granada de fumaça, em segundos reais.",
+    "Sandbox_SignalSmoke_FlareBurnMinutes": "Duração dos sinalizadores de estrada (minutos de jogo)",
+    "Sandbox_SignalSmoke_FlareBurnMinutes_tooltip": "Quanto tempo queima um sinalizador de estrada aceso, em minutos de jogo.",
+    "Sandbox_SignalSmoke_ChemlightHours": "Duração dos bastões luminosos (horas de jogo)",
+    "Sandbox_SignalSmoke_ChemlightHours_tooltip": "Quanto tempo brilha um bastão luminoso ativado, em horas de jogo. O tempo continua contando enquanto ele é carregado.",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds": "Duração da fumaça das bombas caseiras (segundos reais)",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds_tooltip": "Quanto tempo dura a fumaça de uma bomba de fumaça caseira, em segundos reais.",
+    "Sandbox_SignalSmoke_ImprovisedDudChance": "Chance de falha das bombas de fumaça caseiras (%%)",
+    "Sandbox_SignalSmoke_ImprovisedDudChance_tooltip": "Chance, em porcentagem, de uma bomba de fumaça caseira chiar sem soltar fumaça.",
+    "Sandbox_SignalSmoke_LootMultiplier": "Multiplicador de itens",
+    "Sandbox_SignalSmoke_LootMultiplier_tooltip": "Multiplica a chance de encontrar granadas de fumaça, sinalizadores de estrada e bastões luminosos nos contêineres. 0: nenhum.",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars": "Sinalizadores de estrada nos porta-malas da polícia",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars_tooltip": "Carros de polícia podem ter sinalizadores de estrada no porta-malas."
+}

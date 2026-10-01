@@ -1,0 +1,17 @@
+{
+    "Sandbox_SignalSmoke": "Signal Smoke",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds": "烟雾弹烟雾持续时间（现实秒数）",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds_tooltip": "烟雾弹彩色烟雾的持续时间，以现实秒数计。",
+    "Sandbox_SignalSmoke_FlareBurnMinutes": "道路信号棒燃烧时间（游戏分钟）",
+    "Sandbox_SignalSmoke_FlareBurnMinutes_tooltip": "点燃的道路信号棒的燃烧时间，以游戏分钟计。",
+    "Sandbox_SignalSmoke_ChemlightHours": "荧光棒发光时间（游戏小时）",
+    "Sandbox_SignalSmoke_ChemlightHours_tooltip": "激活的荧光棒的发光时间，以游戏小时计。携带时时间仍会流逝。",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds": "自制烟雾弹烟雾持续时间（现实秒数）",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds_tooltip": "自制烟雾弹烟雾的持续时间，以现实秒数计。",
+    "Sandbox_SignalSmoke_ImprovisedDudChance": "自制烟雾弹失效几率（%%）",
+    "Sandbox_SignalSmoke_ImprovisedDudChance_tooltip": "自制烟雾弹只嘶嘶作响而不冒烟的几率（百分比）。",
+    "Sandbox_SignalSmoke_LootMultiplier": "物品倍率",
+    "Sandbox_SignalSmoke_LootMultiplier_tooltip": "提高或降低在容器中找到烟雾弹、道路信号棒和荧光棒的几率。0：不会出现。",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars": "警车后备箱中的道路信号棒",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars_tooltip": "警车的后备箱中可能有道路信号棒。"
+}

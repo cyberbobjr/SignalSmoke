@@ -4,5 +4,18 @@
     "SignalSmoke.SmokeGrenadeYellow": "Granada de Fumo (Amarela)",
     "SignalSmoke.SmokeGrenadePurple": "Granada de Fumo (Roxa)",
     "SignalSmoke.RoadFlare": "Tocha de Sinalização",
-    "SignalSmoke.RoadFlareLit": "Tocha de Sinalização (acesa)"
+    "SignalSmoke.RoadFlareLit": "Tocha de Sinalização (acesa)",
+    "SignalSmoke.ChemlightGreen": "Bastão Luminoso (Verde)",
+    "SignalSmoke.ChemlightGreenLit": "Bastão Luminoso (Verde, ativado)",
+    "SignalSmoke.ChemlightRed": "Bastão Luminoso (Vermelho)",
+    "SignalSmoke.ChemlightRedLit": "Bastão Luminoso (Vermelho, ativado)",
+    "SignalSmoke.ChemlightBlue": "Bastão Luminoso (Azul)",
+    "SignalSmoke.ChemlightBlueLit": "Bastão Luminoso (Azul, ativado)",
+    "SignalSmoke.ChemlightYellow": "Bastão Luminoso (Amarelo)",
+    "SignalSmoke.ChemlightYellowLit": "Bastão Luminoso (Amarelo, ativado)",
+    "SignalSmoke.ChemlightUsed": "Bastão Luminoso Gasto",
+    "SignalSmoke.ImprovisedSmokeGreen": "Bomba de Fumo Artesanal (Verde)",
+    "SignalSmoke.ImprovisedSmokeRed": "Bomba de Fumo Artesanal (Vermelha)",
+    "SignalSmoke.ImprovisedSmokeYellow": "Bomba de Fumo Artesanal (Amarela)",
+    "SignalSmoke.ImprovisedSmokePurple": "Bomba de Fumo Artesanal (Roxa)"
 }

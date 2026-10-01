@@ -1,4 +1,8 @@
 {
     "Tooltip_SignalSmoke_Grenade": "Arremesse: uma fumaça colorida sobe por cerca de um minuto e meio, visível de longe. Zumbis dentro da fumaça perdem o alvo de vista.",
-    "Tooltip_SignalSmoke_RoadFlare": "Queima em vermelho por cerca de uma hora de jogo depois de aceso e colocado no chão."
+    "Tooltip_SignalSmoke_RoadFlare": "Queima em vermelho por cerca de uma hora de jogo depois de aceso e colocado no chão.",
+    "Tooltip_SignalSmoke_Chemlight": "Ative e coloque no chão: um brilho colorido suave por várias horas, silencioso e sem fumaça. Depois de ativado, não pode mais ser apagado.",
+    "Tooltip_SignalSmoke_ChemlightLit": "Aceso. No chão, ilumina os arredores; se for pego, continua brilhando até se esgotar.",
+    "Tooltip_SignalSmoke_ChemlightUsed": "Esgotado: não brilha mais.",
+    "Tooltip_SignalSmoke_ImprovisedSmoke": "Arremesse: uma fumaça colorida, mais curta que a de uma granada militar. Por ser caseira, às vezes só chia sem soltar fumaça. Zumbis dentro da fumaça perdem o alvo de vista."
 }

@@ -4,5 +4,18 @@
     "SignalSmoke.SmokeGrenadeYellow": "Дымовая граната (жёлтая)",
     "SignalSmoke.SmokeGrenadePurple": "Дымовая граната (фиолетовая)",
     "SignalSmoke.RoadFlare": "Дорожный фальшфейер",
-    "SignalSmoke.RoadFlareLit": "Дорожный фальшфейер (горит)"
+    "SignalSmoke.RoadFlareLit": "Дорожный фальшфейер (горит)",
+    "SignalSmoke.ChemlightGreen": "Светящаяся палочка (зелёная)",
+    "SignalSmoke.ChemlightGreenLit": "Светящаяся палочка (зелёная, активирована)",
+    "SignalSmoke.ChemlightRed": "Светящаяся палочка (красная)",
+    "SignalSmoke.ChemlightRedLit": "Светящаяся палочка (красная, активирована)",
+    "SignalSmoke.ChemlightBlue": "Светящаяся палочка (синяя)",
+    "SignalSmoke.ChemlightBlueLit": "Светящаяся палочка (синяя, активирована)",
+    "SignalSmoke.ChemlightYellow": "Светящаяся палочка (жёлтая)",
+    "SignalSmoke.ChemlightYellowLit": "Светящаяся палочка (жёлтая, активирована)",
+    "SignalSmoke.ChemlightUsed": "Использованная светящаяся палочка",
+    "SignalSmoke.ImprovisedSmokeGreen": "Самодельная дымовая шашка (зелёная)",
+    "SignalSmoke.ImprovisedSmokeRed": "Самодельная дымовая шашка (красная)",
+    "SignalSmoke.ImprovisedSmokeYellow": "Самодельная дымовая шашка (жёлтая)",
+    "SignalSmoke.ImprovisedSmokePurple": "Самодельная дымовая шашка (фиолетовая)"
 }

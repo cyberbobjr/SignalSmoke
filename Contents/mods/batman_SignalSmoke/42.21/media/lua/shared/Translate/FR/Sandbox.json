@@ -1,0 +1,17 @@
+{
+    "Sandbox_SignalSmoke": "Signal Smoke",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds": "Durée de la fumée des grenades (secondes réelles)",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds_tooltip": "Durée de la fumée colorée d'une grenade fumigène, en secondes réelles.",
+    "Sandbox_SignalSmoke_FlareBurnMinutes": "Durée des fusées de route (minutes de jeu)",
+    "Sandbox_SignalSmoke_FlareBurnMinutes_tooltip": "Durée de combustion d'une fusée de route allumée, en minutes de jeu.",
+    "Sandbox_SignalSmoke_ChemlightHours": "Durée des bâtons lumineux (heures de jeu)",
+    "Sandbox_SignalSmoke_ChemlightHours_tooltip": "Durée pendant laquelle un bâton lumineux activé brille, en heures de jeu. Le temps continue de courir quand on le porte.",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds": "Durée de la fumée des bombes artisanales (secondes réelles)",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds_tooltip": "Durée de la fumée d'une bombe fumigène artisanale, en secondes réelles.",
+    "Sandbox_SignalSmoke_ImprovisedDudChance": "Ratés des bombes fumigènes artisanales (%%)",
+    "Sandbox_SignalSmoke_ImprovisedDudChance_tooltip": "Probabilité, en pourcentage, qu'une bombe fumigène artisanale grésille sans fumer.",
+    "Sandbox_SignalSmoke_LootMultiplier": "Multiplicateur de butin",
+    "Sandbox_SignalSmoke_LootMultiplier_tooltip": "Multiplie la probabilité de trouver grenades fumigènes, fusées de route et bâtons lumineux dans les conteneurs. 0 : aucun.",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars": "Fusées de route dans les coffres des voitures de police",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars_tooltip": "Les voitures de police peuvent contenir des fusées de route dans leur coffre."
+}

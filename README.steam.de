@@ -1,15 +1,17 @@
-[h1]Signal Smoke — Farbige Rauchgranaten und Straßenfackeln[/h1]
+[h1]Signal Smoke — Farbige Rauchgranaten, Straßenfackeln und Knicklichter[/h1]
 
 [b]Build 42.21 · Einzelspieler und Mehrspieler[/b]
 
-Ein Hubschrauber soll dein Dach entdecken, ein Freund dein Lager finden, oder du willst den Heimweg markieren? Zünde farbigen Rauch oder eine Straßenfackel: weithin sichtbar, für alle.
+Ein Hubschrauber soll dein Dach entdecken, ein Freund dein Lager finden, oder du willst den Heimweg markieren? Zünde farbigen Rauch, eine Straßenfackel oder leg ein Knicklicht ab: für alle sichtbar.
 
 [h2]Auf einen Blick[/h2]
 
 [list]
 [*][b]Vier Rauchgranaten[/b]: grün, rot, gelb und lila, mit eigenen 3D-Modellen und Symbolen.
 [*][b]Straßenfackeln[/b], die etwa eine Spielstunde lang rot auf dem Boden brennen.
-[*][b]In der Welt zu finden[/b]: keine Herstellung nötig.
+[*][b]Knicklichter[/b] in vier Farben: ein leises Leuchten, das stundenlang hält, um einen Weg oder einen Keller zu markieren.
+[*][b]Selbstgebaute Rauchbomben[/b]: Stelle deinen eigenen farbigen Rauch her.
+[*][b]Sandbox-Optionen[/b]: Dauer, Versagerquote, Beute.
 [*][b]Mehrspieler[/b]: Der Server entscheidet, alle Spieler sehen denselben Rauch und dieselben Fackeln.
 [*][b]Eine kleine Bibliothek für andere Mods[/b]: farbiger Rauch und Fackeln per Skript.
 [/list]
@@ -32,6 +34,26 @@ Ein Hubschrauber soll dein Dach entdecken, ein Freund dein Lager finden, oder du
 [*]Zu finden in der Notfallausrüstung von Tankstellen, bei Autowerkzeugen sowie in Feuerwehr- und Polizeispinden.
 [/list]
 
+[h2]Knicklichter[/h2]
+
+[list]
+[*]Grün, rot, blau oder gelb. Rechtsklick, [b]Aktivieren und auf den Boden legen[/b].
+[*]Ein kleines farbiges Leuchten (etwa 3 Felder), ohne Rauch und ohne Geräusch, 8 Spielstunden lang.
+[*]Einmal aktiviert, lässt es sich nicht mehr ausschalten: Heb es auf und leg es woanders ab, es leuchtet weiter, bis es erlischt.
+[*]Zu finden in Armeelagern und Restpostenläden, Polizei- und Feuerwehrspinden sowie bei Camping- und Survival-Ausrüstung.
+[/list]
+
+[h2]Selbstgebaute Rauchbomben[/h2]
+
+[list]
+[*]Rezept [b]Selbstgebaute Rauchbombe herstellen[/b] (Kochen 2): eine leere Blechdose, Zucker, ein Kühlkissen oder NPK-Dünger, Farbe in der gewünschten Farbe (grün, rot, gelb oder lila) und eine Zündschnur (Bindfaden oder Stofffetzen).
+[*]Wird wie eine Rauchgranate geworfen, ist aber weniger zuverlässig: kürzerer Rauch, und jede fünfte ist ein Blindgänger.
+[/list]
+
+[h2]Sandbox-Optionen[/h2]
+
+Dauer von Rauch, Fackeln und Knicklichtern, Rauchdauer und Versagerquote selbstgebauter Rauchbomben, Beute-Multiplikator, Straßenfackeln im Kofferraum von Polizeiautos.
+
 [h2]Mehrspieler[/h2]
 
 Der Server führt die Liste des aktiven Rauchs und der Fackeln und sendet sie an jeden Client: Später ankommende Spieler sehen sie auch, und nach dem Laden eines Spielstands sind sie wieder da.
@@ -44,7 +66,8 @@ local SignalSmoke = require "SignalSmoke/SignalSmoke"
 local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
 SignalSmoke.stop(id)
 [/code]
-Benannte Farben: green, red, yellow, purple, orange, blue, white oder eine beliebige Tabelle { r, g, b }. Mit kind = "flare" entsteht eine Straßenfackel.
+Benannte Farben: green, red, yellow, purple, orange, blue, white oder eine beliebige Tabelle { r, g, b }. Mit kind = "flare" entsteht eine Straßenfackel, mit kind = "chemlight" ein Knicklicht.
+[b]Ereignisse[/b]: SignalSmoke.onSignal(function(event) ... end) wird auf dem Server aufgerufen, wenn eine Granate, Fackel, ein Knicklicht oder ein Skriptsignal startet, stoppt oder abläuft (type, id, entry, source, username). Vollständige API auf GitHub.
 
 [h2]Unterstütze das Projekt[/h2]
 
@@ -53,4 +76,4 @@ Gefällt dir die Mod? Ein Kaffee hilft, neue Funktionen und Übersetzungen zu fi
 
 [h2]Credits[/h2]
 
-Eigene Modelle und Texturen, erstellt mit Blender. Rauch und Geräusche aus dem Grundspiel. Quellcode unter MIT-Lizenz: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].
+Eigene Modelle, Texturen und Symbole, erstellt mit Blender. Rauch und Geräusche aus dem Grundspiel. Quellcode unter MIT-Lizenz: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].

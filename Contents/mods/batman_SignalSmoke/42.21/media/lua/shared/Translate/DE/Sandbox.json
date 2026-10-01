@@ -1,0 +1,17 @@
+{
+    "Sandbox_SignalSmoke": "Signal Smoke",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds": "Rauchdauer der Rauchgranaten (echte Sekunden)",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds_tooltip": "Wie lange der farbige Rauch einer Rauchgranate anhält, in echten Sekunden.",
+    "Sandbox_SignalSmoke_FlareBurnMinutes": "Brenndauer der Straßenfackeln (Spielminuten)",
+    "Sandbox_SignalSmoke_FlareBurnMinutes_tooltip": "Wie lange eine angezündete Straßenfackel brennt, in Spielminuten.",
+    "Sandbox_SignalSmoke_ChemlightHours": "Leuchtdauer der Knicklichter (Spielstunden)",
+    "Sandbox_SignalSmoke_ChemlightHours_tooltip": "Wie lange ein aktiviertes Knicklicht leuchtet, in Spielstunden. Die Zeit läuft weiter, während man es trägt.",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds": "Rauchdauer selbstgebauter Rauchbomben (echte Sekunden)",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds_tooltip": "Wie lange der Rauch einer selbstgebauten Rauchbombe anhält, in echten Sekunden.",
+    "Sandbox_SignalSmoke_ImprovisedDudChance": "Versagerquote selbstgebauter Rauchbomben (%%)",
+    "Sandbox_SignalSmoke_ImprovisedDudChance_tooltip": "Wahrscheinlichkeit in Prozent, dass eine selbstgebaute Rauchbombe nur zischt, ohne zu rauchen.",
+    "Sandbox_SignalSmoke_LootMultiplier": "Beute-Multiplikator",
+    "Sandbox_SignalSmoke_LootMultiplier_tooltip": "Vervielfacht die Chance, Rauchgranaten, Straßenfackeln und Knicklichter in Behältern zu finden. 0: keine.",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars": "Straßenfackeln im Kofferraum von Polizeiautos",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars_tooltip": "Polizeiautos können Straßenfackeln im Kofferraum haben."
+}

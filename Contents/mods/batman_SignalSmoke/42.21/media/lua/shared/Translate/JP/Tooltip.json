@@ -1,4 +1,8 @@
 {
     "Tooltip_SignalSmoke_Grenade": "投げると色付きの煙が約1分半立ちのぼり、遠くからでも見える。煙の中のゾンビは標的を見失う。",
-    "Tooltip_SignalSmoke_RoadFlare": "点火して地面に置くと、ゲーム内で約1時間赤く燃える。"
+    "Tooltip_SignalSmoke_RoadFlare": "点火して地面に置くと、ゲーム内で約1時間赤く燃える。",
+    "Tooltip_SignalSmoke_Chemlight": "点灯して地面に置くと、数時間にわたり柔らかな色の光を放つ。音も煙も出ない。一度点灯すると消せない。",
+    "Tooltip_SignalSmoke_ChemlightLit": "点灯中。地面に置くと周囲を照らす。拾っても尽きるまで光り続ける。",
+    "Tooltip_SignalSmoke_ChemlightUsed": "使用済み：もう光らない。",
+    "Tooltip_SignalSmoke_ImprovisedSmoke": "投げると色付きの煙が出るが、軍用の発煙手榴弾より短い。手製なので、煙を出さずにシューと鳴るだけのこともある。煙の中のゾンビは標的を見失う。"
 }

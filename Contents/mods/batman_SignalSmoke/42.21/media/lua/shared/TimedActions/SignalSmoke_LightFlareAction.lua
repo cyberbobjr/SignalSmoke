@@ -13,8 +13,8 @@ SignalSmoke_LightFlareAction = ISBaseTimedAction:derive("SignalSmoke_LightFlareA
 
 SignalSmoke_LightFlareAction.FLARE_TYPE = "SignalSmoke.RoadFlare"
 SignalSmoke_LightFlareAction.LIT_TYPE = "SignalSmoke.RoadFlareLit"
--- Durée de combustion, en minutes de jeu.
-SignalSmoke_LightFlareAction.BURN_MINUTES = 60
+-- Durée de combustion par défaut, en minutes de jeu (option sandbox SignalSmoke.FlareBurnMinutes).
+SignalSmoke_LightFlareAction.BURN_MINUTES = SignalSmoke.DEFAULTS.FlareBurnMinutes
 
 local DURATION = 60
 -- Grésillement de la fusée allumée, joué par les clients tant qu'elle brûle.
@@ -79,8 +79,9 @@ function SignalSmoke_LightFlareAction:complete()
         SignalSmoke.start{
             kind = "flare", color = "red", radius = 0, light = true,
             x = square:getX(), y = square:getY(), z = square:getZ(),
-            minutes = SignalSmoke_LightFlareAction.BURN_MINUTES, itemId = lit:getID(),
-            sound = BURN_SOUND, owner = "SignalSmoke:flare",
+            minutes = SignalSmoke.option("FlareBurnMinutes"), itemId = lit:getID(),
+            itemType = SignalSmoke_LightFlareAction.LIT_TYPE,
+            sound = BURN_SOUND, owner = "SignalSmoke:flare", source = "flare", player = character,
         }
     end
     return true

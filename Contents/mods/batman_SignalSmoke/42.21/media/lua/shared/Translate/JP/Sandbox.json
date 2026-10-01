@@ -1,0 +1,17 @@
+{
+    "Sandbox_SignalSmoke": "Signal Smoke",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds": "発煙手榴弾の煙の持続時間（実時間・秒）",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds_tooltip": "発煙手榴弾の色付きの煙が続く時間（実時間の秒数）。",
+    "Sandbox_SignalSmoke_FlareBurnMinutes": "発炎筒の燃焼時間（ゲーム内・分）",
+    "Sandbox_SignalSmoke_FlareBurnMinutes_tooltip": "点火した発炎筒が燃える時間（ゲーム内の分数）。",
+    "Sandbox_SignalSmoke_ChemlightHours": "ケミカルライトの点灯時間（ゲーム内・時間）",
+    "Sandbox_SignalSmoke_ChemlightHours_tooltip": "点灯したケミカルライトが光る時間（ゲーム内の時間数）。持ち歩いている間も時間は経過する。",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds": "手製発煙弾の煙の持続時間（実時間・秒）",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds_tooltip": "手製発煙弾の煙が続く時間（実時間の秒数）。",
+    "Sandbox_SignalSmoke_ImprovisedDudChance": "手製発煙弾の不発率（%%）",
+    "Sandbox_SignalSmoke_ImprovisedDudChance_tooltip": "手製発煙弾が煙を出さずにシューと鳴るだけになる確率（パーセント）。",
+    "Sandbox_SignalSmoke_LootMultiplier": "入手量の倍率",
+    "Sandbox_SignalSmoke_LootMultiplier_tooltip": "コンテナで発煙手榴弾、発炎筒、ケミカルライトが見つかる確率に掛かる倍率。0：出現しない。",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars": "パトカーのトランクに発炎筒",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars_tooltip": "パトカーのトランクに発炎筒が入っていることがある。"
+}

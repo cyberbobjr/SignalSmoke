@@ -1,4 +1,8 @@
 {
     "Tooltip_SignalSmoke_Grenade": "投掷后，彩色烟雾会升起约一分半钟，远处可见。烟雾中的丧尸会失去目标。",
-    "Tooltip_SignalSmoke_RoadFlare": "点燃并放在地上后，会发出红光燃烧约一小时游戏时间。"
+    "Tooltip_SignalSmoke_RoadFlare": "点燃并放在地上后，会发出红光燃烧约一小时游戏时间。",
+    "Tooltip_SignalSmoke_Chemlight": "激活后放在地上：柔和的彩色光芒持续数小时，无声无烟。一旦激活就无法熄灭。",
+    "Tooltip_SignalSmoke_ChemlightLit": "正在发光。放在地上会照亮周围；捡起后仍会持续发光，直到耗尽。",
+    "Tooltip_SignalSmoke_ChemlightUsed": "已耗尽：不再发光。",
+    "Tooltip_SignalSmoke_ImprovisedSmoke": "投掷后会冒出彩色烟雾，持续时间比军用烟雾弹短。由于是自制的，有时只会嘶嘶作响而不冒烟。烟雾中的丧尸会失去目标。"
 }

@@ -4,5 +4,18 @@
     "SignalSmoke.SmokeGrenadeYellow": "発煙手榴弾（黄）",
     "SignalSmoke.SmokeGrenadePurple": "発煙手榴弾（紫）",
     "SignalSmoke.RoadFlare": "発炎筒",
-    "SignalSmoke.RoadFlareLit": "発炎筒（点火済み）"
+    "SignalSmoke.RoadFlareLit": "発炎筒（点火済み）",
+    "SignalSmoke.ChemlightGreen": "ケミカルライト（緑）",
+    "SignalSmoke.ChemlightGreenLit": "ケミカルライト（緑・点灯中）",
+    "SignalSmoke.ChemlightRed": "ケミカルライト（赤）",
+    "SignalSmoke.ChemlightRedLit": "ケミカルライト（赤・点灯中）",
+    "SignalSmoke.ChemlightBlue": "ケミカルライト（青）",
+    "SignalSmoke.ChemlightBlueLit": "ケミカルライト（青・点灯中）",
+    "SignalSmoke.ChemlightYellow": "ケミカルライト（黄）",
+    "SignalSmoke.ChemlightYellowLit": "ケミカルライト（黄・点灯中）",
+    "SignalSmoke.ChemlightUsed": "使用済みケミカルライト",
+    "SignalSmoke.ImprovisedSmokeGreen": "手製発煙弾（緑）",
+    "SignalSmoke.ImprovisedSmokeRed": "手製発煙弾（赤）",
+    "SignalSmoke.ImprovisedSmokeYellow": "手製発煙弾（黄）",
+    "SignalSmoke.ImprovisedSmokePurple": "手製発煙弾（紫）"
 }

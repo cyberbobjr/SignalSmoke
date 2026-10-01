@@ -1,0 +1,17 @@
+{
+    "Sandbox_SignalSmoke": "Signal Smoke",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds": "Длительность дыма гранат (реальные секунды)",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds_tooltip": "Сколько держится цветной дым дымовой гранаты, в реальных секундах.",
+    "Sandbox_SignalSmoke_FlareBurnMinutes": "Время горения фальшфейеров (игровые минуты)",
+    "Sandbox_SignalSmoke_FlareBurnMinutes_tooltip": "Сколько горит зажжённый дорожный фальшфейер, в игровых минутах.",
+    "Sandbox_SignalSmoke_ChemlightHours": "Время свечения светящихся палочек (игровые часы)",
+    "Sandbox_SignalSmoke_ChemlightHours_tooltip": "Сколько светится активированная светящаяся палочка, в игровых часах. Время идёт, даже когда её несут с собой.",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds": "Длительность дыма самодельных шашек (реальные секунды)",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds_tooltip": "Сколько держится дым самодельной дымовой шашки, в реальных секундах.",
+    "Sandbox_SignalSmoke_ImprovisedDudChance": "Вероятность осечки самодельных шашек (%%)",
+    "Sandbox_SignalSmoke_ImprovisedDudChance_tooltip": "Вероятность в процентах, что самодельная дымовая шашка лишь зашипит без дыма.",
+    "Sandbox_SignalSmoke_LootMultiplier": "Множитель добычи",
+    "Sandbox_SignalSmoke_LootMultiplier_tooltip": "Умножает шанс найти в контейнерах дымовые гранаты, дорожные фальшфейеры и светящиеся палочки. 0: не встречаются.",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars": "Фальшфейеры в багажниках полицейских машин",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars_tooltip": "В багажнике полицейских машин могут быть дорожные фальшфейеры."
+}

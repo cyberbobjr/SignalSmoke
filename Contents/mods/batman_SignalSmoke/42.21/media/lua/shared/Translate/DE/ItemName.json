@@ -4,5 +4,18 @@
     "SignalSmoke.SmokeGrenadeYellow": "Rauchgranate (Gelb)",
     "SignalSmoke.SmokeGrenadePurple": "Rauchgranate (Lila)",
     "SignalSmoke.RoadFlare": "Straßenfackel",
-    "SignalSmoke.RoadFlareLit": "Straßenfackel (brennend)"
+    "SignalSmoke.RoadFlareLit": "Straßenfackel (brennend)",
+    "SignalSmoke.ChemlightGreen": "Knicklicht (Grün)",
+    "SignalSmoke.ChemlightGreenLit": "Knicklicht (Grün, aktiviert)",
+    "SignalSmoke.ChemlightRed": "Knicklicht (Rot)",
+    "SignalSmoke.ChemlightRedLit": "Knicklicht (Rot, aktiviert)",
+    "SignalSmoke.ChemlightBlue": "Knicklicht (Blau)",
+    "SignalSmoke.ChemlightBlueLit": "Knicklicht (Blau, aktiviert)",
+    "SignalSmoke.ChemlightYellow": "Knicklicht (Gelb)",
+    "SignalSmoke.ChemlightYellowLit": "Knicklicht (Gelb, aktiviert)",
+    "SignalSmoke.ChemlightUsed": "Verbrauchtes Knicklicht",
+    "SignalSmoke.ImprovisedSmokeGreen": "Selbstgebaute Rauchbombe (Grün)",
+    "SignalSmoke.ImprovisedSmokeRed": "Selbstgebaute Rauchbombe (Rot)",
+    "SignalSmoke.ImprovisedSmokeYellow": "Selbstgebaute Rauchbombe (Gelb)",
+    "SignalSmoke.ImprovisedSmokePurple": "Selbstgebaute Rauchbombe (Lila)"
 }

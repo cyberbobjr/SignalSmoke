@@ -1,4 +1,8 @@
 {
     "Tooltip_SignalSmoke_Grenade": "Lánzala: un humo de color se eleva durante un minuto y medio aproximadamente, visible desde lejos. Los zombis dentro del humo pierden de vista su objetivo.",
-    "Tooltip_SignalSmoke_RoadFlare": "Arde en rojo durante una hora de juego aproximadamente, una vez encendida y dejada en el suelo."
+    "Tooltip_SignalSmoke_RoadFlare": "Arde en rojo durante una hora de juego aproximadamente, una vez encendida y dejada en el suelo.",
+    "Tooltip_SignalSmoke_Chemlight": "Actívala y déjala en el suelo: un suave brillo de color durante varias horas, silencioso y sin humo. Una vez activada, ya no se puede apagar.",
+    "Tooltip_SignalSmoke_ChemlightLit": "Encendida. En el suelo ilumina los alrededores; si la recoges, sigue brillando hasta agotarse.",
+    "Tooltip_SignalSmoke_ChemlightUsed": "Agotada: ya no brilla.",
+    "Tooltip_SignalSmoke_ImprovisedSmoke": "Lánzala: un humo de color, más corto que el de una granada militar. Al ser casera, a veces solo chisporrotea sin humo. Los zombis dentro del humo pierden de vista su objetivo."
 }

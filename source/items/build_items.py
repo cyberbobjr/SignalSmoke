@@ -1,10 +1,15 @@
 # Signal Smoke : modèles 3D et icônes des objets (recette Blender sans interface, originale).
-#   blender -b --factory-startup -P build_items.py -- <racine du mod 42.21/media>
+#   blender -b --factory-startup -P build_items.py -- <racine du mod 42.21/media> [groupes]
+# groupes (facultatif, séparés par des virgules) : grenade, flare, chemlight, improvised ; tous par défaut.
 # Produit :
 #   models_X/WorldItems/SignalSmoke_SmokeGrenade.fbx      grenade fumigène type M18 (une seule géométrie)
 #   models_X/WorldItems/SignalSmoke_RoadFlare.fbx         fusée de route (debout)
 #   models_X/WorldItems/SignalSmoke_RoadFlareLit.fbx      fusée de route allumée, couchée au sol
 #   textures/WorldItems/SignalSmoke_SmokeGrenade<Couleur>.png, SignalSmoke_RoadFlare.png, SignalSmoke_RoadFlareLit.png
+#   models_X/WorldItems/SignalSmoke_Chemlight.fbx         bâton lumineux couché (une géométrie, 9 textures)
+#   models_X/WorldItems/SignalSmoke_ImprovisedSmoke.fbx   fumigène artisanal : boîte de conserve, mèche
+#   textures/WorldItems/SignalSmoke_Chemlight<Couleur>[Lit].png, SignalSmoke_ChemlightUsed.png,
+#   textures/WorldItems/SignalSmoke_ImprovisedSmoke<Couleur>.png
 #   textures/Item_SignalSmoke_<Nom>.png                    icônes 64×64
 # Dimensions : objets exagérés comme le vanilla, pour la lisibilité (grenade 0,40 m dans Blender). En jeu,
 # taille = étendue après transformation de nœud × scale du script de modèle : l'export en mètres porte
@@ -21,6 +26,8 @@ import numpy as np
 
 ARGS = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
 MEDIA = ARGS[0] if ARGS else os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "media")
+ALL_GROUPS = ("grenade", "flare", "chemlight", "improvised")
+GROUPS = ARGS[1].split(",") if len(ARGS) > 1 else list(ALL_GROUPS)
 
 TEX_SIZE = 256
 ICON_SIZE = 64
@@ -37,6 +44,18 @@ DARK = (0.12, 0.12, 0.11)
 METAL = (0.55, 0.56, 0.55)
 FLARE_RED = (0.78, 0.08, 0.06)
 CAP_WHITE = (0.85, 0.85, 0.80)
+# Bâtons lumineux (couleurs sRGB du plastique) et fumigène artisanal.
+CHEMLIGHT_COLORS = {
+    "Green": (0.35, 0.95, 0.30),
+    "Red": (0.95, 0.20, 0.18),
+    "Blue": (0.25, 0.55, 1.00),
+    "Yellow": (1.00, 0.90, 0.20),
+}
+CHEMLIGHT_CAP = (0.20, 0.20, 0.21)
+CHEMLIGHT_SPENT = (0.55, 0.57, 0.55)
+TIN = (0.70, 0.71, 0.70)
+TAPE = (0.32, 0.33, 0.34)
+TWINE = (0.72, 0.60, 0.40)
 
 
 def reset():
@@ -190,6 +209,52 @@ def build_flare_lit(bm):
     bmesh.ops.translate(bm, verts=bm.verts, vec=(-0.25, 0.0, 0.034))
 
 
+# Bâton lumineux couché le long de X, posé au sol : bouchon sombre avec anneau d'accroche à une
+# extrémité (v 0 à 0,12), tube de plastique translucide ensuite. 0,48 m dans Blender (≈ 0,16 m en jeu).
+def mix(color, other, amount):
+    return tuple(c * (1.0 - amount) + o * amount for c, o in zip(color, other))
+
+
+def chemlight_rows(body):
+    return [(0.00, 0.12, CHEMLIGHT_CAP), (0.12, 1.00, body)]
+
+
+def build_chemlight(bm):
+    import mathutils
+    cylinder(bm, 0.050, 0.000, 0.060, 0.02, 0.10)    # bouchon
+    cylinder(bm, 0.042, 0.060, 0.480, 0.14, 0.99)    # tube
+    # Anneau d'accroche au bout du bouchon (8 cubes), dans le plan XZ une fois couché.
+    for i in range(8):
+        angle = 2 * math.pi * i / 8
+        cx, cz = 0.022 * math.cos(angle), -0.028 + 0.022 * math.sin(angle)
+        box(bm, cx - 0.005, cx + 0.005, -0.005, 0.005, cz - 0.005, cz + 0.005, 0.05)
+    bmesh.ops.rotate(bm, verts=bm.verts, cent=(0, 0, 0),
+                     matrix=mathutils.Matrix.Rotation(math.radians(90), 3, "Y"))
+    bmesh.ops.translate(bm, verts=bm.verts, vec=(-0.24, 0.0, 0.050))
+
+
+# Fumigène artisanal : boîte de conserve peinte d'une bande de couleur, couvercle de ruban adhésif,
+# mèche de ficelle. 0,30 m de haut dans Blender (≈ 0,10 m en jeu).
+def improvised_rows(color):
+    return [(0.00, 0.05, METAL), (0.05, 0.30, TIN), (0.30, 0.72, color), (0.72, 0.86, TIN),
+            (0.86, 0.94, TAPE), (0.94, 1.00, TWINE)]
+
+
+def build_improvised(bm):
+    cylinder(bm, 0.110, 0.000, 0.300, 0.02, 0.85)    # boîte
+    cylinder(bm, 0.113, 0.300, 0.315, 0.88, 0.92)    # couvercle de ruban adhésif
+    cylinder(bm, 0.012, 0.315, 0.400, 0.96, 0.99, segments=8)  # mèche
+
+
+def set_glow(bsdf, image, strength):
+    # Icône d'un bâton activé : la texture émet de la lumière (sans effet sur l'export FBX).
+    tree = bsdf.id_data
+    tex = next(node for node in tree.nodes if node.type == "TEX_IMAGE")
+    tex.image = image
+    tree.links.new(tex.outputs["Color"], bsdf.inputs["Emission Color"])
+    bsdf.inputs["Emission Strength"].default_value = strength
+
+
 def export_fbx(obj, path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     bpy.ops.object.select_all(action="DESELECT")
@@ -222,6 +287,10 @@ def setup_icon_camera(scene, obj):
     scene.render.resolution_y = ICON_RENDER
     scene.render.image_settings.file_format = "PNG"
     scene.render.image_settings.color_mode = "RGBA"
+    # Une seule caméra et un seul soleil : sinon chaque icône d'un même groupe ajoute un soleil et
+    # éclaire davantage la suivante.
+    for old in [o for o in scene.objects if o.name.startswith(("IconCamera", "IconSun"))]:
+        bpy.data.objects.remove(old, do_unlink=True)
     camera_data = bpy.data.cameras.new("IconCamera")
     camera_data.type = "ORTHO"
     center, size = bounds(obj)
@@ -273,6 +342,18 @@ def main():
     world_textures = os.path.join(textures, "WorldItems")
     models = os.path.join(MEDIA, "models_X", "WorldItems")
 
+    if "grenade" in GROUPS:
+        build_grenades(textures, world_textures, models)
+    if "flare" in GROUPS:
+        build_flares(textures, world_textures, models)
+    if "chemlight" in GROUPS:
+        build_chemlights(textures, world_textures, models)
+    if "improvised" in GROUPS:
+        build_improvised_smokes(textures, world_textures, models)
+    print("SignalSmoke items OK ->", MEDIA, GROUPS)
+
+
+def build_grenades(textures, world_textures, models):
     # Grenade : une géométrie, quatre textures ; les icônes montrent chaque couleur.
     scene = reset()
     first = None
@@ -288,6 +369,8 @@ def main():
         only(first)
         render_icon(scene, os.path.join(textures, "Item_SignalSmoke_SmokeGrenade%s.png" % color_name), first)
 
+
+def build_flares(textures, world_textures, models):
     for name, build_fn, rows in (
         ("SignalSmoke_RoadFlare", build_flare, FLARE_ROWS),
         ("SignalSmoke_RoadFlareLit", build_flare_lit, FLARE_LIT_ROWS),
@@ -299,7 +382,42 @@ def main():
         export_fbx(obj, os.path.join(models, name + ".fbx"))
         only(obj)
         render_icon(scene, os.path.join(textures, "Item_" + name + ".png"), obj)
-    print("SignalSmoke items OK ->", MEDIA)
+
+
+def build_chemlights(textures, world_textures, models):
+    # Une géométrie ; textures neuves (plastique pâle), activées (lumineuses) et usagée (grise).
+    variants = []
+    for color_name, color in CHEMLIGHT_COLORS.items():
+        variants.append(("SignalSmoke_Chemlight" + color_name, mix(color, (1.0, 1.0, 1.0), 0.35), 0.0))
+        variants.append(("SignalSmoke_Chemlight" + color_name + "Lit", mix(color, (1.0, 1.0, 1.0), 0.15), 2.5))
+    variants.append(("SignalSmoke_ChemlightUsed", CHEMLIGHT_SPENT, 0.0))
+    scene = reset()
+    obj = bsdf = None
+    for name, body, glow in variants:
+        image = make_image(name, chemlight_rows(body))
+        save_image(image, os.path.join(world_textures, name + ".png"))
+        if obj is None:
+            obj, _, bsdf = mesh_object("SignalSmoke_Chemlight", build_chemlight, image)
+            export_fbx(obj, os.path.join(models, "SignalSmoke_Chemlight.fbx"))
+        set_glow(bsdf, image, glow)
+        only(obj)
+        render_icon(scene, os.path.join(textures, "Item_" + name + ".png"), obj)
+
+
+def build_improvised_smokes(textures, world_textures, models):
+    scene = reset()
+    obj = None
+    for color_name, color in COLORS.items():
+        name = "SignalSmoke_ImprovisedSmoke" + color_name
+        image = make_image(name, improvised_rows(color))
+        save_image(image, os.path.join(world_textures, name + ".png"))
+        if obj is None:
+            obj, _, _ = mesh_object("SignalSmoke_ImprovisedSmoke", build_improvised, image)
+            export_fbx(obj, os.path.join(models, "SignalSmoke_ImprovisedSmoke.fbx"))
+        else:
+            obj.data.materials[0].node_tree.nodes["Image Texture"].image = image
+        only(obj)
+        render_icon(scene, os.path.join(textures, "Item_" + name + ".png"), obj)
 
 
 main()

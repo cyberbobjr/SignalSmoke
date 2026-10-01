@@ -74,4 +74,163 @@ module Base
         texture = WorldItems/SignalSmoke_RoadFlareLit,
         scale = 0.0033,
     }
+
+    /* Bâtons lumineux (couchés, 0,48 m dans Blender ≈ 0,16 m en jeu) et fumigènes artisanaux (boîte de
+       0,30 m dans Blender ≈ 0,10 m), même échelle que les grenades. */
+
+    model SignalSmoke_ChemlightGreen
+    {
+        mesh = WorldItems/SignalSmoke_Chemlight,
+        texture = WorldItems/SignalSmoke_ChemlightGreen,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ChemlightGreenLit
+    {
+        mesh = WorldItems/SignalSmoke_Chemlight,
+        texture = WorldItems/SignalSmoke_ChemlightGreenLit,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ChemlightRed
+    {
+        mesh = WorldItems/SignalSmoke_Chemlight,
+        texture = WorldItems/SignalSmoke_ChemlightRed,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ChemlightRedLit
+    {
+        mesh = WorldItems/SignalSmoke_Chemlight,
+        texture = WorldItems/SignalSmoke_ChemlightRedLit,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ChemlightBlue
+    {
+        mesh = WorldItems/SignalSmoke_Chemlight,
+        texture = WorldItems/SignalSmoke_ChemlightBlue,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ChemlightBlueLit
+    {
+        mesh = WorldItems/SignalSmoke_Chemlight,
+        texture = WorldItems/SignalSmoke_ChemlightBlueLit,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ChemlightYellow
+    {
+        mesh = WorldItems/SignalSmoke_Chemlight,
+        texture = WorldItems/SignalSmoke_ChemlightYellow,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ChemlightYellowLit
+    {
+        mesh = WorldItems/SignalSmoke_Chemlight,
+        texture = WorldItems/SignalSmoke_ChemlightYellowLit,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ChemlightUsed
+    {
+        mesh = WorldItems/SignalSmoke_Chemlight,
+        texture = WorldItems/SignalSmoke_ChemlightUsed,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ImprovisedSmokeGreen
+    {
+        mesh = WorldItems/SignalSmoke_ImprovisedSmoke,
+        texture = WorldItems/SignalSmoke_ImprovisedSmokeGreen,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ImprovisedSmokeRed
+    {
+        mesh = WorldItems/SignalSmoke_ImprovisedSmoke,
+        texture = WorldItems/SignalSmoke_ImprovisedSmokeRed,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ImprovisedSmokeYellow
+    {
+        mesh = WorldItems/SignalSmoke_ImprovisedSmoke,
+        texture = WorldItems/SignalSmoke_ImprovisedSmokeYellow,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
+
+    model SignalSmoke_ImprovisedSmokePurple
+    {
+        mesh = WorldItems/SignalSmoke_ImprovisedSmoke,
+        texture = WorldItems/SignalSmoke_ImprovisedSmokePurple,
+        scale = 0.0033,
+        attachment Bip01_Prop1
+        {
+            offset = 0.0 0.0 0.0,
+            rotate = 0.0 0.0 0.0,
+        }
+    }
 }

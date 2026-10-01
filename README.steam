@@ -1,15 +1,17 @@
-[h1]Signal Smoke — Colored Smoke Grenades & Road Flares[/h1]
+[h1]Signal Smoke — Colored Smoke Grenades, Road Flares & Chemlights[/h1]
 
 [b]Build 42.21 · Singleplayer & Multiplayer[/b]
 
-Need a helicopter to spot your roof, a friend to find your camp, or a way to mark the road home? Pop colored smoke or light a road flare: seen from afar, by everyone.
+Need a helicopter to spot your roof, a friend to find your camp, or a way to mark the road home? Pop colored smoke, light a road flare or drop a chemlight: seen by everyone.
 
 [h2]At a glance[/h2]
 
 [list]
 [*][b]Four smoke grenades[/b]: green, red, yellow and purple, with their own 3D models and icons.
 [*][b]Road flares[/b] that burn red on the ground for about an hour of game time.
-[*][b]Found in the world[/b]: no crafting needed.
+[*][b]Chemlights[/b] in four colors: a quiet glow that lasts for hours, to mark a path or a basement.
+[*][b]Improvised smoke bombs[/b]: craft your own colored smoke.
+[*][b]Sandbox options[/b]: durations, dud chance, loot.
 [*][b]Multiplayer[/b]: the server decides, every player sees the same smoke and flares.
 [*][b]A small library for other mods[/b]: colored smoke and flares placed by script.
 [/list]
@@ -32,6 +34,26 @@ Need a helicopter to spot your roof, a friend to find your camp, or a way to mar
 [*]Found in gas station emergency supplies, car supply tools, fire department and police lockers.
 [/list]
 
+[h2]Chemlights[/h2]
+
+[list]
+[*]Green, red, blue or yellow. Right-click, [b]Activate and place on the ground[/b].
+[*]A small colored glow (about 3 tiles), with no smoke and no sound, for 8 hours of game time.
+[*]Once activated it can't be switched off: pick it up and drop it elsewhere, it keeps glowing until it runs out.
+[*]Found in army storage and surplus stores, police and fire lockers, camping and survival gear.
+[/list]
+
+[h2]Improvised smoke bombs[/h2]
+
+[list]
+[*]Recipe [b]Make Improvised Smoke Bomb[/b] (Cooking 2): an empty can, sugar, a cold pack or fertilizer, paint in the color you want (green, red, yellow or purple) and a fuse (twine or a fabric strip).
+[*]Thrown like a smoke grenade, but less reliable: shorter smoke, and 1 in 5 is a dud.
+[/list]
+
+[h2]Sandbox options[/h2]
+
+Smoke, flare and chemlight durations, improvised smoke duration and dud chance, loot multiplier, flares in police car trunks.
+
 [h2]Multiplayer[/h2]
 
 The server keeps the list of active smokes and flares and sends it to every client: players who arrive later see them too, and they come back after loading a save.
@@ -44,7 +66,8 @@ local SignalSmoke = require "SignalSmoke/SignalSmoke"
 local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
 SignalSmoke.stop(id)
 [/code]
-Named colors: green, red, yellow, purple, orange, blue, white, or any { r, g, b } table. Use kind = "flare" for a road flare.
+Named colors: green, red, yellow, purple, orange, blue, white, or any { r, g, b } table. Use kind = "flare" for a road flare, kind = "chemlight" for a chemlight.
+[b]Events[/b]: SignalSmoke.onSignal(function(event) ... end) is called on the server when a grenade, flare, chemlight or script signal starts, stops or expires (type, id, entry, source, username). Full API on GitHub.
 
 [h2]Support the project[/h2]
 
@@ -53,4 +76,4 @@ Enjoying the mod? A coffee helps fund new features and translations.
 
 [h2]Credits[/h2]
 
-Original models and textures made with Blender. Smoke and sounds from the base game. Source code under the MIT license: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].
+Original models, textures and icons made with Blender. Smoke and sounds from the base game. Source code under the MIT license: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].

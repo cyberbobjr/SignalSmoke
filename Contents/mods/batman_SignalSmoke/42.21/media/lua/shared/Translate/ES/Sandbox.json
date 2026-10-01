@@ -1,0 +1,17 @@
+{
+    "Sandbox_SignalSmoke": "Signal Smoke",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds": "Duración del humo de las granadas (segundos reales)",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds_tooltip": "Cuánto dura el humo de color de una granada de humo, en segundos reales.",
+    "Sandbox_SignalSmoke_FlareBurnMinutes": "Duración de las bengalas de carretera (minutos de juego)",
+    "Sandbox_SignalSmoke_FlareBurnMinutes_tooltip": "Cuánto arde una bengala de carretera encendida, en minutos de juego.",
+    "Sandbox_SignalSmoke_ChemlightHours": "Duración de las barras luminosas (horas de juego)",
+    "Sandbox_SignalSmoke_ChemlightHours_tooltip": "Cuánto brilla una barra luminosa activada, en horas de juego. El tiempo sigue corriendo mientras la llevas.",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds": "Duración del humo de las bombas caseras (segundos reales)",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds_tooltip": "Cuánto dura el humo de una bomba de humo casera, en segundos reales.",
+    "Sandbox_SignalSmoke_ImprovisedDudChance": "Probabilidad de fallo de las bombas de humo caseras (%%)",
+    "Sandbox_SignalSmoke_ImprovisedDudChance_tooltip": "Probabilidad, en porcentaje, de que una bomba de humo casera chisporrotee sin humo.",
+    "Sandbox_SignalSmoke_LootMultiplier": "Multiplicador de botín",
+    "Sandbox_SignalSmoke_LootMultiplier_tooltip": "Multiplica la probabilidad de encontrar granadas de humo, bengalas de carretera y barras luminosas en los contenedores. 0: ninguna.",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars": "Bengalas de carretera en los maleteros de la policía",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars_tooltip": "Los coches de policía pueden llevar bengalas de carretera en el maletero."
+}

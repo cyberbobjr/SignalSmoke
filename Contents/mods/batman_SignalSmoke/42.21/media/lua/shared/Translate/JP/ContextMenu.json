@@ -1,3 +1,4 @@
 {
-    "ContextMenu_SignalSmoke_LightFlare": "点火して地面に置く"
+    "ContextMenu_SignalSmoke_LightFlare": "点火して地面に置く",
+    "ContextMenu_SignalSmoke_ActivateChemlight": "点灯して地面に置く"
 }

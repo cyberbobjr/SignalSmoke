@@ -8,7 +8,8 @@
 --   Un feu disparu sans que nous l'ayons éteint (éviction au-delà de 75 feux, IsoFireManager) n'est
 --   recréé qu'après un délai, et le mod ne garde pas plus de MAX_OWN_FIRES feux : sinon il évincerait
 --   chaque seconde le feu suivant le plus ancien, réels compris ;
--- - lampe de la même couleur : la nuit pour une fumée, toujours pour une fusée. Couleur divisée par
+-- - lampe de la même couleur : la nuit pour une fumée, toujours pour une fusée ou un bâton lumineux
+--   (petit rayon, sans fumée : SignalSmoke.hasSmoke). Couleur divisée par
 --   deux (le moteur envoie min(couleur × 2, 1)). Recréée si le moteur l'a retirée (case sortie de la
 --   zone chargée) : on teste sa présence dans getLamppostPositions, car getLightSourceAt ne renvoie que
 --   la première lampe de la case (une autre lumière au même endroit ferait croire à une perte) ;
@@ -32,6 +33,8 @@ local NIGHT_DAYLIGHT = 0.45
 local SMOKE_LIGHT_RADIUS = 5
 local FLARE_LIGHT_RADIUS = 8
 local LIGHT_COLOR_FACTOR = 0.5
+-- Bâton lumineux : lueur plus douce qu'une fusée.
+local CHEMLIGHT_COLOR_FACTOR = 0.35
 local FLICKER_INTERVAL_MS = 220
 local FLICKER_MIN = 0.45
 local SOUND_RANGE = 40
@@ -69,7 +72,8 @@ end
 local function signature(entry)
     local c = entry.color
     return table.concat({ entry.kind, entry.x, entry.y, entry.z, entry.radius or 0,
-        c.r, c.g, c.b, tostring(entry.light), tostring(entry.sound) }, "|")
+        c.r, c.g, c.b, tostring(entry.light), tostring(entry.sound), tostring(SignalSmoke.hasSmoke(entry)),
+        tostring(entry.lightRadius) }, "|")
 end
 
 local function tint(fire, color)
@@ -156,18 +160,26 @@ local function hasLight(state)
     return state.light ~= nil and getCell():getLamppostPositions():contains(state.light)
 end
 
+local function lightRadius(entry)
+    if entry.lightRadius then return entry.lightRadius end
+    if entry.kind == "flare" then return FLARE_LIGHT_RADIUS end
+    if entry.kind == "chemlight" then return SignalSmoke.CHEMLIGHT_LIGHT_RADIUS end
+    return SMOKE_LIGHT_RADIUS
+end
+
 local function ensureLight(state, entry)
-    local wanted = entry.light and (entry.kind == "flare" or isNight())
+    -- Fumée : la nuit seulement ; fusée et bâton lumineux : toujours.
+    local wanted = entry.light and (entry.kind ~= "smoke" or isNight())
     if not wanted then
         removeLight(state)
         return
     end
     if hasLight(state) then return end
     removeLight(state)
-    local radius = entry.kind == "flare" and FLARE_LIGHT_RADIUS or SMOKE_LIGHT_RADIUS
+    local factor = entry.kind == "chemlight" and CHEMLIGHT_COLOR_FACTOR or LIGHT_COLOR_FACTOR
     local c = entry.color
-    state.light = getCell():addLamppost(entry.x, entry.y, entry.z, c.r * LIGHT_COLOR_FACTOR,
-        c.g * LIGHT_COLOR_FACTOR, c.b * LIGHT_COLOR_FACTOR, radius)
+    state.light = getCell():addLamppost(entry.x, entry.y, entry.z, c.r * factor, c.g * factor, c.b * factor,
+        lightRadius(entry))
 end
 
 local function stopSound(state)
@@ -256,10 +268,12 @@ local function update(entry, state, nowMs)
         stopSound(state)
         return false
     end
-    for _, offset in ipairs(diskOffsets(entry.radius or 0)) do
-        local square = getCell():getGridSquare(entry.x + offset.dx, entry.y + offset.dy, entry.z)
-        if square then
-            ensureFire(state, entry, square, nowMs)
+    if SignalSmoke.hasSmoke(entry) then
+        for _, offset in ipairs(diskOffsets(entry.radius or 0)) do
+            local square = getCell():getGridSquare(entry.x + offset.dx, entry.y + offset.dy, entry.z)
+            if square then
+                ensureFire(state, entry, square, nowMs)
+            end
         end
     end
     ensureLight(state, entry)

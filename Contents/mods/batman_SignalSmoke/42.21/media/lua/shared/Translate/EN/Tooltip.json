@@ -1,4 +1,8 @@
 {
     "Tooltip_SignalSmoke_Grenade": "Throw it: colored smoke rises for about a minute and a half, visible from afar. Zombies standing in the smoke lose sight of their target.",
-    "Tooltip_SignalSmoke_RoadFlare": "Burns red for about an hour of game time once lit and placed on the ground."
+    "Tooltip_SignalSmoke_RoadFlare": "Burns red for about an hour of game time once lit and placed on the ground.",
+    "Tooltip_SignalSmoke_Chemlight": "Activate it and place it on the ground: a soft colored glow for several hours, silent and without smoke. Once activated, it cannot be turned off.",
+    "Tooltip_SignalSmoke_ChemlightLit": "Glowing. On the ground it lights its surroundings; picked up, it keeps glowing until it is spent.",
+    "Tooltip_SignalSmoke_ChemlightUsed": "Spent: it no longer glows.",
+    "Tooltip_SignalSmoke_ImprovisedSmoke": "Throw it: colored smoke, shorter than a military smoke grenade. Homemade, it sometimes fizzles without smoke. Zombies standing in the smoke lose sight of their target."
 }

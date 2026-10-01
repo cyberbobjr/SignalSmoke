@@ -1,15 +1,17 @@
-[h1]Signal Smoke — Granadas de fumo coloridas e tochas de sinalização[/h1]
+[h1]Signal Smoke — Granadas de fumo coloridas, tochas de sinalização e bastões luminosos[/h1]
 
 [b]Build 42.21 · Um jogador e multijogador[/b]
 
-Um helicóptero tem de ver o teu telhado, um amigo tem de encontrar o teu acampamento, ou queres marcar o caminho de volta? Lança fumo colorido ou acende uma tocha de sinalização: visível ao longe, por todos.
+Um helicóptero tem de ver o teu telhado, um amigo tem de encontrar o teu acampamento, ou queres marcar o caminho de volta? Lança fumo colorido, acende uma tocha de sinalização ou pousa um bastão luminoso: visível por todos.
 
 [h2]Resumo[/h2]
 
 [list]
 [*][b]Quatro granadas de fumo[/b]: verde, vermelha, amarela e roxa, com modelos 3D e ícones próprios.
 [*][b]Tochas de sinalização[/b] que ardem a vermelho no chão durante cerca de uma hora de jogo.
-[*][b]Encontram-se no mundo[/b]: não é preciso fabricá-las.
+[*][b]Bastões luminosos[/b] em quatro cores: um brilho discreto que dura horas, para marcar um caminho ou uma cave.
+[*][b]Bombas de fumo artesanais[/b]: fabrica o teu próprio fumo colorido.
+[*][b]Opções de sandbox[/b]: durações, probabilidade de falha, saque.
 [*][b]Multijogador[/b]: o servidor decide e todos os jogadores veem o mesmo fumo e as mesmas tochas.
 [*][b]Uma pequena biblioteca para outros mods[/b]: fumo colorido e tochas colocados por script.
 [/list]
@@ -32,6 +34,26 @@ Um helicóptero tem de ver o teu telhado, um amigo tem de encontrar o teu acampa
 [*]Encontram-se no material de emergência das bombas de gasolina, nas ferramentas de automóvel e nos cacifos dos bombeiros e da polícia.
 [/list]
 
+[h2]Bastões luminosos[/h2]
+
+[list]
+[*]Verde, vermelho, azul ou amarelo. Clique direito, [b]Ativar e pousar no chão[/b].
+[*]Um pequeno brilho colorido (cerca de 3 quadrados), sem fumo nem som, durante 8 horas de jogo.
+[*]Depois de ativado não se pode desligar: apanha-o e pousa-o noutro sítio, continua a brilhar até se esgotar.
+[*]Encontram-se nos armazéns e lojas de excedentes do exército, nos cacifos da polícia e dos bombeiros, e no material de campismo e sobrevivência.
+[/list]
+
+[h2]Bombas de fumo artesanais[/h2]
+
+[list]
+[*]Receita [b]Fazer Bomba de Fumo Artesanal[/b] (Culinária 2): uma lata vazia, açúcar, um pacote de gelo ou fertilizante, tinta da cor que quiseres (verde, vermelha, amarela ou roxa) e um rastilho (fio ou pano).
+[*]Lança-se como uma granada de fumo, mas é menos fiável: o fumo dura menos e 1 em cada 5 falha.
+[/list]
+
+[h2]Opções de sandbox[/h2]
+
+Duração do fumo, das tochas e dos bastões luminosos, duração e probabilidade de falha das bombas artesanais, multiplicador de saque, tochas nas bagageiras da polícia.
+
 [h2]Multijogador[/h2]
 
 O servidor guarda a lista do fumo e das tochas ativos e envia-a a cada cliente: os jogadores que chegam mais tarde também os veem, e voltam ao carregar um jogo guardado.
@@ -44,7 +66,8 @@ local SignalSmoke = require "SignalSmoke/SignalSmoke"
 local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
 SignalSmoke.stop(id)
 [/code]
-Cores com nome: green, red, yellow, purple, orange, blue, white, ou qualquer tabela { r, g, b }. Usa kind = "flare" para uma tocha de sinalização.
+Cores com nome: green, red, yellow, purple, orange, blue, white, ou qualquer tabela { r, g, b }. Usa kind = "flare" para uma tocha de sinalização e kind = "chemlight" para um bastão luminoso.
+[b]Eventos[/b]: SignalSmoke.onSignal(function(event) ... end) é chamado no servidor quando uma granada, uma tocha, um bastão luminoso ou um sinal de script começa, para ou expira (type, id, entry, source, username). API completa no GitHub.
 
 [h2]Apoia o projeto[/h2]
 
@@ -53,4 +76,4 @@ Gostas do mod? Um café ajuda a financiar novas funcionalidades e traduções.
 
 [h2]Créditos[/h2]
 
-Modelos e texturas originais feitos com o Blender. Fumo e sons do jogo base. Código-fonte sob licença MIT: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].
+Modelos, texturas e ícones originais feitos com o Blender. Fumo e sons do jogo base. Código-fonte sob licença MIT: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].

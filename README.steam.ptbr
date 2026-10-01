@@ -1,15 +1,17 @@
-[h1]Signal Smoke — Granadas de fumaça coloridas e sinalizadores de estrada[/h1]
+[h1]Signal Smoke — Granadas de fumaça coloridas, sinalizadores de estrada e bastões luminosos[/h1]
 
 [b]Build 42.21 · Um jogador e multijogador[/b]
 
-Um helicóptero precisa ver o seu telhado, um amigo precisa achar o seu acampamento, ou você quer marcar o caminho de volta? Solte fumaça colorida ou acenda um sinalizador de estrada: visível de longe, por todos.
+Um helicóptero precisa ver o seu telhado, um amigo precisa achar o seu acampamento, ou você quer marcar o caminho de volta? Solte fumaça colorida, acenda um sinalizador de estrada ou coloque um bastão luminoso: visível por todos.
 
 [h2]Resumo[/h2]
 
 [list]
 [*][b]Quatro granadas de fumaça[/b]: verde, vermelha, amarela e roxa, com modelos 3D e ícones próprios.
 [*][b]Sinalizadores de estrada[/b] que queimam em vermelho no chão por cerca de uma hora de jogo.
-[*][b]Encontrados pelo mundo[/b]: não precisa fabricar.
+[*][b]Bastões luminosos[/b] em quatro cores: um brilho discreto que dura horas, para marcar um caminho ou um porão.
+[*][b]Bombas de fumaça caseiras[/b]: fabrique sua própria fumaça colorida.
+[*][b]Opções de sandbox[/b]: durações, chance de falha, itens.
 [*][b]Multijogador[/b]: o servidor decide e todos os jogadores veem a mesma fumaça e os mesmos sinalizadores.
 [*][b]Uma pequena biblioteca para outros mods[/b]: fumaça colorida e sinalizadores colocados por script.
 [/list]
@@ -32,6 +34,26 @@ Um helicóptero precisa ver o seu telhado, um amigo precisa achar o seu acampame
 [*]Encontrados no material de emergência dos postos de gasolina, nas ferramentas automotivas e nos armários dos bombeiros e da polícia.
 [/list]
 
+[h2]Bastões luminosos[/h2]
+
+[list]
+[*]Verde, vermelho, azul ou amarelo. Clique com o botão direito, [b]Ativar e colocar no chão[/b].
+[*]Um pequeno brilho colorido (cerca de 3 quadrados), sem fumaça e sem som, por 8 horas de jogo.
+[*]Depois de ativado, não dá para desligar: pegue-o e coloque-o em outro lugar, ele continua brilhando até acabar.
+[*]Encontrados em depósitos e lojas de excedentes do exército, armários da polícia e dos bombeiros, e equipamentos de camping e sobrevivência.
+[/list]
+
+[h2]Bombas de fumaça caseiras[/h2]
+
+[list]
+[*]Receita [b]Fazer Bomba de Fumaça Caseira[/b] (Culinária 2): uma lata vazia, açúcar, uma compressa fria ou fertilizante, tinta da cor que você quiser (verde, vermelha, amarela ou roxa) e um pavio (barbante ou pano).
+[*]Arremessada como uma granada de fumaça, mas menos confiável: fumaça mais curta, e 1 em cada 5 falha.
+[/list]
+
+[h2]Opções de sandbox[/h2]
+
+Duração da fumaça, dos sinalizadores e dos bastões luminosos, duração e chance de falha das bombas caseiras, multiplicador de itens, sinalizadores nos porta-malas da polícia.
+
 [h2]Multijogador[/h2]
 
 O servidor mantém a lista da fumaça e dos sinalizadores ativos e a envia a cada cliente: jogadores que chegam depois também os veem, e eles voltam ao carregar um jogo salvo.
@@ -44,7 +66,8 @@ local SignalSmoke = require "SignalSmoke/SignalSmoke"
 local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
 SignalSmoke.stop(id)
 [/code]
-Cores com nome: green, red, yellow, purple, orange, blue, white, ou qualquer tabela { r, g, b }. Use kind = "flare" para um sinalizador de estrada.
+Cores com nome: green, red, yellow, purple, orange, blue, white, ou qualquer tabela { r, g, b }. Use kind = "flare" para um sinalizador de estrada e kind = "chemlight" para um bastão luminoso.
+[b]Eventos[/b]: SignalSmoke.onSignal(function(event) ... end) é chamado no servidor quando uma granada, um sinalizador, um bastão luminoso ou um sinal de script começa, para ou expira (type, id, entry, source, username). API completa no GitHub.
 
 [h2]Apoie o projeto[/h2]
 
@@ -53,4 +76,4 @@ Curtiu o mod? Um café ajuda a financiar novos recursos e traduções.
 
 [h2]Créditos[/h2]
 
-Modelos e texturas originais feitos no Blender. Fumaça e sons do jogo base. Código-fonte sob licença MIT: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].
+Modelos, texturas e ícones originais feitos no Blender. Fumaça e sons do jogo base. Código-fonte sob licença MIT: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].

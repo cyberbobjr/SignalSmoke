@@ -1,0 +1,17 @@
+{
+    "Sandbox_SignalSmoke": "Signal Smoke",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds": "연막 수류탄 연기 지속 시간 (실제 초)",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds_tooltip": "연막 수류탄의 색깔 연기가 지속되는 시간 (실제 초).",
+    "Sandbox_SignalSmoke_FlareBurnMinutes": "도로용 신호탄 연소 시간 (게임 분)",
+    "Sandbox_SignalSmoke_FlareBurnMinutes_tooltip": "불을 붙인 도로용 신호탄이 타는 시간 (게임 분).",
+    "Sandbox_SignalSmoke_ChemlightHours": "야광봉 발광 시간 (게임 시간)",
+    "Sandbox_SignalSmoke_ChemlightHours_tooltip": "활성화된 야광봉이 빛나는 시간 (게임 시간). 들고 다니는 동안에도 시간이 흐릅니다.",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds": "사제 연막 폭탄 연기 지속 시간 (실제 초)",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds_tooltip": "사제 연막 폭탄의 연기가 지속되는 시간 (실제 초).",
+    "Sandbox_SignalSmoke_ImprovisedDudChance": "사제 연막 폭탄 불발 확률 (%%)",
+    "Sandbox_SignalSmoke_ImprovisedDudChance_tooltip": "사제 연막 폭탄이 연기 없이 쉭쉭 소리만 낼 확률 (퍼센트).",
+    "Sandbox_SignalSmoke_LootMultiplier": "전리품 배율",
+    "Sandbox_SignalSmoke_LootMultiplier_tooltip": "컨테이너에서 연막 수류탄, 도로용 신호탄, 야광봉을 찾을 확률을 곱합니다. 0: 나오지 않음.",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars": "경찰차 트렁크의 도로용 신호탄",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars_tooltip": "경찰차 트렁크에 도로용 신호탄이 들어 있을 수 있습니다."
+}

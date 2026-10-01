@@ -1,4 +1,8 @@
 {
     "Tooltip_SignalSmoke_Grenade": "던지면 색깔 연기가 약 1분 30초 동안 피어올라 멀리서도 보입니다. 연기 속의 좀비는 목표를 놓칩니다.",
-    "Tooltip_SignalSmoke_RoadFlare": "불을 붙여 바닥에 놓으면 게임 시간으로 약 1시간 동안 붉게 탑니다."
+    "Tooltip_SignalSmoke_RoadFlare": "불을 붙여 바닥에 놓으면 게임 시간으로 약 1시간 동안 붉게 탑니다.",
+    "Tooltip_SignalSmoke_Chemlight": "활성화해서 바닥에 놓으면 몇 시간 동안 은은한 색깔 빛을 냅니다. 소리도 연기도 없습니다. 한 번 활성화하면 끌 수 없습니다.",
+    "Tooltip_SignalSmoke_ChemlightLit": "빛나는 중. 바닥에 놓으면 주변을 밝히고, 주워도 다 닳을 때까지 계속 빛납니다.",
+    "Tooltip_SignalSmoke_ChemlightUsed": "다 닳았습니다. 더 이상 빛나지 않습니다.",
+    "Tooltip_SignalSmoke_ImprovisedSmoke": "던지면 색깔 연기가 나지만 군용 연막 수류탄보다 짧습니다. 사제품이라 연기 없이 쉭쉭 소리만 날 때도 있습니다. 연기 속의 좀비는 목표를 놓칩니다."
 }

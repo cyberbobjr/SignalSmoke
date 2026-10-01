@@ -4,5 +4,18 @@
     "SignalSmoke.SmokeGrenadeYellow": "Granada de humo (amarilla)",
     "SignalSmoke.SmokeGrenadePurple": "Granada de humo (morada)",
     "SignalSmoke.RoadFlare": "Bengala de carretera",
-    "SignalSmoke.RoadFlareLit": "Bengala de carretera (encendida)"
+    "SignalSmoke.RoadFlareLit": "Bengala de carretera (encendida)",
+    "SignalSmoke.ChemlightGreen": "Barra luminosa (verde)",
+    "SignalSmoke.ChemlightGreenLit": "Barra luminosa (verde, activada)",
+    "SignalSmoke.ChemlightRed": "Barra luminosa (roja)",
+    "SignalSmoke.ChemlightRedLit": "Barra luminosa (roja, activada)",
+    "SignalSmoke.ChemlightBlue": "Barra luminosa (azul)",
+    "SignalSmoke.ChemlightBlueLit": "Barra luminosa (azul, activada)",
+    "SignalSmoke.ChemlightYellow": "Barra luminosa (amarilla)",
+    "SignalSmoke.ChemlightYellowLit": "Barra luminosa (amarilla, activada)",
+    "SignalSmoke.ChemlightUsed": "Barra luminosa gastada",
+    "SignalSmoke.ImprovisedSmokeGreen": "Bomba de humo casera (verde)",
+    "SignalSmoke.ImprovisedSmokeRed": "Bomba de humo casera (roja)",
+    "SignalSmoke.ImprovisedSmokeYellow": "Bomba de humo casera (amarilla)",
+    "SignalSmoke.ImprovisedSmokePurple": "Bomba de humo casera (morada)"
 }

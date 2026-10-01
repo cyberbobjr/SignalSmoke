@@ -1,3 +1,4 @@
 {
-    "ContextMenu_SignalSmoke_LightFlare": "Allumer et poser au sol"
+    "ContextMenu_SignalSmoke_LightFlare": "Allumer et poser au sol",
+    "ContextMenu_SignalSmoke_ActivateChemlight": "Activer et poser au sol"
 }

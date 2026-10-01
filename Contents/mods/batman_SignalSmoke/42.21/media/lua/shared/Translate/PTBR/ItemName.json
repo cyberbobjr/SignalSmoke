@@ -4,5 +4,18 @@
     "SignalSmoke.SmokeGrenadeYellow": "Granada de Fumaça (Amarela)",
     "SignalSmoke.SmokeGrenadePurple": "Granada de Fumaça (Roxa)",
     "SignalSmoke.RoadFlare": "Sinalizador de Estrada",
-    "SignalSmoke.RoadFlareLit": "Sinalizador de Estrada (aceso)"
+    "SignalSmoke.RoadFlareLit": "Sinalizador de Estrada (aceso)",
+    "SignalSmoke.ChemlightGreen": "Bastão Luminoso (Verde)",
+    "SignalSmoke.ChemlightGreenLit": "Bastão Luminoso (Verde, ativado)",
+    "SignalSmoke.ChemlightRed": "Bastão Luminoso (Vermelho)",
+    "SignalSmoke.ChemlightRedLit": "Bastão Luminoso (Vermelho, ativado)",
+    "SignalSmoke.ChemlightBlue": "Bastão Luminoso (Azul)",
+    "SignalSmoke.ChemlightBlueLit": "Bastão Luminoso (Azul, ativado)",
+    "SignalSmoke.ChemlightYellow": "Bastão Luminoso (Amarelo)",
+    "SignalSmoke.ChemlightYellowLit": "Bastão Luminoso (Amarelo, ativado)",
+    "SignalSmoke.ChemlightUsed": "Bastão Luminoso Usado",
+    "SignalSmoke.ImprovisedSmokeGreen": "Bomba de Fumaça Caseira (Verde)",
+    "SignalSmoke.ImprovisedSmokeRed": "Bomba de Fumaça Caseira (Vermelha)",
+    "SignalSmoke.ImprovisedSmokeYellow": "Bomba de Fumaça Caseira (Amarela)",
+    "SignalSmoke.ImprovisedSmokePurple": "Bomba de Fumaça Caseira (Roxa)"
 }

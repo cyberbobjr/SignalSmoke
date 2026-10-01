@@ -4,5 +4,18 @@
     "SignalSmoke.SmokeGrenadeYellow": "烟雾弹（黄色）",
     "SignalSmoke.SmokeGrenadePurple": "烟雾弹（紫色）",
     "SignalSmoke.RoadFlare": "道路信号棒",
-    "SignalSmoke.RoadFlareLit": "道路信号棒（已点燃）"
+    "SignalSmoke.RoadFlareLit": "道路信号棒（已点燃）",
+    "SignalSmoke.ChemlightGreen": "荧光棒（绿色）",
+    "SignalSmoke.ChemlightGreenLit": "荧光棒（绿色，已激活）",
+    "SignalSmoke.ChemlightRed": "荧光棒（红色）",
+    "SignalSmoke.ChemlightRedLit": "荧光棒（红色，已激活）",
+    "SignalSmoke.ChemlightBlue": "荧光棒（蓝色）",
+    "SignalSmoke.ChemlightBlueLit": "荧光棒（蓝色，已激活）",
+    "SignalSmoke.ChemlightYellow": "荧光棒（黄色）",
+    "SignalSmoke.ChemlightYellowLit": "荧光棒（黄色，已激活）",
+    "SignalSmoke.ChemlightUsed": "用过的荧光棒",
+    "SignalSmoke.ImprovisedSmokeGreen": "自制烟雾弹（绿色）",
+    "SignalSmoke.ImprovisedSmokeRed": "自制烟雾弹（红色）",
+    "SignalSmoke.ImprovisedSmokeYellow": "自制烟雾弹（黄色）",
+    "SignalSmoke.ImprovisedSmokePurple": "自制烟雾弹（紫色）"
 }

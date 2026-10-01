@@ -4,5 +4,18 @@
     "SignalSmoke.SmokeGrenadeYellow": "Smoke Grenade (Yellow)",
     "SignalSmoke.SmokeGrenadePurple": "Smoke Grenade (Purple)",
     "SignalSmoke.RoadFlare": "Road Flare",
-    "SignalSmoke.RoadFlareLit": "Road Flare (lit)"
+    "SignalSmoke.RoadFlareLit": "Road Flare (lit)",
+    "SignalSmoke.ChemlightGreen": "Chemlight (Green)",
+    "SignalSmoke.ChemlightGreenLit": "Chemlight (Green, active)",
+    "SignalSmoke.ChemlightRed": "Chemlight (Red)",
+    "SignalSmoke.ChemlightRedLit": "Chemlight (Red, active)",
+    "SignalSmoke.ChemlightBlue": "Chemlight (Blue)",
+    "SignalSmoke.ChemlightBlueLit": "Chemlight (Blue, active)",
+    "SignalSmoke.ChemlightYellow": "Chemlight (Yellow)",
+    "SignalSmoke.ChemlightYellowLit": "Chemlight (Yellow, active)",
+    "SignalSmoke.ChemlightUsed": "Used Chemlight",
+    "SignalSmoke.ImprovisedSmokeGreen": "Improvised Smoke Bomb (Green)",
+    "SignalSmoke.ImprovisedSmokeRed": "Improvised Smoke Bomb (Red)",
+    "SignalSmoke.ImprovisedSmokeYellow": "Improvised Smoke Bomb (Yellow)",
+    "SignalSmoke.ImprovisedSmokePurple": "Improvised Smoke Bomb (Purple)"
 }

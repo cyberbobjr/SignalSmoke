@@ -1,0 +1,17 @@
+{
+    "Sandbox_SignalSmoke": "Signal Smoke",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds": "Smoke grenade duration (real seconds)",
+    "Sandbox_SignalSmoke_GrenadeSmokeSeconds_tooltip": "How long the colored smoke of a smoke grenade lasts, in real seconds.",
+    "Sandbox_SignalSmoke_FlareBurnMinutes": "Road flare burn time (in-game minutes)",
+    "Sandbox_SignalSmoke_FlareBurnMinutes_tooltip": "How long a lit road flare burns, in in-game minutes.",
+    "Sandbox_SignalSmoke_ChemlightHours": "Chemlight glow time (in-game hours)",
+    "Sandbox_SignalSmoke_ChemlightHours_tooltip": "How long an activated chemlight glows, in in-game hours. The time keeps running while it is carried.",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds": "Improvised smoke bomb duration (real seconds)",
+    "Sandbox_SignalSmoke_ImprovisedSmokeSeconds_tooltip": "How long the smoke of a homemade smoke bomb lasts, in real seconds.",
+    "Sandbox_SignalSmoke_ImprovisedDudChance": "Improvised smoke bomb failure chance (%%)",
+    "Sandbox_SignalSmoke_ImprovisedDudChance_tooltip": "Chance, in percent, that a homemade smoke bomb fizzles without smoke.",
+    "Sandbox_SignalSmoke_LootMultiplier": "Loot multiplier",
+    "Sandbox_SignalSmoke_LootMultiplier_tooltip": "Multiplies the chance of finding smoke grenades, road flares and chemlights in containers. 0: none.",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars": "Road flares in police car trunks",
+    "Sandbox_SignalSmoke_FlaresInPoliceCars_tooltip": "Police cars can carry road flares in their trunk."
+}

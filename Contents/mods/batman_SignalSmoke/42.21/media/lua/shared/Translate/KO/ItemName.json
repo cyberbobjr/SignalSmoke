@@ -4,5 +4,18 @@
     "SignalSmoke.SmokeGrenadeYellow": "연막 수류탄 (노랑)",
     "SignalSmoke.SmokeGrenadePurple": "연막 수류탄 (보라)",
     "SignalSmoke.RoadFlare": "도로용 신호탄",
-    "SignalSmoke.RoadFlareLit": "도로용 신호탄 (점화됨)"
+    "SignalSmoke.RoadFlareLit": "도로용 신호탄 (점화됨)",
+    "SignalSmoke.ChemlightGreen": "야광봉 (초록)",
+    "SignalSmoke.ChemlightGreenLit": "야광봉 (초록, 활성화됨)",
+    "SignalSmoke.ChemlightRed": "야광봉 (빨강)",
+    "SignalSmoke.ChemlightRedLit": "야광봉 (빨강, 활성화됨)",
+    "SignalSmoke.ChemlightBlue": "야광봉 (파랑)",
+    "SignalSmoke.ChemlightBlueLit": "야광봉 (파랑, 활성화됨)",
+    "SignalSmoke.ChemlightYellow": "야광봉 (노랑)",
+    "SignalSmoke.ChemlightYellowLit": "야광봉 (노랑, 활성화됨)",
+    "SignalSmoke.ChemlightUsed": "다 쓴 야광봉",
+    "SignalSmoke.ImprovisedSmokeGreen": "사제 연막 폭탄 (초록)",
+    "SignalSmoke.ImprovisedSmokeRed": "사제 연막 폭탄 (빨강)",
+    "SignalSmoke.ImprovisedSmokeYellow": "사제 연막 폭탄 (노랑)",
+    "SignalSmoke.ImprovisedSmokePurple": "사제 연막 폭탄 (보라)"
 }

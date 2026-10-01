@@ -4,5 +4,18 @@
     "SignalSmoke.SmokeGrenadeYellow": "Grenade fumigène (jaune)",
     "SignalSmoke.SmokeGrenadePurple": "Grenade fumigène (violette)",
     "SignalSmoke.RoadFlare": "Fusée de route",
-    "SignalSmoke.RoadFlareLit": "Fusée de route (allumée)"
+    "SignalSmoke.RoadFlareLit": "Fusée de route (allumée)",
+    "SignalSmoke.ChemlightGreen": "Bâton lumineux (vert)",
+    "SignalSmoke.ChemlightGreenLit": "Bâton lumineux (vert, activé)",
+    "SignalSmoke.ChemlightRed": "Bâton lumineux (rouge)",
+    "SignalSmoke.ChemlightRedLit": "Bâton lumineux (rouge, activé)",
+    "SignalSmoke.ChemlightBlue": "Bâton lumineux (bleu)",
+    "SignalSmoke.ChemlightBlueLit": "Bâton lumineux (bleu, activé)",
+    "SignalSmoke.ChemlightYellow": "Bâton lumineux (jaune)",
+    "SignalSmoke.ChemlightYellowLit": "Bâton lumineux (jaune, activé)",
+    "SignalSmoke.ChemlightUsed": "Bâton lumineux usagé",
+    "SignalSmoke.ImprovisedSmokeGreen": "Bombe fumigène artisanale (verte)",
+    "SignalSmoke.ImprovisedSmokeRed": "Bombe fumigène artisanale (rouge)",
+    "SignalSmoke.ImprovisedSmokeYellow": "Bombe fumigène artisanale (jaune)",
+    "SignalSmoke.ImprovisedSmokePurple": "Bombe fumigène artisanale (violette)"
 }

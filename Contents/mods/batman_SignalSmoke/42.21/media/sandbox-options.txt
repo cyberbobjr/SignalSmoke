@@ -1,0 +1,48 @@
+VERSION = 1,
+
+/* Signal Smoke : options sandbox (page « Signal Smoke »). Lues par SignalSmoke.option (SignalSmoke.lua),
+   dont DEFAULTS reprend les valeurs par défaut. Pas d'option enum : nombres et booléens seulement.
+   Traductions : Translate/<LANG>/Sandbox.json, clés Sandbox_<translation> et Sandbox_<translation>_tooltip,
+   page Sandbox_SignalSmoke. */
+
+option SignalSmoke.GrenadeSmokeSeconds
+{
+    type = integer, min = 20, max = 600, default = 90,
+    page = SignalSmoke, translation = SignalSmoke_GrenadeSmokeSeconds,
+}
+
+option SignalSmoke.FlareBurnMinutes
+{
+    type = integer, min = 10, max = 720, default = 60,
+    page = SignalSmoke, translation = SignalSmoke_FlareBurnMinutes,
+}
+
+option SignalSmoke.ChemlightHours
+{
+    type = integer, min = 1, max = 48, default = 8,
+    page = SignalSmoke, translation = SignalSmoke_ChemlightHours,
+}
+
+option SignalSmoke.ImprovisedSmokeSeconds
+{
+    type = integer, min = 10, max = 300, default = 45,
+    page = SignalSmoke, translation = SignalSmoke_ImprovisedSmokeSeconds,
+}
+
+option SignalSmoke.ImprovisedDudChance
+{
+    type = integer, min = 0, max = 100, default = 20,
+    page = SignalSmoke, translation = SignalSmoke_ImprovisedDudChance,
+}
+
+option SignalSmoke.LootMultiplier
+{
+    type = double, min = 0.0, max = 10.0, default = 1.0,
+    page = SignalSmoke, translation = SignalSmoke_LootMultiplier,
+}
+
+option SignalSmoke.FlaresInPoliceCars
+{
+    type = boolean, default = true,
+    page = SignalSmoke, translation = SignalSmoke_FlaresInPoliceCars,
+}

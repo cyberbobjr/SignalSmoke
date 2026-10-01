@@ -1,18 +1,20 @@
 version=1
 id=3811010882
-title=Signal Smoke - Colored Smoke Grenades & Road Flares
-description=[h1]Signal Smoke — Colored Smoke Grenades & Road Flares[/h1]
+title=Signal Smoke - Colored Smoke Grenades, Flares & Chemlights
+description=[h1]Signal Smoke — Colored Smoke Grenades, Road Flares & Chemlights[/h1]
 description=
 description=[b]Build 42.21 · Singleplayer & Multiplayer[/b]
 description=
-description=Need a helicopter to spot your roof, a friend to find your camp, or a way to mark the road home? Pop colored smoke or light a road flare: seen from afar, by everyone.
+description=Need a helicopter to spot your roof, a friend to find your camp, or a way to mark the road home? Pop colored smoke, light a road flare or drop a chemlight: seen by everyone.
 description=
 description=[h2]At a glance[/h2]
 description=
 description=[list]
 description=[*][b]Four smoke grenades[/b]: green, red, yellow and purple, with their own 3D models and icons.
 description=[*][b]Road flares[/b] that burn red on the ground for about an hour of game time.
-description=[*][b]Found in the world[/b]: no crafting needed.
+description=[*][b]Chemlights[/b] in four colors: a quiet glow that lasts for hours, to mark a path or a basement.
+description=[*][b]Improvised smoke bombs[/b]: craft your own colored smoke.
+description=[*][b]Sandbox options[/b]: durations, dud chance, loot.
 description=[*][b]Multiplayer[/b]: the server decides, every player sees the same smoke and flares.
 description=[*][b]A small library for other mods[/b]: colored smoke and flares placed by script.
 description=[/list]
@@ -35,6 +37,26 @@ description=[*]Pick it up to put it out.
 description=[*]Found in gas station emergency supplies, car supply tools, fire department and police lockers.
 description=[/list]
 description=
+description=[h2]Chemlights[/h2]
+description=
+description=[list]
+description=[*]Green, red, blue or yellow. Right-click, [b]Activate and place on the ground[/b].
+description=[*]A small colored glow (about 3 tiles), with no smoke and no sound, for 8 hours of game time.
+description=[*]Once activated it can't be switched off: pick it up and drop it elsewhere, it keeps glowing until it runs out.
+description=[*]Found in army storage and surplus stores, police and fire lockers, camping and survival gear.
+description=[/list]
+description=
+description=[h2]Improvised smoke bombs[/h2]
+description=
+description=[list]
+description=[*]Recipe [b]Make Improvised Smoke Bomb[/b] (Cooking 2): an empty can, sugar, a cold pack or fertilizer, paint in the color you want (green, red, yellow or purple) and a fuse (twine or a fabric strip).
+description=[*]Thrown like a smoke grenade, but less reliable: shorter smoke, and 1 in 5 is a dud.
+description=[/list]
+description=
+description=[h2]Sandbox options[/h2]
+description=
+description=Smoke, flare and chemlight durations, improvised smoke duration and dud chance, loot multiplier, flares in police car trunks.
+description=
 description=[h2]Multiplayer[/h2]
 description=
 description=The server keeps the list of active smokes and flares and sends it to every client: players who arrive later see them too, and they come back after loading a save.
@@ -47,7 +69,8 @@ description=local SignalSmoke = require "SignalSmoke/SignalSmoke"
 description=local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
 description=SignalSmoke.stop(id)
 description=[/code]
-description=Named colors: green, red, yellow, purple, orange, blue, white, or any { r, g, b } table. Use kind = "flare" for a road flare.
+description=Named colors: green, red, yellow, purple, orange, blue, white, or any { r, g, b } table. Use kind = "flare" for a road flare, kind = "chemlight" for a chemlight.
+description=[b]Events[/b]: SignalSmoke.onSignal(function(event) ... end) is called on the server when a grenade, flare, chemlight or script signal starts, stops or expires (type, id, entry, source, username). Full API on GitHub.
 description=
 description=[h2]Support the project[/h2]
 description=
@@ -56,6 +79,6 @@ description=[url=https://ko-fi.com/Z8Z8QJV31][img]https://storage.ko-fi.com/cdn/
 description=
 description=[h2]Credits[/h2]
 description=
-description=Original models and textures made with Blender. Smoke and sounds from the base game. Source code under the MIT license: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].
+description=Original models, textures and icons made with Blender. Smoke and sounds from the base game. Source code under the MIT license: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].
 tags=Build 42;Items;Military;Multiplayer
 visibility=private
