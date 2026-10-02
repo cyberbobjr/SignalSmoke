@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 — 2026-10-02
+
+### Fixed
+- Reduced the oversized chemlight models by half, consistently across all four colors and their unlit, lit and used variants.
+
 ## 0.2.0 — 2026-10-01
 
 ### New

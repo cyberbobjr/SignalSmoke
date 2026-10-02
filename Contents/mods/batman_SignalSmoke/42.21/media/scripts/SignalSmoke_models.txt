@@ -75,14 +75,14 @@ module Base
         scale = 0.0033,
     }
 
-    /* Bâtons lumineux (couchés, 0,48 m dans Blender ≈ 0,16 m en jeu) et fumigènes artisanaux (boîte de
-       0,30 m dans Blender ≈ 0,10 m), même échelle que les grenades. */
+    /* Chemlights: half scale (0.00165) to correct their oversized appearance in game.
+       Improvised smoke bombs: scale 0.0033, matching the grenades. */
 
     model SignalSmoke_ChemlightGreen
     {
         mesh = WorldItems/SignalSmoke_Chemlight,
         texture = WorldItems/SignalSmoke_ChemlightGreen,
-        scale = 0.0033,
+        scale = 0.00165,
         attachment Bip01_Prop1
         {
             offset = 0.0 0.0 0.0,
@@ -94,7 +94,7 @@ module Base
     {
         mesh = WorldItems/SignalSmoke_Chemlight,
         texture = WorldItems/SignalSmoke_ChemlightGreenLit,
-        scale = 0.0033,
+        scale = 0.00165,
         attachment Bip01_Prop1
         {
             offset = 0.0 0.0 0.0,
@@ -106,7 +106,7 @@ module Base
     {
         mesh = WorldItems/SignalSmoke_Chemlight,
         texture = WorldItems/SignalSmoke_ChemlightRed,
-        scale = 0.0033,
+        scale = 0.00165,
         attachment Bip01_Prop1
         {
             offset = 0.0 0.0 0.0,
@@ -118,7 +118,7 @@ module Base
     {
         mesh = WorldItems/SignalSmoke_Chemlight,
         texture = WorldItems/SignalSmoke_ChemlightRedLit,
-        scale = 0.0033,
+        scale = 0.00165,
         attachment Bip01_Prop1
         {
             offset = 0.0 0.0 0.0,
@@ -130,7 +130,7 @@ module Base
     {
         mesh = WorldItems/SignalSmoke_Chemlight,
         texture = WorldItems/SignalSmoke_ChemlightBlue,
-        scale = 0.0033,
+        scale = 0.00165,
         attachment Bip01_Prop1
         {
             offset = 0.0 0.0 0.0,
@@ -142,7 +142,7 @@ module Base
     {
         mesh = WorldItems/SignalSmoke_Chemlight,
         texture = WorldItems/SignalSmoke_ChemlightBlueLit,
-        scale = 0.0033,
+        scale = 0.00165,
         attachment Bip01_Prop1
         {
             offset = 0.0 0.0 0.0,
@@ -154,7 +154,7 @@ module Base
     {
         mesh = WorldItems/SignalSmoke_Chemlight,
         texture = WorldItems/SignalSmoke_ChemlightYellow,
-        scale = 0.0033,
+        scale = 0.00165,
         attachment Bip01_Prop1
         {
             offset = 0.0 0.0 0.0,
@@ -166,7 +166,7 @@ module Base
     {
         mesh = WorldItems/SignalSmoke_Chemlight,
         texture = WorldItems/SignalSmoke_ChemlightYellowLit,
-        scale = 0.0033,
+        scale = 0.00165,
         attachment Bip01_Prop1
         {
             offset = 0.0 0.0 0.0,
@@ -178,7 +178,7 @@ module Base
     {
         mesh = WorldItems/SignalSmoke_Chemlight,
         texture = WorldItems/SignalSmoke_ChemlightUsed,
-        scale = 0.0033,
+        scale = 0.00165,
         attachment Bip01_Prop1
         {
             offset = 0.0 0.0 0.0,
