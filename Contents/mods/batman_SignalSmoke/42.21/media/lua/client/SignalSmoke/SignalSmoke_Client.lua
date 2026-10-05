@@ -89,8 +89,9 @@ local function tint(fire, color)
 end
 
 -- A fire whose square lost its chunk (player teleported away) still has an index, but
--- extinctFire then throws in IsoGridSquare.RemoveTileObject (getChunk() null): treat it as gone,
--- the unloaded client-only fire is not saved.
+-- extinctFire then throws in IsoGridSquare.RemoveTileObject (getChunk() null): treat it as gone and
+-- forget it. In MP it only existed on this client; in solo it was saved with its chunk and is put out
+-- or renewed when its square reloads (onLoadGridsquare, ensureFire).
 local function isGone(fire)
     if fire == nil or fire:getObjectIndex() == -1 then
         return true
