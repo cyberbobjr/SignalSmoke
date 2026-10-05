@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2 — 2026-10-05
+
+### Fixed
+- No more Lua error when a smoke ends while its tile is no longer loaded (player teleported or far away): fires on an unloaded chunk are treated as gone.
+
 ## 0.2.1 — 2026-10-02
 
 ### Fixed
