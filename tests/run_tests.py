@@ -110,16 +110,38 @@ local player = { class = "IsoPlayer", getUsername = function() return "alice" en
 local id = S.start({ x = 5, y = 6, id = "e1", minutes = 60, source = "flare", player = player })
 check("start : événement started", id == "e1" and events[1].type == "started" and events[1].source == "flare"
     and events[1].username == "alice" and events[1].player == player and events[1].replaced == false
-    and store[S.MODDATA_KEY].entries.e1.username == "alice")
+    and store[S.MODDATA_KEY].entries.e1.username == nil)
 S.start({ x = 5, y = 6, id = "e1", minutes = 60 })
-check("start : remplacement signalé", events[2].replaced == true and events[2].source == "script" and events[2].player == nil)
+check("start : remplacement signalé", events[2].replaced == true and events[2].source == "script" and events[2].player == nil
+    and events[2].username == nil)
 check("stop : raison", S.stop("e1", "pickedUp") == true and events[3].type == "stopped" and events[3].reason == "pickedUp"
     and S.stop("e1") == false)
-S.start({ x = 1, y = 1, id = "e2", minutes = 30 })
+S.start({ x = 1, y = 1, id = "e2", minutes = 30, username = "carol" })
+check("start : username fourni gardé hors registre", events[4].username == "carol"
+    and store[S.MODDATA_KEY].entries.e2.username == nil)
 now = 101
 local expired = S.expire()
-check("expire : événement expired", #expired == 1 and events[5].type == "expired" and events[5].id == "e2"
-    and store[S.MODDATA_KEY].entries.e2 == nil)
+check("expire : événement expired, compte connu du serveur", #expired == 1 and events[5].type == "expired"
+    and events[5].id == "e2" and events[5].username == "carol" and store[S.MODDATA_KEY].entries.e2 == nil)
+
+-- 0.2.3 : migration d'un registre sauvegardé avec username (serveur MP), retransmis aux clients.
+local transmitted = 0
+isServer = function() return true end
+ModData.transmit = function(k) if k == S.MODDATA_KEY then transmitted = transmitted + 1 end end
+store[S.MODDATA_KEY].entries.old = { id = "old", kind = "smoke", x = 3, y = 4, z = 0, color = { r = 1, g = 1, b = 1 },
+    untilH = 200, light = true, source = "grenade", username = "dave" }
+printed = {}
+print = function(text) printed[#printed + 1] = text end
+S.migrate()
+print = realPrint
+local migratedOld = store[S.MODDATA_KEY].entries.old
+check("migration : username retiré, entrée gardée, retransmise", migratedOld.username == nil and migratedOld.x == 3
+    and transmitted == 1 and #printed == 1)
+S.migrate()
+check("migration : idempotente", transmitted == 1)
+S.stop("old")
+check("migration : compte encore connu des événements", events[#events].type == "stopped" and events[#events].username == "dave")
+isServer = function() return false end
 isClient = function() return true end
 check("client MP : start refusé", select(2, S.start({ x = 1, y = 1 })) == "server only")
 return table.concat(checks, "\n")

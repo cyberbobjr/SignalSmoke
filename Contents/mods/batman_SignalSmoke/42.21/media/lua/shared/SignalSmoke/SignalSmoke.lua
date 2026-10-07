@@ -21,9 +21,14 @@
 --   "flare", "chemlight", défaut "script"), player (IsoPlayer à l'origine du signal) ou username.
 --
 -- Entrée du registre : { id, kind, x, y, z, radius, lightRadius, color = { r, g, b }, untilH (heures de
--- monde), light, smoke, sound, itemId, itemType, spentType, owner, source, username }. Les champs
--- ajoutés en 0.2.0 (smoke, lightRadius, source, username, itemType, spentType) sont facultatifs : une
--- entrée sans smoke a de la fumée, sauf pour "chemlight".
+-- monde), light, smoke, sound, itemId, itemType, spentType, owner, source }. Les champs ajoutés en
+-- 0.2.0 (smoke, lightRadius, source, itemType, spentType) sont facultatifs : une entrée sans smoke a
+-- de la fumée, sauf pour "chemlight".
+-- Depuis 0.2.3, le compte du joueur (username) n'est plus dans l'entrée : le registre est transmis à
+-- tous les clients, qui y liraient qui a posé quel signal et où. Il reste sur le serveur, en mémoire
+-- seulement (une ModData globale, même non transmise, est lisible par tout client qui la demande :
+-- GlobalModData.receiveRequest), et ne sert qu'aux événements. Après un redémarrage, les entrées
+-- encore actives n'ont plus de username.
 --
 -- Événements (serveur ou solo seulement ; un abonné inscrit chez un client multijoueur n'est jamais
 -- appelé) :
@@ -34,7 +39,8 @@
 --
 -- event = { type = "started" | "stopped" | "expired", id, entry (entrée du registre, à ne pas modifier),
 -- source ("grenade", "flare", "chemlight", "script"…), username (compte du joueur à l'origine, si connu :
--- getUsername(), stable en multijoueur ; en solo, c'est le nom du personnage), player (IsoPlayer,
+-- getUsername(), stable en multijoueur ; en solo, c'est le nom du personnage ; inconnu pour une entrée
+-- posée avant le dernier chargement de la partie), player (IsoPlayer,
 -- seulement pour "started" quand il est connu), reason ("stopped" : "script" ou "pickedUp"),
 -- replaced (true si "started" remplace une entrée de même id) }.
 -- Chaque abonné est appelé dans un pcall : son erreur est écrite dans le journal et n'empêche pas les
@@ -241,6 +247,9 @@ end
 -- Événements -----------------------------------------------------------------------------------
 
 local listeners = {}
+-- Compte du joueur à l'origine de chaque entrée : id -> username. Serveur ou solo, jamais transmis ni
+-- sauvegardé (voir l'en-tête).
+local usernames = {}
 
 -- Abonne fn(event) aux signaux (serveur ou solo). Renvoie true si ajouté, false si déjà abonné.
 function SignalSmoke.onSignal(fn)
@@ -283,7 +292,7 @@ end
 
 local function notifyEntry(eventType, entry, extra)
     local event = { type = eventType, id = entry.id, entry = entry, source = entry.source or "script",
-        username = entry.username }
+        username = usernames[entry.id] }
     if extra then
         for key, value in pairs(extra) do
             event[key] = value
@@ -332,19 +341,48 @@ local function isAuthority()
     return not isClient()
 end
 
+local function publish()
+    if isServer() then
+        ModData.transmit(SignalSmoke.MODDATA_KEY)
+    end
+end
+
+-- Migration 0.2.3 : retire username des entrées sauvegardées par une version antérieure et le garde
+-- en mémoire pour les événements. Renvoie le nombre d'entrées corrigées.
+local function stripUsernames(data)
+    local stripped = 0
+    for id, entry in pairs(data.entries) do
+        if type(entry) == "table" and entry.username ~= nil then
+            if usernames[id] == nil and type(entry.username) == "string" then
+                usernames[id] = entry.username
+            end
+            -- Modifier la valeur d'une clé existante pendant pairs est permis (pas d'ajout ni de retrait).
+            entry.username = nil
+            stripped = stripped + 1
+        end
+    end
+    return stripped
+end
+
+-- Registre de l'autorité, toujours sans username (migré au besoin, puis retransmis aux clients).
 local function registry()
     local data = ModData.getOrCreate(SignalSmoke.MODDATA_KEY)
     if type(data.entries) ~= "table" then
         data.entries = {}
     end
     data.v = SignalSmoke.VERSION
+    local stripped = stripUsernames(data)
+    if stripped > 0 then
+        print("[SignalSmoke] removed player names from " .. tostring(stripped) .. " saved registry entries")
+        publish()
+    end
     return data
 end
 
-local function publish()
-    if isServer() then
-        ModData.transmit(SignalSmoke.MODDATA_KEY)
-    end
+-- Migre le registre sauvegardé au chargement (serveur ou solo ; appelé à OnInitGlobalModData).
+function SignalSmoke.migrate()
+    if not isAuthority() then return end
+    registry()
 end
 
 local function nowHours()
@@ -407,9 +445,12 @@ function SignalSmoke.start(opts)
     if player ~= nil and not instanceof(player, "IsoPlayer") then
         player = nil
     end
-    if not entry.username and player then
-        entry.username = player:getUsername()
+    local username = entry.username
+    if not username and player then
+        username = player:getUsername()
     end
+    -- Le compte reste sur le serveur : jamais dans l'entrée transmise aux clients.
+    entry.username = nil
     if not entry.id then
         entry.id = "auto:" .. tostring(math.floor(nowHours() * 60)) .. ":" .. tostring(nextAutoId)
         nextAutoId = nextAutoId + 1
@@ -417,6 +458,7 @@ function SignalSmoke.start(opts)
     local entries = registry().entries
     local replaced = entries[entry.id] ~= nil
     entries[entry.id] = entry
+    usernames[entry.id] = username
     publish()
     notifyEntry("started", entry, { player = player, replaced = replaced })
     return entry.id
@@ -472,6 +514,7 @@ function SignalSmoke.stop(id, reason)
     data.entries[id] = nil
     publish()
     notifyEntry("stopped", entry, { reason = reason or "script" })
+    usernames[id] = nil
     return true
 end
 
@@ -526,6 +569,7 @@ function SignalSmoke.expire()
     end
     for _, entry in ipairs(expired) do
         notifyEntry("expired", entry)
+        usernames[entry.id] = nil
     end
     return expired
 end

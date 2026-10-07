@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.3 — 2026-10-07
+
+### Fixed
+- Multiplayer privacy: the list of active smokes, flares and chemlights sent to every player no longer says which player threw or placed each one. Existing saves are cleaned when the server loads.
+
+### For modders
+- `event.username` is still given to `SignalSmoke.onSignal` listeners on the server, but `event.entry` no longer has a `username` field, and the username is unknown for signals started before the last server restart or game load.
+
 ## 0.2.2 — 2026-10-05
 
 ### Fixed

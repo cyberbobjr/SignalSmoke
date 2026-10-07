@@ -28,7 +28,8 @@ Listen to signals on the server or in singleplayer (a listener added on a multip
 local function onSignal(event)
     -- event.type: "started", "stopped" or "expired"
     -- event.id, event.entry (registry entry, read-only), event.source ("grenade", "flare", "chemlight", "script")
-    -- event.username: account of the player who threw or placed it, when known (singleplayer: character name)
+    -- event.username: account of the player who threw or placed it, when known (singleplayer: character name).
+    --   Kept on the server only, never in the registry sent to clients: unknown for signals started before the last load.
     -- event.player: IsoPlayer, "started" only, when known
     -- event.reason: "stopped" only, "script" or "pickedUp"; event.replaced: "started" replaced an entry with the same id
 end

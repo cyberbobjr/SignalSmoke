@@ -12,6 +12,7 @@
 --   chemins vanilla, docs/recherche-v2.md) : repérés près des joueurs chaque minute et réinscrits avec
 --   leur temps restant (ModData de l'objet, SignalSmoke.startChemlight). Ceux qui sont échus deviennent
 --   des bâtons usagés, au sol comme dans l'inventaire des joueurs (sacs portés compris).
+-- - Au chargement, migration du registre (SignalSmoke.migrate : comptes des joueurs retirés).
 if isClient() then return end
 
 local SignalSmoke = require "SignalSmoke/SignalSmoke"
@@ -165,5 +166,12 @@ local function onEveryOneMinute()
     end
 end
 
+-- Registre chargé : retire les comptes des joueurs sauvegardés par une version antérieure (0.2.3),
+-- avant que les clients ne le demandent.
+local function onInitGlobalModData()
+    SignalSmoke.migrate()
+end
+
+Events.OnInitGlobalModData.Add(onInitGlobalModData)
 Events.OnThrowableExplode.Add(onThrowableExplode)
 Events.EveryOneMinute.Add(onEveryOneMinute)
