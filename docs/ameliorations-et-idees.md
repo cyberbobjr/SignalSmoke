@@ -125,7 +125,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Preuve** : `docs/annexes/recherches/recherche-v1.md` (« Risque (hypothèse) ») ; `SignalSmoke_Client.lua:292-303` (`AddTileObject`) ; `SignalSmoke_LightFlareAction.lua:229-235` (`radius = 0` sur la case de l'objet).
 - **Risque** : MP, interactions qui échouent ou visent le mauvais objet (ramassage, conteneur, porte).
 - **Correction** : d'abord un test MP ciblé (ramasser la fusée qui brûle, ouvrir un meuble et une porte dans la croix d'une grenade, depuis deux clients). Si le décalage est confirmé : poser la fumée de la fusée sur une case voisine libre, et la fumée des grenades seulement sur des cases sans objet interactif.
-- **Statut** : à vérifier en jeu. **Priorité** : P1 (test) / P2 (correction éventuelle). **Effort** : S (test) / M.
+- **Statut** : test MP automatique ajouté (commit 74f505f, `docs/annexes/tests/autotest.md` : indices relevés serveur et client, fusée ramassée sur la case de sa fumée), à lancer en jeu ; correction éventuelle selon son résultat. **Priorité** : P1 (test) / P2 (correction éventuelle). **Effort** : S (test) / M.
 
 ### C13 : le client refait chaque seconde des calculs qui pourraient être gardés
 
@@ -141,7 +141,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Preuve** : `docs/annexes/tests/test-v1.md:9-15`, `test-v2.md:9-17` ; `tests/run_tests.py` (Lua pur avec `lupa`, cohérence, luacheck : rien dans le moteur).
 - **Risque** : les régressions passent inaperçues chez les mods dépendants ; les hypothèses MP (C12) restent sans réponse.
 - **Correction** : un scénario `pz-autotest` minimal, d'abord le parcours nominal : `start` vert de rayon 1 → présence d'`IsoFire` marqués et d'une lampe la nuit → `stop` → plus aucun feu ; fusée allumée par l'action → ramassage → événement `pickedUp` ; bâton activé → `expire` → `ChemlightUsed`. Ensuite le même scénario en MP avec deux clients (`autoclient --mp`), en comptant les erreurs avec `getLuaDebuggerErrorCount`.
-- **Statut** : confirmé statiquement (absence de tests). **Priorité** : P1. **Effort** : M.
+- **Statut : corrigé (commit 74f505f), à vérifier en jeu** — scénario `pz-autotest` nominal `sp` et `mp` (`autotest.json`, `autotest/ss_hooks.lua`, `docs/annexes/tests/autotest.md`), jamais lancé. **Priorité** : P1. **Effort** : M.
 
 ### C15 : `list()` et `event.entry` rendent les tables vivantes du registre, et il n'existe pas de `get(id)`
 
