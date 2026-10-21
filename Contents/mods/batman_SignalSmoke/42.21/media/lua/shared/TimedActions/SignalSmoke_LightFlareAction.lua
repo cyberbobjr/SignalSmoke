@@ -2,8 +2,8 @@
 -- Modèle vanilla : ISRepairClothing (42.21). En multijoueur, le serveur reconstruit l'action à partir
 -- des noms des paramètres de new() (character, item) et n'appelle jamais isValid : tout est revérifié
 -- dans complete(), exécuté sur le serveur (ou en solo). complete() retire la fusée de l'inventaire, pose
--- une fusée entamée au sol (envoyée aux clients par AddWorldInventoryItem) et l'inscrit au registre :
--- chaque client dessine la lumière rouge qui scintille, un peu de fumée rouge et le son.
+-- une fusée entamée au sol (SignalSmoke.placeFlare : envoyée aux clients par AddWorldInventoryItem) et
+-- l'inscrit au registre : chaque client dessine la lumière rouge qui scintille, un peu de fumée rouge et le son.
 
 require "TimedActions/ISBaseTimedAction"
 
@@ -11,14 +11,12 @@ local SignalSmoke = require "SignalSmoke/SignalSmoke"
 
 SignalSmoke_LightFlareAction = ISBaseTimedAction:derive("SignalSmoke_LightFlareAction")
 
-SignalSmoke_LightFlareAction.FLARE_TYPE = "SignalSmoke.RoadFlare"
-SignalSmoke_LightFlareAction.LIT_TYPE = "SignalSmoke.RoadFlareLit"
+SignalSmoke_LightFlareAction.FLARE_TYPE = SignalSmoke.FLARE_TYPE
+SignalSmoke_LightFlareAction.LIT_TYPE = SignalSmoke.FLARE_LIT_TYPE
 -- Durée de combustion par défaut, en minutes de jeu (option sandbox SignalSmoke.FlareBurnMinutes).
 SignalSmoke_LightFlareAction.BURN_MINUTES = SignalSmoke.DEFAULTS.FlareBurnMinutes
 
 local DURATION = 60
--- Grésillement de la fusée allumée, joué par les clients tant qu'elle brûle.
-local BURN_SOUND = "SmokeBombLoop"
 
 local function hasFlare(character, item)
     local inventory = character:getInventory()
@@ -68,22 +66,12 @@ function SignalSmoke_LightFlareAction:complete()
     if not inventory:contains(item) or square == nil or character:isDead() then return false end
     inventory:Remove(item)
     sendRemoveItemFromContainer(inventory, item)
-    local lit = square:AddWorldInventoryItem(SignalSmoke_LightFlareAction.LIT_TYPE, ZombRandFloat(0.3, 0.7),
-        ZombRandFloat(0.3, 0.7), 0)
-    if lit then
-        -- Pas de retrait par l'option vanilla de nettoyage du sol (comme ISDropWorldItemAction).
-        local worldItem = lit:getWorldItem()
-        if worldItem then
-            worldItem:setIgnoreRemoveSandbox(true)
-        end
-        SignalSmoke.start{
-            kind = "flare", color = "red", radius = 0, light = true,
-            x = square:getX(), y = square:getY(), z = square:getZ(),
-            minutes = SignalSmoke.option("FlareBurnMinutes"), itemId = lit:getID(),
-            itemType = SignalSmoke_LightFlareAction.LIT_TYPE,
-            sound = BURN_SOUND, owner = "SignalSmoke:flare", source = "flare", player = character,
-        }
-    end
+    -- Pose, protection du nettoyage, heure de fin dans la ModData de l'objet et inscription au registre.
+    SignalSmoke.placeFlare{
+        color = SignalSmoke.FLARE_COLOR, x = square:getX(), y = square:getY(), z = square:getZ(),
+        minutes = SignalSmoke.option("FlareBurnMinutes"),
+        owner = "SignalSmoke:flare", source = "flare", player = character,
+    }
     return true
 end
 

@@ -141,6 +141,85 @@ S.migrate()
 check("migration : idempotente", transmitted == 1)
 S.stop("old")
 check("migration : compte encore connu des événements", events[#events].type == "stopped" and events[#events].username == "dave")
+-- 0.3.0 : nom de couleur, version d'API, fusées suivies par la ModData de leur objet.
+check("versions : API 3, schéma 2", S.API_VERSION == 3 and S.VERSION == 2 and store[S.MODDATA_KEY].v == 2)
+check("colorName : nom donné, défaut vert, couleur libre sans nom",
+    S.newEntry({ x = 1, y = 2, color = "red" }, 0, 60).colorName == "red"
+    and S.newEntry({ x = 1, y = 2 }, 0, 60).colorName == "green"
+    and S.newEntry({ x = 1, y = 2, color = { r = 1, g = 0, b = 0 } }, 0, 60).colorName == nil)
+check("colorNameOf : champ, puis couleur la plus proche, sinon nil",
+    S.colorNameOf({ colorName = "blue", color = { r = 1, g = 0, b = 0 } }) == "blue"
+    and S.colorNameOf({ color = { r = 0.95, g = 0.3, b = 0.2 } }) == "red"
+    and S.colorNameOf({ colorName = "rose", color = S.COLORS.purple }) == "purple"
+    and S.colorNameOf({}) == nil and S.colorNameOf(nil) == nil)
+local function fakeWorld(square, item)
+    local wo = { getItem = function() return item end, getSquare = function() return square end,
+        setIgnoreRemoveSandbox = function(self, v) self.ignored = v end,
+        getOffX = function() return 0.5 end, getOffY = function() return 0.5 end, getOffZ = function() return 0 end }
+    item.getWorldItem = function() return wo end
+    return wo
+end
+local function fakeItem(id, fullType)
+    local md = {}
+    return { getID = function() return id end, getFullType = function() return fullType end,
+        getModData = function() return md end }
+end
+local removed = {}
+local square = { objects = {} }
+function square.getX() return 7 end
+function square.getY() return 8 end
+function square.getZ() return 0 end
+function square.getWorldObjects()
+    return { size = function() return #square.objects end, get = function(_, i) return square.objects[i + 1] end }
+end
+function square.transmitRemoveItemFromSquare(_, wo) removed[#removed + 1] = wo end
+function square.removeWorldObject(_, wo)
+    for i, o in ipairs(square.objects) do if o == wo then table.remove(square.objects, i) break end end
+end
+local nextItemId = 500
+function square.AddWorldInventoryItem(_, fullType)
+    nextItemId = nextItemId + 1
+    local item = fakeItem(nextItemId, fullType)
+    square.objects[#square.objects + 1] = fakeWorld(square, item)
+    return item
+end
+getCell = function() return { getGridSquare = function(_, x, y) if x == 7 and y == 8 then return square end end } end
+ZombRandFloat = function(a) return a end
+isClient = function() return false end
+isServer = function() return false end
+local fid, fitem = S.placeFlare({ x = 7, y = 8, color = "green", minutes = 30, owner = "M" })
+local fentry = store[S.MODDATA_KEY].entries[fid]
+check("placeFlare : objet posé, entrée suivie, fin et couleur dans la ModData", fid ~= nil and fitem ~= nil
+    and fentry.kind == "flare" and fentry.itemId == fitem:getID() and fentry.itemType == S.FLARE_LIT_TYPE
+    and fentry.colorName == "green" and fitem:getModData()[S.UNTIL_KEY] == fentry.untilH
+    and fitem:getModData()[S.COLOR_KEY] == "green" and square.objects[1].ignored == true)
+check("placeFlare : refus sans rien poser", select(2, S.placeFlare({ x = 7, y = 8, color = "rose" })) ~= nil
+    and #square.objects == 1 and select(2, S.placeFlare({ x = 1, y = 1 })) == "square not loaded")
+S.stop(fid)
+check("placeFlare : arrêtée, la fusée quitte le sol", #square.objects == 0)
+-- Fusée ramassée puis reposée : rallumée pour le temps restant, dans sa couleur.
+local relit = fakeItem(900, S.FLARE_LIT_TYPE)
+relit:getModData()[S.UNTIL_KEY] = now + 0.25
+relit:getModData()[S.COLOR_KEY] = "green"
+local relitWo = fakeWorld(square, relit)
+square.objects[1] = relitWo
+local rid = S.startFlare(relitWo, nil)
+local rentry = store[S.MODDATA_KEY].entries[rid]
+check("startFlare : temps restant et couleur gardés", rid == "flare:900" and math.abs(rentry.untilH - (now + 0.25)) < 1e-9
+    and rentry.colorName == "green" and rentry.itemId == 900)
+S.stop(rid)
+-- Fusée consumée restée au sol (case non chargée à l'expiration) ou sans heure de fin : retirée.
+local stale = fakeItem(901, S.FLARE_LIT_TYPE)
+stale:getModData()[S.UNTIL_KEY] = now - 1
+square.objects[1] = fakeWorld(square, stale)
+local legacy = fakeItem(902, S.FLARE_LIT_TYPE)
+square.objects[2] = fakeWorld(square, legacy)
+check("startFlare : fusée échue ou sans fin retirée", S.startFlare(square.objects[1]) == nil
+    and S.startFlare(square.objects[1]) == nil and #square.objects == 0
+    and store[S.MODDATA_KEY].entries["flare:901"] == nil)
+check("startFlare : autre objet ignoré", S.startFlare(fakeWorld(square, fakeItem(903, "Base.Torch"))) == nil)
+getCell = nil
+
 isServer = function() return false end
 isClient = function() return true end
 check("client MP : start refusé", select(2, S.start({ x = 1, y = 1 })) == "server only")

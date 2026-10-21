@@ -1,7 +1,8 @@
 {
-    "Tooltip_SignalSmoke_Grenade": "Werfen: Farbiger Rauch steigt etwa anderthalb Minuten lang auf, weithin sichtbar. Zombies im Rauch verlieren ihr Ziel aus den Augen.",
-    "Tooltip_SignalSmoke_RoadFlare": "Brennt nach dem Anzünden und Ablegen auf dem Boden etwa eine Spielstunde lang rot.",
-    "Tooltip_SignalSmoke_Chemlight": "Aktivieren und auf den Boden legen: ein sanftes farbiges Leuchten für mehrere Stunden, lautlos und ohne Rauch. Einmal aktiviert, lässt es sich nicht mehr ausschalten.",
+    "Tooltip_SignalSmoke_Grenade": "Werfen: Farbiger Rauch steigt auf, weithin sichtbar, standardmäßig etwa anderthalb Minuten lang (die Sandbox-Einstellungen können das ändern). Zombies im Rauch verlieren ihr Ziel aus den Augen.",
+    "Tooltip_SignalSmoke_RoadFlare": "Anzünden und auf den Boden legen: Sie brennt standardmäßig etwa eine Spielstunde lang rot (die Sandbox-Einstellungen können das ändern).",
+    "Tooltip_SignalSmoke_RoadFlareLit": "Brennt. Auf dem Boden brennt sie und erhellt die Umgebung. Aufgehoben spendet sie kein Licht, brennt aber weiter ab: Leg sie wieder auf den Boden, bevor sie erlischt.",
+    "Tooltip_SignalSmoke_Chemlight": "Aktivieren und auf den Boden legen: ein sanftes farbiges Leuchten, lautlos und ohne Rauch, standardmäßig für mehrere Stunden (die Sandbox-Einstellungen können das ändern). Einmal aktiviert, lässt es sich nicht mehr ausschalten.",
     "Tooltip_SignalSmoke_ChemlightLit": "Leuchtet. Auf dem Boden erhellt es die Umgebung; aufgehoben leuchtet es weiter, bis es verbraucht ist.",
     "Tooltip_SignalSmoke_ChemlightUsed": "Verbraucht: Es leuchtet nicht mehr.",
     "Tooltip_SignalSmoke_ImprovisedSmoke": "Werfen: farbiger Rauch, kürzer als bei einer militärischen Rauchgranate. Selbstgebaut zischt sie manchmal nur, ohne zu rauchen. Zombies im Rauch verlieren ihr Ziel aus den Augen."

@@ -136,7 +136,9 @@ module SignalSmoke
         ConditionMax = 1,
     }
 
-    /* Fusée de route : allumée et posée au sol par l'action SignalSmoke_LightFlareAction. */
+    /* Fusée de route : allumée et posée au sol par l'action SignalSmoke_LightFlareAction (SignalSmoke.placeFlare).
+       Allumée, elle porte son heure de fin en ModData : ramassée, elle se consume sans éclairer ; reposée,
+       elle se rallume pour le temps restant ; consumée, elle disparaît. */
     item RoadFlare
     {
         DisplayCategory = LightSource,
@@ -154,7 +156,9 @@ module SignalSmoke
         ItemType = base:normal,
         Weight = 0.2,
         Icon = SignalSmoke_RoadFlareLit,
+        StaticModel = SignalSmoke_RoadFlareLit,
         WorldStaticModel = SignalSmoke_RoadFlareLit,
+        Tooltip = Tooltip_SignalSmoke_RoadFlareLit,
     }
 
     /* Bâtons lumineux : un bâton neuf est activé et posé au sol par SignalSmoke_ActivateChemlightAction

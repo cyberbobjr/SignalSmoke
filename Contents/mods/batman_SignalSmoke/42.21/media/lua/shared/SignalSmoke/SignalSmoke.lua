@@ -20,10 +20,12 @@
 --   sa place quand l'entrée échue ou est arrêtée), id (même id : remplace), owner, source ("grenade",
 --   "flare", "chemlight", défaut "script"), player (IsoPlayer à l'origine du signal) ou username.
 --
--- Entrée du registre : { id, kind, x, y, z, radius, lightRadius, color = { r, g, b }, untilH (heures de
--- monde), light, smoke, sound, itemId, itemType, spentType, owner, source }. Les champs ajoutés en
+-- Entrée du registre : { id, kind, x, y, z, radius, lightRadius, color = { r, g, b }, colorName, untilH
+-- (heures de monde), light, smoke, sound, itemId, itemType, spentType, owner, source }. Les champs ajoutés en
 -- 0.2.0 (smoke, lightRadius, source, itemType, spentType) sont facultatifs : une entrée sans smoke a
--- de la fumée, sauf pour "chemlight".
+-- de la fumée, sauf pour "chemlight". colorName (0.3.0, API_VERSION 3) : nom de SignalSmoke.COLORS
+-- quand color a été donnée par son nom, sinon nil ; SignalSmoke.colorNameOf(entry) rend ce nom ou, à
+-- défaut (couleur libre, entrée plus ancienne), le nom de la couleur nommée la plus proche.
 -- Depuis 0.2.3, le compte du joueur (username) n'est plus dans l'entrée : le registre est transmis à
 -- tous les clients, qui y liraient qui a posé quel signal et où. Il reste sur le serveur, en mémoire
 -- seulement (une ModData globale, même non transmise, est lisible par tout client qui la demande :
@@ -45,13 +47,31 @@
 -- replaced (true si "started" remplace une entrée de même id) }.
 -- Chaque abonné est appelé dans un pcall : son erreur est écrite dans le journal et n'empêche pas les
 -- autres. Inscrire l'abonné au chargement d'un fichier lu par le serveur (shared ou server).
+--
+-- Fusée posée par script (serveur ou solo), comme l'action « Allumer et poser » :
+--
+--   local id, item = SignalSmoke.placeFlare{ x = 100, y = 200, z = 0, color = "green", minutes = 20,
+--       id = "monmod:fusee", owner = "MonMod" }
+--
+-- Pose une SignalSmoke.RoadFlareLit au sol (protégée du nettoyage vanilla) et l'inscrit au registre.
+-- Ramassée, elle continue de se consumer sans éclairer ; reposée, elle se rallume pour le temps qui lui
+-- reste (heure de fin et couleur dans sa ModData) ; consumée, elle disparaît, au sol comme dans un
+-- inventaire. Options : celles de start (kind, itemId et itemType sont imposés), minutes par défaut =
+-- option FlareBurnMinutes, color par défaut "red", offX/offY (0 à 1, place sur la case).
+--
+-- Version de l'API : SignalSmoke.API_VERSION (1 : 0.1.0 ; 2 : événements et bâtons lumineux, 0.2.0 ;
+-- 3 : colorName, colorNameOf, placeFlare, 0.3.0). Tester SignalSmoke.API_VERSION ou nil (= 1).
+--
 -- Durées : garder des minutes plutôt que des heures pour la fumée ; en multijoueur, la fumée est un
 -- objet local de chaque client (comme la fumée vanilla), ajouté à la liste d'objets de sa case.
 
 local SignalSmoke = {}
 
 SignalSmoke.MODDATA_KEY = "batman_SignalSmoke"
-SignalSmoke.VERSION = 1
+-- Version du schéma du registre (data.v) : 2 depuis 0.3.0 (sans username depuis 0.2.3, colorName).
+SignalSmoke.VERSION = 2
+-- Version de l'API publique (voir l'en-tête).
+SignalSmoke.API_VERSION = 3
 SignalSmoke.MAX_RADIUS = 2
 SignalSmoke.MAX_LIGHT_RADIUS = 20
 SignalSmoke.DEFAULT_MINUTES = 30
@@ -90,9 +110,20 @@ SignalSmoke.CHEMLIGHTS = {
     yellow = { item = "SignalSmoke.ChemlightYellow", lit = "SignalSmoke.ChemlightYellowLit" },
 }
 SignalSmoke.CHEMLIGHT_USED = "SignalSmoke.ChemlightUsed"
--- ModData d'un bâton activé : heure de monde de son extinction (il continue de briller ramassé).
+-- ModData d'un bâton activé ou d'une fusée allumée : heure de monde de son extinction (le temps
+-- continue de courir quand l'objet est ramassé).
 SignalSmoke.CHEMLIGHT_UNTIL_KEY = "ssUntilH"
+SignalSmoke.UNTIL_KEY = SignalSmoke.CHEMLIGHT_UNTIL_KEY
+-- ModData d'une fusée allumée : nom de sa couleur (rallumée de la même couleur une fois reposée).
+SignalSmoke.COLOR_KEY = "ssColor"
 SignalSmoke.CHEMLIGHT_LIGHT_RADIUS = 3
+
+-- Fusées de route : neuve et allumée. Consumée, la fusée disparaît.
+SignalSmoke.FLARE_TYPE = "SignalSmoke.RoadFlare"
+SignalSmoke.FLARE_LIT_TYPE = "SignalSmoke.RoadFlareLit"
+SignalSmoke.FLARE_COLOR = "red"
+-- Grésillement d'une fusée allumée, joué par les clients tant qu'elle brûle.
+SignalSmoke.FLARE_SOUND = "SmokeBombLoop"
 
 -- Couleur d'un bâton lumineux d'après son type complet, et s'il est activé ; nil si ce n'en est pas un.
 function SignalSmoke.chemlightOf(fullType)
@@ -163,6 +194,27 @@ function SignalSmoke.resolveColor(color)
     return nil
 end
 
+-- Nom de la couleur d'une entrée : entry.colorName s'il est connu, sinon le nom de SignalSmoke.COLORS
+-- le plus proche de entry.color (entrée antérieure à 0.3.0 ou couleur libre) ; nil sans couleur.
+-- Égalité de distance départagée par l'ordre alphabétique (résultat stable).
+function SignalSmoke.colorNameOf(entry)
+    if type(entry) ~= "table" then return nil end
+    if type(entry.colorName) == "string" and SignalSmoke.COLORS[entry.colorName] then
+        return entry.colorName
+    end
+    local color = entry.color
+    if type(color) ~= "table" then return nil end
+    local r, g, b = tonumber(color.r) or 0, tonumber(color.g) or 0, tonumber(color.b) or 0
+    local best, bestDistance
+    for name, named in pairs(SignalSmoke.COLORS) do
+        local distance = (named.r - r) ^ 2 + (named.g - g) ^ 2 + (named.b - b) ^ 2
+        if bestDistance == nil or distance < bestDistance or (distance == bestDistance and name < best) then
+            best, bestDistance = name, distance
+        end
+    end
+    return best
+end
+
 local function isInteger(value)
     return type(value) == "number" and value == math.floor(value)
 end
@@ -190,9 +242,13 @@ function SignalSmoke.newEntry(opts, nowH, dayLengthMinutes)
     if not isInteger(z) then
         return nil, "z must be an integer"
     end
-    local color = SignalSmoke.resolveColor(opts.color or "green")
+    local colorName = opts.color or "green"
+    local color = SignalSmoke.resolveColor(colorName)
     if not color then
         return nil, "unknown color " .. tostring(opts.color)
+    end
+    if type(colorName) ~= "string" then
+        colorName = nil
     end
     local kind = opts.kind or "smoke"
     if not SignalSmoke.KINDS[kind] then
@@ -221,6 +277,7 @@ function SignalSmoke.newEntry(opts, nowH, dayLengthMinutes)
         radius = math.max(0, math.min(SignalSmoke.MAX_RADIUS, radius)),
         lightRadius = lightRadius,
         color = color,
+        colorName = colorName,
         untilH = nowH + hours,
         light = opts.light ~= false,
         smoke = kind ~= "chemlight" and opts.smoke ~= false,
@@ -364,25 +421,43 @@ local function stripUsernames(data)
     return stripped
 end
 
--- Registre de l'autorité, toujours sans username (migré au besoin, puis retransmis aux clients).
-local function registry()
+-- État du module : migration déjà faite depuis le chargement du Lua (pas de drapeau sur une fonction).
+local state = { migrated = false }
+
+local function rawRegistry()
     local data = ModData.getOrCreate(SignalSmoke.MODDATA_KEY)
     if type(data.entries) ~= "table" then
         data.entries = {}
     end
+    return data
+end
+
+-- Migration du registre sauvegardé : comptes des joueurs retirés (0.2.3), version du schéma.
+local function migrateData(data)
     data.v = SignalSmoke.VERSION
     local stripped = stripUsernames(data)
     if stripped > 0 then
         print("[SignalSmoke] removed player names from " .. tostring(stripped) .. " saved registry entries")
         publish()
     end
+    state.migrated = true
+end
+
+-- Registre de l'autorité, toujours sans username : migré une seule fois par chargement du Lua (au plus
+-- tard au premier usage), et non plus à chaque appel.
+local function registry()
+    local data = rawRegistry()
+    if not state.migrated then
+        migrateData(data)
+    end
     return data
 end
 
--- Migre le registre sauvegardé au chargement (serveur ou solo ; appelé à OnInitGlobalModData).
+-- Migre le registre sauvegardé au chargement (serveur ou solo ; appelé à OnInitGlobalModData, après
+-- la relecture de la ModData globale).
 function SignalSmoke.migrate()
     if not isAuthority() then return end
-    registry()
+    migrateData(rawRegistry())
 end
 
 local function nowHours()
@@ -430,6 +505,22 @@ local function removeItemObject(entry)
     end
 end
 
+-- Fusée ou bâton lumineux posé : son heure de fin (et la couleur d'une fusée) va dans la ModData de
+-- l'objet, qui le suit s'il est ramassé (rallumage, consomption dans un inventaire, rattrapage d'un
+-- objet resté au sol sur une case non chargée à son expiration). Protège aussi l'objet du nettoyage
+-- vanilla du sol. worldObject : IsoWorldInventoryObject de l'entrée. Serveur ou solo.
+function SignalSmoke.markItemObject(entry, worldObject)
+    if not (entry and worldObject) or (entry.kind ~= "flare" and entry.kind ~= "chemlight") then return end
+    local item = worldObject:getItem()
+    if not item then return end
+    local modData = item:getModData()
+    modData[SignalSmoke.UNTIL_KEY] = entry.untilH
+    if entry.kind == "flare" then
+        modData[SignalSmoke.COLOR_KEY] = SignalSmoke.colorNameOf(entry)
+    end
+    worldObject:setIgnoreRemoveSandbox(true)
+end
+
 -- Pose une fumée (ou une fusée, un bâton lumineux) ; renvoie son identifiant, ou nil et un message
 -- d'erreur. Un identifiant déjà présent est remplacé (appel idempotent).
 function SignalSmoke.start(opts)
@@ -454,6 +545,9 @@ function SignalSmoke.start(opts)
     if not entry.id then
         entry.id = "auto:" .. tostring(math.floor(nowHours() * 60)) .. ":" .. tostring(nextAutoId)
         nextAutoId = nextAutoId + 1
+    end
+    if entry.itemId and getCell and getCell() then
+        SignalSmoke.markItemObject(entry, (SignalSmoke.findItemObject(entry)))
     end
     local entries = registry().entries
     local replaced = entries[entry.id] ~= nil
@@ -497,6 +591,90 @@ function SignalSmoke.startChemlight(worldObject, player)
         itemId = item:getID(), itemType = item:getFullType(), spentType = SignalSmoke.CHEMLIGHT_USED,
         owner = "SignalSmoke:chemlight", source = "chemlight", player = player,
     }
+end
+
+-- Retire un objet posé de sa case (envoyé aux clients). Serveur ou solo.
+local function removeWorldObject(worldObject)
+    local square = worldObject:getSquare()
+    square:transmitRemoveItemFromSquare(worldObject)
+    square:removeWorldObject(worldObject)
+end
+
+-- Fusée allumée posée au sol (IsoWorldInventoryObject) : inscrite au registre (id "flare:<id de
+-- l'objet>", idempotent) pour le temps qui lui reste et dans sa couleur (ModData de l'objet). Consumée,
+-- ou sans heure de fin (fusée allumée avant 0.3.0, restée « allumée » pour toujours), elle disparaît.
+-- Serveur ou solo. Renvoie l'identifiant de l'entrée, ou nil.
+function SignalSmoke.startFlare(worldObject, player)
+    if not isAuthority() then return nil end
+    local item = worldObject and worldObject:getItem()
+    if not item or item:getFullType() ~= SignalSmoke.FLARE_LIT_TYPE then return nil end
+    local square = worldObject:getSquare()
+    local modData = item:getModData()
+    local untilH = tonumber(modData[SignalSmoke.UNTIL_KEY])
+    if not untilH or untilH <= nowHours() then
+        removeWorldObject(worldObject)
+        return nil
+    end
+    local color = modData[SignalSmoke.COLOR_KEY]
+    if type(color) ~= "string" or not SignalSmoke.COLORS[color] then
+        color = SignalSmoke.FLARE_COLOR
+    end
+    return SignalSmoke.start{
+        id = "flare:" .. tostring(item:getID()),
+        kind = "flare", color = color, untilH = untilH, radius = 0, light = true,
+        x = square:getX(), y = square:getY(), z = square:getZ(),
+        itemId = item:getID(), itemType = SignalSmoke.FLARE_LIT_TYPE, sound = SignalSmoke.FLARE_SOUND,
+        owner = "SignalSmoke:flare", source = "flare", player = player,
+    }
+end
+
+-- Pose une fusée allumée au sol et l'inscrit au registre (voir l'en-tête). Serveur ou solo. Renvoie
+-- l'identifiant de l'entrée et l'objet (InventoryItem), ou nil et un message d'erreur.
+function SignalSmoke.placeFlare(opts)
+    if not isAuthority() then
+        return nil, "server only"
+    end
+    if type(opts) ~= "table" then
+        return nil, "options must be a table"
+    end
+    local startOpts = {}
+    for key, value in pairs(opts) do
+        startOpts[key] = value
+    end
+    startOpts.kind = "flare"
+    startOpts.itemType = SignalSmoke.FLARE_LIT_TYPE
+    startOpts.color = opts.color or SignalSmoke.FLARE_COLOR
+    if opts.untilH == nil and opts.realSeconds == nil and opts.minutes == nil then
+        startOpts.minutes = SignalSmoke.option("FlareBurnMinutes")
+    end
+    if startOpts.radius == nil then startOpts.radius = 0 end
+    if startOpts.sound == nil then startOpts.sound = SignalSmoke.FLARE_SOUND end
+    startOpts.source = opts.source or "flare"
+    startOpts.offX, startOpts.offY = nil, nil
+    -- Contrôle avant de poser l'objet : un refus ne laisse rien au sol.
+    local probe, err = SignalSmoke.newEntry(startOpts, nowHours(), dayLengthMinutes())
+    if not probe then
+        print("[SignalSmoke] placeFlare refused: " .. tostring(err))
+        return nil, err
+    end
+    local square = getCell():getGridSquare(probe.x, probe.y, probe.z)
+    if not square then
+        return nil, "square not loaded"
+    end
+    local offX = tonumber(opts.offX) or ZombRandFloat(0.3, 0.7)
+    local offY = tonumber(opts.offY) or ZombRandFloat(0.3, 0.7)
+    local item = square:AddWorldInventoryItem(SignalSmoke.FLARE_LIT_TYPE, offX, offY, 0)
+    if not item then
+        return nil, "placement failed"
+    end
+    startOpts.itemId = item:getID()
+    local id, startErr = SignalSmoke.start(startOpts)
+    if not id then
+        local worldObject = item:getWorldItem()
+        if worldObject then removeWorldObject(worldObject) end
+        return nil, startErr
+    end
+    return id, item
 end
 
 -- Retire une entrée ; renvoie true si elle existait. Son objet posé quitte le sol (remplacé par

@@ -1,7 +1,8 @@
 {
-    "Tooltip_SignalSmoke_Grenade": "À lancer : une fumée colorée monte pendant environ une minute et demie, visible de loin. Les zombies dans la fumée perdent leur cible de vue.",
-    "Tooltip_SignalSmoke_RoadFlare": "Brûle en rouge pendant environ une heure de jeu, une fois allumée et posée au sol.",
-    "Tooltip_SignalSmoke_Chemlight": "À activer puis poser au sol : une douce lueur colorée pendant plusieurs heures, sans bruit ni fumée. Une fois activé, il ne s'éteint plus.",
+    "Tooltip_SignalSmoke_Grenade": "À lancer : une fumée colorée monte, visible de loin, pendant environ une minute et demie par défaut (les options de la partie peuvent changer cette durée). Les zombies dans la fumée perdent leur cible de vue.",
+    "Tooltip_SignalSmoke_RoadFlare": "À allumer puis poser au sol : elle brûle en rouge pendant environ une heure de jeu par défaut (les options de la partie peuvent changer cette durée).",
+    "Tooltip_SignalSmoke_RoadFlareLit": "Allumée. Au sol, elle brûle et éclaire les environs. Ramassée, elle n'éclaire plus mais continue de se consumer : reposez-la au sol avant qu'elle ne s'éteigne.",
+    "Tooltip_SignalSmoke_Chemlight": "À activer puis poser au sol : une douce lueur colorée, sans bruit ni fumée, pendant plusieurs heures par défaut (les options de la partie peuvent changer cette durée). Une fois activé, il ne s'éteint plus.",
     "Tooltip_SignalSmoke_ChemlightLit": "Allumé. Au sol, il éclaire les environs ; ramassé, il continue de briller jusqu'à épuisement.",
     "Tooltip_SignalSmoke_ChemlightUsed": "Épuisé : il ne brille plus.",
     "Tooltip_SignalSmoke_ImprovisedSmoke": "À lancer : une fumée colorée, plus courte que celle d'une grenade militaire. Fait maison, il lui arrive de grésiller sans fumer. Les zombies dans la fumée perdent leur cible de vue."
