@@ -69,6 +69,11 @@ SignalSmoke.stop(id)
 Benannte Farben: green, red, yellow, purple, orange, blue, white oder eine beliebige Tabelle { r, g, b }. Mit kind = "flare" entsteht eine Straßenfackel, mit kind = "chemlight" ein Knicklicht.
 [b]Ereignisse[/b]: SignalSmoke.onSignal(function(event) ... end) wird auf dem Server aufgerufen, wenn eine Granate, Fackel, ein Knicklicht oder ein Skriptsignal startet, stoppt oder abläuft (type, id, entry, source, username). Vollständige API auf GitHub.
 
+[h2]Discord[/h2]
+
+Fragen, Fehlerberichte oder Ideen? Komm auf den Discord:
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
 [h2]Unterstütze das Projekt[/h2]
 
 Gefällt dir die Mod? Ein Kaffee hilft, neue Funktionen und Übersetzungen zu finanzieren.

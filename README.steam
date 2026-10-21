@@ -69,6 +69,11 @@ SignalSmoke.stop(id)
 Named colors: green, red, yellow, purple, orange, blue, white, or any { r, g, b } table. Use kind = "flare" for a road flare, kind = "chemlight" for a chemlight.
 [b]Events[/b]: SignalSmoke.onSignal(function(event) ... end) is called on the server when a grenade, flare, chemlight or script signal starts, stops or expires (type, id, entry, source, username). Full API on GitHub.
 
+[h2]Discord[/h2]
+
+Questions, bug reports or ideas? Join the Discord:
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
 [h2]Support the project[/h2]
 
 Enjoying the mod? A coffee helps fund new features and translations.

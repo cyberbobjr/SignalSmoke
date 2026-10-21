@@ -69,6 +69,11 @@ SignalSmoke.stop(id)
 色の名前: green、red、yellow、purple、orange、blue、white、または任意の { r, g, b } テーブル。発炎筒は kind = "flare"、ケミカルライトは kind = "chemlight" を指定。
 [b]イベント[/b]: SignalSmoke.onSignal(function(event) ... end) は、手榴弾・発炎筒・ケミカルライト・スクリプトの信号が開始、停止、または期限切れになったときにサーバーで呼ばれる(type, id, entry, source, username)。完全なAPIはGitHubで。
 
+[h2]Discord[/h2]
+
+質問、不具合報告、アイデアは Discord へどうぞ：
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
 [h2]プロジェクトを応援[/h2]
 
 このMODを気に入っていただけましたか?コーヒー1杯が新機能や翻訳の資金になります。

@@ -69,6 +69,11 @@ SignalSmoke.stop(id)
 Cores com nome: green, red, yellow, purple, orange, blue, white, ou qualquer tabela { r, g, b }. Use kind = "flare" para um sinalizador de estrada e kind = "chemlight" para um bastão luminoso.
 [b]Eventos[/b]: SignalSmoke.onSignal(function(event) ... end) é chamado no servidor quando uma granada, um sinalizador, um bastão luminoso ou um sinal de script começa, para ou expira (type, id, entry, source, username). API completa no GitHub.
 
+[h2]Discord[/h2]
+
+Dúvidas, bugs ou ideias? Entre no Discord:
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
 [h2]Apoie o projeto[/h2]
 
 Curtiu o mod? Um café ajuda a financiar novos recursos e traduções.

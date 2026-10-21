@@ -69,6 +69,11 @@ SignalSmoke.stop(id)
 Colores con nombre: green, red, yellow, purple, orange, blue, white, o cualquier tabla { r, g, b }. Usa kind = "flare" para una bengala de carretera y kind = "chemlight" para una barra luminosa.
 [b]Eventos[/b]: SignalSmoke.onSignal(function(event) ... end) se llama en el servidor cuando una granada, una bengala, una barra luminosa o una señal de script empieza, se detiene o caduca (type, id, entry, source, username). API completa en GitHub.
 
+[h2]Discord[/h2]
+
+¿Preguntas, errores o ideas? Únete al Discord:
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
 [h2]Apoya el proyecto[/h2]
 
 ¿Te gusta el mod? Un café ayuda a financiar nuevas funciones y traducciones.

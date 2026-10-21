@@ -69,6 +69,11 @@ SignalSmoke.stop(id)
 색 이름: green, red, yellow, purple, orange, blue, white, 또는 임의의 { r, g, b } 테이블. 도로용 신호탄은 kind = "flare", 야광봉은 kind = "chemlight"를 사용하세요.
 [b]이벤트[/b]: SignalSmoke.onSignal(function(event) ... end)는 수류탄, 신호탄, 야광봉 또는 스크립트 신호가 시작, 중지, 만료될 때 서버에서 호출됩니다(type, id, entry, source, username). 전체 API는 GitHub에서 확인하세요.
 
+[h2]Discord[/h2]
+
+질문, 버그 제보, 아이디어는 Discord로 오세요:
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
 [h2]프로젝트 후원[/h2]
 
 모드가 마음에 드셨나요? 커피 한 잔이 새로운 기능과 번역에 도움이 됩니다.

@@ -69,6 +69,11 @@ SignalSmoke.stop(id)
 Couleurs nommées : green, red, yellow, purple, orange, blue, white, ou toute table { r, g, b }. Utilisez kind = "flare" pour une fusée de route, kind = "chemlight" pour un bâton lumineux.
 [b]Événements[/b] : SignalSmoke.onSignal(function(event) ... end) est appelé sur le serveur quand une grenade, une fusée, un bâton lumineux ou un signal de script démarre, s'arrête ou expire (type, id, entry, source, username). API complète sur GitHub.
 
+[h2]Discord[/h2]
+
+Questions, bugs ou idées ? Rejoignez le Discord :
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
 [h2]Soutenir le projet[/h2]
 
 Le mod vous plaît ? Un café aide à financer de nouvelles fonctions et des traductions.

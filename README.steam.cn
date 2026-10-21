@@ -69,6 +69,11 @@ SignalSmoke.stop(id)
 可用颜色名: green、red、yellow、purple、orange、blue、white, 或任意 { r, g, b } 表. 使用 kind = "flare" 放置道路信号棒, 使用 kind = "chemlight" 放置荧光棒.
 [b]事件[/b]: 当烟雾弹、信号棒、荧光棒或脚本信号开始、停止或到期时, 服务器会调用 SignalSmoke.onSignal(function(event) ... end) (type, id, entry, source, username). 完整 API 见 GitHub.
 
+[h2]Discord[/h2]
+
+有问题、错误报告或想法？欢迎加入 Discord：
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
 [h2]支持本项目[/h2]
 
 喜欢这个模组吗? 一杯咖啡就能帮助开发新功能和翻译.

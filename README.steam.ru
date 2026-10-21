@@ -69,6 +69,11 @@ SignalSmoke.stop(id)
 Цвета по имени: green, red, yellow, purple, orange, blue, white или любая таблица { r, g, b }. Для дорожного фальшфейера используйте kind = "flare", для светящейся палочки — kind = "chemlight".
 [b]События[/b]: SignalSmoke.onSignal(function(event) ... end) вызывается на сервере, когда граната, фальшфейер, светящаяся палочка или сигнал из скрипта запускается, останавливается или истекает (type, id, entry, source, username). Полный API на GitHub.
 
+[h2]Discord[/h2]
+
+Вопросы, ошибки или идеи? Присоединяйтесь к Discord:
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
 [h2]Поддержите проект[/h2]
 
 Нравится мод? Чашка кофе помогает оплачивать новые функции и переводы.
