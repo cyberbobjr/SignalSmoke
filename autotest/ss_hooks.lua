@@ -110,21 +110,50 @@ local function markedFires(id, x, y, z, radius)
     return count
 end
 
--- Vanilla lights also live in getLamppostPositions: IsoBuilding puts one on the outside square of each
--- window and door (IsoBuilding.java:373/394, getLocalToBuilding() set) and room lights hang on their
--- switches (getSwitches() not empty, hydro powered). A lamp from getCell():addLamppost(x, y, z, r, g, b, rad)
--- has neither: only those are counted, otherwise a test square next to a window never looks clear.
-local function isPlainLamp(l)
-    return l:getLocalToBuilding() == nil and l:getSwitches():isEmpty() and not l:isHydroPowered()
+-- Vanilla lights also live in getLamppostPositions, on the very squares the test uses:
+-- - IsoBuilding puts one on the outside square of each window and door (IsoBuilding.java:358-395,
+--   getLocalToBuilding() set);
+-- - room lights hang on their switches (CellLoader.java:146-160, IsoLightSwitch.java:130-134: getSwitches()
+--   not empty, hydro powered);
+-- - a tile object whose sprite has lightR/G/B owns one, built like a plain lamp (IsoObject.java:5998-6036:
+--   no building, no switch, not hydro), reached by IsoObject:getLightSource(). Seen in game on the spawn
+--   square: 0.45/0.51/0.51, radius 6 = lightR 115, lightG 130, lightB 130, LightRadius 6
+--   (lighting_indoor_02_44-47 or _80-83, newtiledefinitions.tiles.txt).
+-- A lamp from getCell():addLamppost(x, y, z, r, g, b, rad) is none of these: only those are counted.
+local function tileLights(sq)
+    local owned = {}
+    local objects = sq and sq:getObjects()
+    if objects then
+        for i = 0, objects:size() - 1 do
+            local o = objects:get(i)
+            local light = not instanceof(o, "IsoFire") and o:getLightSource() or nil
+            if light then
+                local sprite = o:getSprite()
+                owned[#owned + 1] = { light = light, name = sprite and sprite:getName() or "?" }
+            end
+        end
+    end
+    return owned
 end
 
--- Plain lamps on (x, y, z); second value: the count of vanilla building/switch lights left aside.
+-- Owner of a lamp of (x, y, z): nil for a plain addLamppost lamp, otherwise a short label.
+local function lampOwner(l, owned)
+    if l:getLocalToBuilding() ~= nil then return "building" end
+    if not l:getSwitches():isEmpty() or l:isHydroPowered() then return "switch" end
+    for _, t in ipairs(owned) do
+        if t.light == l then return "tile " .. t.name end
+    end
+    return nil
+end
+
+-- Plain lamps on (x, y, z); second value: the count of vanilla building, switch and tile lights left aside.
 local function lampsAt(x, y, z)
     local list, count, foreign = getCell():getLamppostPositions(), 0, 0
+    local owned = tileLights(square(x, y, z))
     for i = 0, list:size() - 1 do
         local l = list:get(i)
         if l:getX() == x and l:getY() == y and l:getZ() == z then
-            if isPlainLamp(l) then count = count + 1 else foreign = foreign + 1 end
+            if lampOwner(l, owned) == nil then count = count + 1 else foreign = foreign + 1 end
         end
     end
     return count, foreign
@@ -148,11 +177,12 @@ local function describeArea(label, x, y, z, radius)
                     end
                 end
             end
+            local owned = tileLights(sq)
             for i = 0, list:size() - 1 do
                 local l = list:get(i)
                 if l:getX() == sx and l:getY() == sy and l:getZ() == z then
                     parts[#parts + 1] = string.format("lamp@%d,%d(%s, rgb=%.2f/%.2f/%.2f, radius=%d, active=%s)",
-                        sx, sy, isPlainLamp(l) and "plain" or "building/switch", l:getR(), l:getG(), l:getB(),
+                        sx, sy, lampOwner(l, owned) or "plain", l:getR(), l:getG(), l:getB(),
                         l:getRadius(), tostring(l:isActive()))
                 end
             end
@@ -445,7 +475,7 @@ local function spSteps(P)
                 end
                 return false
             end
-            check(R, "expired.cleared", true, "no marked IsoFire, no plain lamp left (vanilla building/switch lights: "
+            check(R, "expired.cleared", true, "no marked IsoFire, no plain lamp left (vanilla building/switch/tile lights: "
                 .. (chemForeign + flare2Foreign) .. ")")
             return true
         end },
