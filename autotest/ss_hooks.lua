@@ -110,13 +110,55 @@ local function markedFires(id, x, y, z, radius)
     return count
 end
 
+-- Vanilla lights also live in getLamppostPositions: IsoBuilding puts one on the outside square of each
+-- window and door (IsoBuilding.java:373/394, getLocalToBuilding() set) and room lights hang on their
+-- switches (getSwitches() not empty, hydro powered). A lamp from getCell():addLamppost(x, y, z, r, g, b, rad)
+-- has neither: only those are counted, otherwise a test square next to a window never looks clear.
+local function isPlainLamp(l)
+    return l:getLocalToBuilding() == nil and l:getSwitches():isEmpty() and not l:isHydroPowered()
+end
+
+-- Plain lamps on (x, y, z); second value: the count of vanilla building/switch lights left aside.
 local function lampsAt(x, y, z)
-    local list, count = getCell():getLamppostPositions(), 0
+    local list, count, foreign = getCell():getLamppostPositions(), 0, 0
     for i = 0, list:size() - 1 do
         local l = list:get(i)
-        if l:getX() == x and l:getY() == y and l:getZ() == z then count = count + 1 end
+        if l:getX() == x and l:getY() == y and l:getZ() == z then
+            if isPlainLamp(l) then count = count + 1 else foreign = foreign + 1 end
+        end
     end
-    return count
+    return count, foreign
+end
+
+-- Readable list of what is left around (x, y, z): marked IsoFire (with their mark) and every lamp.
+local function describeArea(label, x, y, z, radius)
+    local parts = {}
+    local list = getCell():getLamppostPositions()
+    for dx = -radius, radius do
+        for dy = -radius, radius do
+            local sx, sy = x + dx, y + dy
+            local sq = square(sx, sy, z)
+            local objects = sq and sq:getObjects()
+            if objects then
+                for i = 0, objects:size() - 1 do
+                    local o = objects:get(i)
+                    if instanceof(o, "IsoFire") and o:getModData()[MARK_KEY] ~= nil then
+                        parts[#parts + 1] = "IsoFire@" .. sx .. "," .. sy .. "(mark=" .. tostring(o:getModData()[MARK_KEY])
+                            .. ", life=" .. tostring(o:getLife()) .. ")"
+                    end
+                end
+            end
+            for i = 0, list:size() - 1 do
+                local l = list:get(i)
+                if l:getX() == sx and l:getY() == sy and l:getZ() == z then
+                    parts[#parts + 1] = string.format("lamp@%d,%d(%s, rgb=%.2f/%.2f/%.2f, radius=%d, active=%s)",
+                        sx, sy, isPlainLamp(l) and "plain" or "building/switch", l:getR(), l:getG(), l:getB(),
+                        l:getRadius(), tostring(l:isActive()))
+                end
+            end
+        end
+    end
+    return label .. " " .. x .. "," .. y .. "," .. z .. ": " .. (#parts > 0 and table.concat(parts, "; ") or "nothing")
 end
 
 local function worldItemOn(sq, itemId)
@@ -349,6 +391,7 @@ local function spSteps(P)
             local lamps = lampsAt(sq:getX(), sq:getY(), sq:getZ())
             if n < 1 or lamps < 1 then return false end
             check(R, "flare.visual", true, n .. " IsoFire, " .. lamps .. " lamp(s) on the flare square")
+            info(R, describeArea("flare square", sq:getX(), sq:getY(), sq:getZ(), 0))
             local wo = worldItemOn(sq, R.flareItemId)
             info(R, "C12 sp flare square objects: " .. objectList(sq) .. " (flare index "
                 .. tostring(wo and wo:getObjectIndex()) .. ")")
@@ -389,10 +432,21 @@ local function spSteps(P)
             local g = R.grenadeSq
             local fires = (R.grenadeId and markedFires(R.grenadeId, g:getX(), g:getY(), g:getZ(), 1) or 0)
                 + markedFires("pzat:flare2", R.flare2Sq:getX(), R.flare2Sq:getY(), R.flare2Sq:getZ(), 0)
-            local lamps = lampsAt(R.chemSq:getX(), R.chemSq:getY(), R.chemSq:getZ())
-                + lampsAt(R.flare2Sq:getX(), R.flare2Sq:getY(), R.flare2Sq:getZ())
-            if fires > 0 or lamps > 0 then return false end
-            check(R, "expired.cleared", true, "no marked IsoFire, no lamp left")
+            local chemLamps, chemForeign = lampsAt(R.chemSq:getX(), R.chemSq:getY(), R.chemSq:getZ())
+            local flare2Lamps, flare2Foreign = lampsAt(R.flare2Sq:getX(), R.flare2Sq:getY(), R.flare2Sq:getZ())
+            local lamps = chemLamps + flare2Lamps
+            if fires > 0 or lamps > 0 then
+                -- Just before the 12 s timeout: say what is left, so that a FAIL can be read.
+                if not R.leftoverLogged and nowMs() - (R.stepAt or nowMs()) > 11000 then
+                    R.leftoverLogged = true
+                    if R.grenadeId then info(R, describeArea("left at grenade", g:getX(), g:getY(), g:getZ(), 1)) end
+                    info(R, describeArea("left at chemlight", R.chemSq:getX(), R.chemSq:getY(), R.chemSq:getZ(), 0))
+                    info(R, describeArea("left at flare2", R.flare2Sq:getX(), R.flare2Sq:getY(), R.flare2Sq:getZ(), 0))
+                end
+                return false
+            end
+            check(R, "expired.cleared", true, "no marked IsoFire, no plain lamp left (vanilla building/switch lights: "
+                .. (chemForeign + flare2Foreign) .. ")")
             return true
         end },
         { name = "sp.end", fn = function(R) endListener(R); return true end },
