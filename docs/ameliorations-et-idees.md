@@ -125,7 +125,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Preuve** : `docs/annexes/recherches/recherche-v1.md` (« Risque (hypothèse) ») ; `SignalSmoke_Client.lua:292-303` (`AddTileObject`) ; `SignalSmoke_LightFlareAction.lua:229-235` (`radius = 0` sur la case de l'objet).
 - **Risque** : MP, interactions qui échouent ou visent le mauvais objet (ramassage, conteneur, porte).
 - **Correction** : d'abord un test MP ciblé (ramasser la fusée qui brûle, ouvrir un meuble et une porte dans la croix d'une grenade, depuis deux clients). Si le décalage est confirmé : poser la fumée de la fusée sur une case voisine libre, et la fumée des grenades seulement sur des cases sans objet interactif.
-- **Statut** : test MP automatique ajouté (commit 74f505f, `docs/annexes/tests/autotest.md` : indices relevés serveur et client, fusée ramassée sur la case de sa fumée), à lancer en jeu ; correction éventuelle selon son résultat. **Priorité** : P1 (test) / P2 (correction éventuelle). **Effort** : S (test) / M.
+- **Statut** : **fusée : risque écarté en jeu** (pz-autotest MP du 2026-10-21, runs `20261021-160419-mp-42e6174e6261` et `20261021-165115-mp-1abe81ce1ddc`, serveur dédié + 1 client) : la fumée locale s'ajoute après la fusée dans la liste du client, l'indice de la fusée est identique sur le serveur et le client (1), et le ramassage par le client réussit (`flare.pickedUp`). Reste non testé : meubles, portes et cadavres dans la croix d'une grenade, et un second client. **Priorité** : P3 (grenade). **Effort** : S.
 
 ### C13 : le client refait chaque seconde des calculs qui pourraient être gardés
 
