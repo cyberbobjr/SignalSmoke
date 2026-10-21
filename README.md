@@ -2,10 +2,12 @@
 
 Project Zomboid Build 42.21 mod: colored smoke grenades, road flares, chemlights, improvised smoke bombs, sandbox options, and a small library for other mods (colored smoke, flares and chemlight glows placed by the server, seen by every player, restored after loading, with events for dependent mods).
 
+![Colored smoke and glows at night](docs/images/screenshots/shot1.png)
+
 - Steam Workshop: [3811010882](https://steamcommunity.com/sharedfiles/filedetails/?id=3811010882) — Mod ID `batman_SignalSmoke`.
 - Mod: `Contents/mods/batman_SignalSmoke` (`42.21/mod.info`).
 - Workshop descriptions: `README.steam` (English, mirrored in `workshop.txt`) and `README.steam.<lang>`.
-- Changes: [CHANGELOG.md](CHANGELOG.md). Design and research notes (French): `docs/`.
+- Changes: [CHANGELOG.md](CHANGELOG.md). Documentation index (French): [docs/README.md](docs/README.md); wiki sources: [English](docs/wiki/en/Home.md), [French](docs/wiki/fr/Home.md).
 - 3D models and icons: `source/items/build_items.py` (headless Blender recipe).
 
 ## Using the library
@@ -41,7 +43,7 @@ Register the listener when a server-side file loads (`shared` or `server`). Each
 
 `SignalSmoke.start{ ..., source = "mymod", player = player }` passes a source and a player to the listeners; `SignalSmoke.stop(id, reason)` passes a reason.
 
-Options, registry format and events: header of `Contents/mods/batman_SignalSmoke/42.21/media/lua/shared/SignalSmoke/SignalSmoke.lua`.
+Options, registry format and events: [developer API guide](docs/wiki/en/06-developer-api.md), full contract in French in [docs/specifications-techniques.md](docs/specifications-techniques.md#api-publique-lua), and the header of `Contents/mods/batman_SignalSmoke/42.21/media/lua/shared/SignalSmoke/SignalSmoke.lua`.
 
 ## Checks
 

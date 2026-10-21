@@ -1,6 +1,6 @@
 -- Signal Smoke : partie client (et solo). Fabrique et entretient localement ce que décrit le registre
 -- du serveur (SignalSmoke.lua) : en multijoueur, la fumée vanilla n'existe que chez les clients
--- (docs/recherche-v1.md, .claude/pz-knowledge/staging-effects.md).
+-- (docs/annexes/recherches/recherche-v1.md, .claude/pz-knowledge/staging-effects.md).
 -- Une fois par seconde réelle, pour chaque entrée dont la case est chargée :
 -- - fumée : un IsoFire de fumée par case du disque (rayon 0 à 2), marqué de l'identifiant (ModData),
 --   teint à chaque passage (la teinte se perd à chaque changement de stade) ; recréé avant qu'il ne

@@ -2,14 +2,14 @@
 -- rien n'y est fait côté client.
 -- - Expiration des entrées du registre, chaque minute de jeu (des minutes peuvent être sautées en
 --   vitesse accélérée : on compare les heures, jamais l'égalité).
--- - Grenades du mod : à l'éclatement (OnThrowableExplode, déclenché sur le serveur, docs/recherche-v1.md),
+-- - Grenades du mod : à l'éclatement (OnThrowableExplode, déclenché sur le serveur, docs/annexes/recherches/recherche-v1.md),
 --   une fumée colorée est ajoutée au registre. Leur script a SmokeRange = 0 : pas de fumée grise vanilla.
 --   Le fumigène artisanal dure moins longtemps et peut rater (options sandbox) : il siffle sans fumer.
 --   Le lanceur est connu par trap:getAttacker() (IsoTrap créé avec le joueur, AddExplosiveTrapPacket).
 -- - Fusées et bâtons lumineux posés : si l'objet a disparu de sa case (ramassé), l'entrée s'arrête ;
 --   consumée (expiration) ou arrêtée, la fusée quitte le sol, le bâton lumineux devient un bâton usagé.
 -- - Bâtons lumineux activés reposés par le joueur (lâcher, poser, glisser vers le sol : plusieurs
---   chemins vanilla, docs/recherche-v2.md) : repérés près des joueurs chaque minute et réinscrits avec
+--   chemins vanilla, docs/annexes/recherches/recherche-v2.md) : repérés près des joueurs chaque minute et réinscrits avec
 --   leur temps restant (ModData de l'objet, SignalSmoke.startChemlight). Ceux qui sont échus deviennent
 --   des bâtons usagés, au sol comme dans l'inventaire des joueurs (sacs portés compris).
 -- - Au chargement, migration du registre (SignalSmoke.migrate : comptes des joueurs retirés).

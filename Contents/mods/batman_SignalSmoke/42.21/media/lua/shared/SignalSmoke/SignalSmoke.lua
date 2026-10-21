@@ -9,7 +9,7 @@
 -- Serveur ou solo seulement : chez un client multijoueur, start et stop renvoient nil, "server only".
 -- Le serveur tient un registre dans une ModData globale, transmise aux clients ; chaque client crée
 -- et entretient la fumée, la lampe et le son localement (en multijoueur, la fumée vanilla n'existe
--- que chez les clients : docs/recherche-v1.md). Le registre survit au rechargement.
+-- que chez les clients : docs/annexes/recherches/recherche-v1.md). Le registre survit au rechargement.
 --
 -- Options de start (toutes facultatives sauf x et y) :
 --   x, y, z (entiers), color (nom de SignalSmoke.COLORS ou { r, g, b } de 0 à 1), kind = "smoke"
