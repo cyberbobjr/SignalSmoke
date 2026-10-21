@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.0 — 2026-10-21
 
 ### Fixed
 - A lit road flare you pick up no longer stays "lit" forever: it gives no light in your inventory but keeps burning down, burns again for the time it has left when you put it back on the ground, and disappears once spent. It now has a tooltip and shows in your hand.
