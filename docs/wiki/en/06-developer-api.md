@@ -62,7 +62,11 @@ SignalSmoke.onSignal(onSignal)
 
 Register the listener when a `shared` or `server` file loads. Each listener runs in its own `pcall`: an error is logged and does not stop the others. A dud improvised bomb starts no signal. The username is kept in server memory only: it is unknown for signals started before the last load.
 
-To find the color name of a signal, compare `event.entry.color` (`{ r, g, b }`) with `SignalSmoke.COLORS` using a small tolerance.
+To find the color name of a signal, use `SignalSmoke.colorNameOf(event.entry)` (API 3): it returns `entry.colorName` (set when the color was given by name) or the nearest name of `SignalSmoke.COLORS`. Check `(SignalSmoke.API_VERSION or 1) >= 3` before using it.
+
+To place a lit road flare from a script (server or singleplayer), call `SignalSmoke.placeFlare{ x = 100, y = 200, z = 0, color = "green", minutes = 20, id = "mymod:flare", owner = "MyMod" }` (API 3): it puts a lit flare on the loaded tile, protects it from ground clean-up and registers it; it returns `id, item` or `nil, error`. A picked-up flare keeps burning down without light and relights when placed back.
+
+`SignalSmoke.API_VERSION`: 1 (0.1.0), 2 (events and chemlights, 0.2.0), 3 (`colorName`, `colorNameOf`, `placeFlare`). Missing means 1 or 2: test the functions you need.
 
 ## Tips
 

@@ -10,7 +10,7 @@ La fumée ne se pose ni sur l'eau ni sur une case sans sol. Quand beaucoup de fe
 Seul un bâton posé au sol brille. Le temps continue de courir quand on le porte.
 
 **J'ai ramassé une fusée allumée. Puis-je la rallumer ?**
-Non : la ramasser l'éteint définitivement.
+Reposez-la au sol : elle brûle de nouveau pour le temps qui lui reste. Son temps continue de courir quand vous la portez, et elle disparaît une fois consumée.
 
 **Une bombe fumigène artisanale n'a rien fait.**
 Elle a raté (20 % par défaut, option sandbox).

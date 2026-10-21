@@ -10,7 +10,7 @@ Smoke cannot be placed on water or on a tile with no floor object. When many fir
 Only a chemlight lying on the ground glows. The time keeps running while you carry it.
 
 **I picked up a lit road flare. Can I light it again?**
-No: picking it up puts it out for good.
+Put it back on the ground: it burns again for the time it has left. Its time keeps running while you carry it, and it disappears once spent.
 
 **A homemade smoke bomb did nothing.**
 It was a dud (20 % by default, sandbox option).

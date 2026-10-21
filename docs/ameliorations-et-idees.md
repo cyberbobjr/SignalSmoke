@@ -31,6 +31,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : bug de jeu visible (un objet mort qui se présente comme allumé) ; incohérence avec les bâtons lumineux.
 - **Correction** : reprendre le modèle des bâtons lumineux. Option A : à l'allumage, écrire l'heure de fin dans la ModData de l'objet ; reposée, la fusée se rallume pour le temps qui lui reste (sondage générique sur une liste de types « suivis », pas seulement les bâtons) ; échue, elle devient `RoadFlareUsed` (nouvel objet « fusée consumée », type `Junk`). Option B, plus simple : au ramassage, la fusée devient tout de suite `RoadFlareUsed` (« une fusée ne se rallume pas »). Dans les deux cas : ajouter `Tooltip` et `StaticModel` à `RoadFlareLit`, passer `spentType` à l'entrée de la fusée et l'utiliser aussi chez Artemis.
 - **Statut** : confirmé statiquement ; ce qui se passe à l'écran est à vérifier en jeu. **Priorité** : P1. **Effort** : M (A) / S (B).
+- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — option A : heure de fin et couleur dans la ModData de l'objet (`markItemObject`), rallumage au sol par `startFlare` (sondage commun avec les bâtons), fusée consumée retirée de l'inventaire (pas d'objet `RoadFlareUsed` : elle disparaît comme au sol) ; `Tooltip` et `StaticModel` ajoutés à `RoadFlareLit`. Une fusée tenue en main ou accrochée attend d'être rangée.
 
 ### C02 : un objet suivi dont l'entrée échoit sur une case non chargée n'est jamais retiré
 
@@ -39,6 +40,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : objets fantômes qui s'accumulent ; incohérence entre la sauvegarde et le registre.
 - **Correction** : garder dans la ModData une petite liste `pending = { [itemId] = { x, y, z, spentType } }` des retraits ratés, puis la retraiter au chargement de la case (`LoadGridsquare` côté serveur ou solo) ou au sondage des joueurs. Autre solution : étendre le sondage générique de C01 à tout type « allumé » sans entrée active. Une seule correction couvre C01 (option A) et C02.
 - **Statut** : confirmé statiquement. **Priorité** : P1. **Effort** : M.
+- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — rattrapage par le sondage près des joueurs (fusée échue ou sans heure de fin retirée). Les objets suivis d'un autre type (ni fusée ni bâton) n'ont toujours pas de liste `pending`.
 
 ### C03 : les infobulles annoncent des durées fixes que les options sandbox changent
 
@@ -47,6 +49,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : traduction et confiance du joueur.
 - **Correction** : soit des textes neutres (« pendant un moment, selon les réglages du serveur »), soit une infobulle dynamique avec une clé `%1` remplie par l'option (enveloppe de `ISToolTipInv:render`, technique décrite dans `ui-windows.md`). Le passage aux textes neutres reste une simple traduction (dix fichiers).
 - **Statut** : confirmé statiquement. **Priorité** : P2. **Effort** : S (textes neutres) / M (dynamique).
+- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — textes « par défaut, réglable par les options » dans les 10 langues (pas d'infobulle dynamique).
 
 ### C04 : la couleur nommée n'est pas dans l'entrée, et les mods dépendants la retrouvent par tolérance RGB
 
@@ -55,6 +58,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : stabilité de l'API publique (couplage caché à des valeurs internes).
 - **Correction** : ajouter un champ facultatif `colorName` (le nom si `opts.color` est une chaîne, sinon `nil`) et une fonction `SignalSmoke.colorNameOf(entry)` qui rend `colorName` ou, à défaut, le nom le plus proche (pour les entrées sauvegardées avant). Le changement est rétrocompatible. Il faut le documenter dans l'en-tête et le README, puis faire passer RadioSurvivor à `colorNameOf`.
 - **Statut** : confirmé statiquement. **Priorité** : P1. **Effort** : S.
+- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — champ `colorName` et `SignalSmoke.colorNameOf(entry)` ; RadioSurvivor n'est pas encore passé à `colorNameOf`.
 
 ### C05 : aucune version d'API ; `VERSION` (schéma) n'a pas bougé à la migration 0.2.3
 
@@ -63,6 +67,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : stabilité de l'API et maintenance des migrations futures.
 - **Correction** : `SignalSmoke.API_VERSION = 3` (1 : 0.1.0, 2 : événements et bâtons lumineux, 3 : `colorName` et `placeFlare`), plus un tableau des ajouts par version dans le README. Passer le schéma à `VERSION = 2` et ne migrer que si `data.v < 2` (voir C07).
 - **Statut** : confirmé statiquement. **Priorité** : P2. **Effort** : S.
+- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — `API_VERSION = 3`, schéma `VERSION = 2`.
 
 ### C06 : la pose d'une fusée par script est recopiée dans Artemis
 
@@ -71,6 +76,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : maintenance ; incohérence visuelle.
 - **Correction** : ajouter à l'API `SignalSmoke.placeFlare{ x, y, z, color, minutes, id, owner, source, player }`. Côté autorité, la fonction pose l'objet, le protège du nettoyage, inscrit l'entrée avec `itemId` et `spentType`, puis rend l'identifiant. `LightFlareAction` et Artemis l'appellent tous les deux. Plus tard, éventuellement : des variantes `RoadFlareLit<Couleur>` ou une fusée verte.
 - **Statut** : confirmé statiquement. **Priorité** : P2. **Effort** : S à M.
+- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — `SignalSmoke.placeFlare` ajouté et utilisé par `LightFlareAction` ; Artemis ne l'a pas encore adopté (sa fusée verte posée à la main reçoit déjà heure de fin et couleur via `start`). Modèle vert non traité.
 
 ### C07 : `registry()` relance la migration à chaque appel
 
@@ -79,6 +85,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : coût linéaire inutile (faible tant que le registre reste petit), et une migration difficile à lire.
 - **Correction** : un indicateur local `migrated` dans une table d'état (pas sur la fonction), posé par `SignalSmoke.migrate()` ; garder `registry()` en simple `getOrCreate`. À combiner avec la version de schéma de C05.
 - **Statut** : confirmé statiquement. **Priorité** : P3. **Effort** : S.
+- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — migration une seule fois par chargement du Lua (table d'état `state.migrated`).
 
 ### C08 : les identifiants automatiques peuvent entrer en collision après un rechargement
 

@@ -5,7 +5,7 @@
 Clic droit sur une fusée de route de l'inventaire : **Allumer et poser au sol**. Le personnage s'accroupit, l'allume et la pose sur sa case.
 
 - Elle brûle **60 minutes de jeu** (option sandbox) : lumière rouge qui scintille, un peu de fumée rouge, grésillement. Puis elle disparaît.
-- **La ramasser l'éteint.** La fusée allumée ramassée reste dans l'inventaire mais ne peut plus être rallumée.
+- **La ramasser coupe sa lumière.** Ramassée, elle n'éclaire plus mais continue de se consumer. Reposée au sol (lâcher, poser ou glisser vers le sol) près d'un joueur, elle brûle de nouveau dans la minute de jeu, pour le temps qui lui reste. Consumée, elle disparaît, au sol comme dans l'inventaire.
 - L'option sandbox de nettoyage des objets au sol ne retire pas une fusée qui brûle.
 
 On en trouve dans le matériel d'urgence des stations-service, les outils de garage, les casiers de pompiers et de police, et les coffres des voitures de police (option sandbox).

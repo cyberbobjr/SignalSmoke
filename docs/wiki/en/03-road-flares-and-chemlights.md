@@ -5,7 +5,7 @@
 Right-click a road flare in your inventory: **Light and place on the ground**. Your character crouches, strikes it, and puts it on their tile.
 
 - It burns for **60 minutes of game time** (sandbox option): flickering red light, a little red smoke, a crackling sound. Then it is gone.
-- **Pick it up to put it out.** The lit flare you picked up stays in your inventory but cannot be lit again.
+- **Pick it up to stop its light.** A picked-up flare gives no light but keeps burning down. Put it back on the ground (drop, place or drag to the floor) near a player: it burns again within a game minute for the time it has left. Once spent, it disappears, on the ground or in your inventory.
 - The ground clean-up sandbox option does not remove a burning flare.
 
 Found in gas station emergency supplies, garage tools, fire and police lockers, and police car trunks (sandbox option).

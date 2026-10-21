@@ -164,6 +164,10 @@ Le module est un fichier `shared` : il est disponible sur toutes les machines, q
 | `SignalSmoke.onSignal(fn)` | autorité | `true` si ajouté, `false` si déjà abonné ou si `fn` n'est pas une fonction |
 | `SignalSmoke.removeSignalListener(fn)` | autorité | `true` si retiré (possible depuis l'abonné lui-même) |
 | `SignalSmoke.startChemlight(worldObject, player)` | autorité | inscrit un bâton activé posé (`IsoWorldInventoryObject`), id `chemlight:<id de l'objet>` ; `nil` si ce n'est pas un bâton activé ou s'il est échu (alors remplacé par un bâton usagé) |
+| `SignalSmoke.startFlare(worldObject, player)` | autorité | inscrit une fusée allumée posée, id `flare:<id de l'objet>`, pour le temps restant (`ssUntilH`) et dans sa couleur (`ssColor`) ; `nil` si ce n'en est pas une, ou si elle est échue ou sans heure de fin (alors retirée du sol) |
+| `SignalSmoke.placeFlare(opts)` | autorité | pose une `RoadFlareLit` sur la case `x, y, z` chargée et l'inscrit (options de `start`, `kind`/`itemId`/`itemType` imposés, `color` par défaut `red`, durée par défaut `FlareBurnMinutes`, `offX`/`offY`) ; rend `id, item`, ou `nil, erreur` sans rien laisser au sol (API 3) |
+| `SignalSmoke.colorNameOf(entry)` | partout | `entry.colorName`, sinon le nom de `COLORS` le plus proche de `entry.color` (égalité : ordre alphabétique), `nil` sans couleur (API 3) |
+| `SignalSmoke.markItemObject(entry, worldObject)` | autorité | fusée ou bâton : écrit `ssUntilH` (et `ssColor` d'une fusée) dans la ModData de l'objet et le protège du nettoyage ; appelé par `start` et par le contrôle de chaque minute |
 | `SignalSmoke.findItemObject(entry)` | autorité | `(objet, true)` présent, `(nil, true)` absent, `(nil, false)` case non chargée ; alias `findFlareObject` (0.1.0) |
 | `SignalSmoke.option(name)` | partout | valeur de l'option `SignalSmoke.<name>` |
 | `SignalSmoke.chemlightOf(fullType)` | partout | `couleur, estActivé` ou `nil` |
@@ -171,7 +175,9 @@ Le module est un fichier `shared` : il est disponible sur toutes les machines, q
 
 Fonctions internes, exposées pour les tests ou le mod lui-même, sans garantie de stabilité : `newEntry`, `isLive`, `hasSmoke`, `realSecondsToHours`, `isDud`, `rewriteLootItems`, `nowHours`, `migrate`, `expire`, `notify`, `setReceived`.
 
-Constantes : `COLORS` (`green`, `red`, `yellow`, `purple`, `orange`, `blue`, `white`, valeurs `{ r, g, b }` de 0 à 1), `KINDS`, `MAX_RADIUS = 2`, `MAX_LIGHT_RADIUS = 20`, `DEFAULT_MINUTES = 30`, `GRENADES`, `CHEMLIGHTS`, `CHEMLIGHT_USED`, `CHEMLIGHT_UNTIL_KEY`, `CHEMLIGHT_LIGHT_RADIUS = 3`, `DEFAULTS`, `MODDATA_KEY`, `VERSION`.
+Constantes : `COLORS` (`green`, `red`, `yellow`, `purple`, `orange`, `blue`, `white`, valeurs `{ r, g, b }` de 0 à 1), `KINDS`, `MAX_RADIUS = 2`, `MAX_LIGHT_RADIUS = 20`, `DEFAULT_MINUTES = 30`, `GRENADES`, `CHEMLIGHTS`, `CHEMLIGHT_USED`, `CHEMLIGHT_UNTIL_KEY` (= `UNTIL_KEY`, `ssUntilH`), `COLOR_KEY` (`ssColor`), `FLARE_TYPE`, `FLARE_LIT_TYPE`, `FLARE_COLOR`, `FLARE_SOUND`, `CHEMLIGHT_LIGHT_RADIUS = 3`, `DEFAULTS`, `MODDATA_KEY`, `VERSION = 2` (schéma du registre, migration faite une fois par chargement du Lua), `API_VERSION = 3` (1 : 0.1.0 ; 2 : événements et bâtons lumineux ; 3 : `colorName`, `colorNameOf`, `placeFlare`).
+
+Champ d'entrée `colorName` (API 3) : nom de `COLORS` quand `color` a été donnée par son nom (défaut `green`), `nil` pour une couleur libre.
 
 ### Options de `start(opts)`
 

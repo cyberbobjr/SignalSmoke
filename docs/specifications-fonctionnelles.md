@@ -21,7 +21,9 @@ Ce que fait Signal Smoke 0.2.3 (Build 42.21) pour le joueur et l'administrateur.
 
 - Clic droit sur une fusée de route : **« Allumer et poser au sol »**. Le personnage s'accroupit, bruit de briquet, puis une fusée allumée est posée sur sa case.
 - Pendant **60 minutes de jeu** par défaut (option `FlareBurnMinutes`) : lumière rouge qui scintille (rayon 8), un peu de fumée rouge sur la case, grésillement en boucle. Puis la fusée disparaît du sol.
-- **Ramassée**, elle s'éteint (dans la minute de jeu qui suit) ; l'objet « Fusée de route (allumée) » reste dans l'inventaire mais ne se rallume pas.
+- **Ramassée**, sa lumière s'arrête (dans la minute de jeu qui suit), mais elle continue de se consumer dans l'inventaire. Reposée au sol par un geste vanilla à moins de deux cases d'un joueur vivant, elle brûle de nouveau dans la minute de jeu, de la même couleur et pour le temps qui lui reste. Consumée, elle disparaît de l'inventaire (contrôle toutes les 10 minutes de jeu, sauf tenue en main ou accrochée).
+- Une fusée consumée pendant que sa case n'était pas chargée disparaît quand un joueur repasse à moins de deux cases.
+- Les infobulles donnent les durées par défaut et précisent que les options de la partie peuvent les changer.
 - L'objet posé n'est pas retiré par l'option vanilla de nettoyage des objets au sol.
 
 ## F04 — Bâtons lumineux
@@ -78,6 +80,6 @@ Un autre mod qui déclare `require=\batman_SignalSmoke` peut poser et retirer de
 
 - Un client ne garde pas plus de 40 fumées du mod à la fois, et le moteur n'admet que 75 feux et fumées : au-delà, des cases de fumée manquent ou sont recréées avec un délai. La fumée ne se pose pas sur l'eau ni sur une case sans objet de sol.
 - La durée des fumées en secondes réelles est convertie en heures de jeu au moment du lancer, d'après la durée du jour de la partie.
-- Une fusée de route ramassée reste un objet inutile ; un bâton activé n'éclaire pas en main.
+- Une fusée de route ou un bâton activé n'éclaire pas en main ; une fusée allumée avant la 0.3.0 et restée dans un inventaire disparaît au premier contrôle (son heure de fin est inconnue).
 - Un bâton activé reposé loin de tout joueur (plus de deux cases) n'est rallumé que lorsqu'un joueur passe à proximité.
 - Validation en jeu : voir les protocoles de [annexes/tests/](annexes/tests/) ; les cas limites qui y sont listés (aller-retour hors zone chargée, plus de 75 feux, objets posés sur une case enfumée en MP) restent à vérifier.

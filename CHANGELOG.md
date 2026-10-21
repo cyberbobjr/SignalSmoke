@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- A lit road flare you pick up no longer stays "lit" forever: it gives no light in your inventory but keeps burning down, burns again for the time it has left when you put it back on the ground, and disappears once spent. It now has a tooltip and shows in your hand.
+- A road flare that burned out while nobody was nearby no longer stays on the ground: it is removed when a player comes back.
+- Tooltips of smoke grenades, road flares and chemlights now say their durations are defaults that the sandbox settings can change.
+
+### For modders
+- `SignalSmoke.API_VERSION = 3`, new entry field `colorName`, `SignalSmoke.colorNameOf(entry)` to get a signal's color name, and `SignalSmoke.placeFlare{ … }` to place a lit road flare from a script.
+
 ## 0.2.3 — 2026-10-07
 
 ### Fixed

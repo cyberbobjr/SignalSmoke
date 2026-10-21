@@ -62,7 +62,11 @@ SignalSmoke.onSignal(onSignal)
 
 Inscrire l'abonné au chargement d'un fichier `shared` ou `server`. Chaque abonné est appelé dans son propre `pcall` : son erreur est écrite au journal sans arrêter les autres. Une bombe artisanale ratée ne lance aucun signal. Le compte du joueur n'est gardé qu'en mémoire du serveur : inconnu pour un signal posé avant le dernier chargement.
 
-Pour retrouver le nom de la couleur d'un signal, comparer `event.entry.color` (`{ r, g, b }`) à `SignalSmoke.COLORS` avec une petite tolérance.
+Pour retrouver le nom de la couleur d'un signal, utiliser `SignalSmoke.colorNameOf(event.entry)` (API 3) : elle rend `entry.colorName` (posé quand la couleur est donnée par son nom) ou le nom le plus proche de `SignalSmoke.COLORS`. Tester `(SignalSmoke.API_VERSION or 1) >= 3` avant de l'utiliser.
+
+Pour poser une fusée allumée par script (serveur ou solo), appeler `SignalSmoke.placeFlare{ x = 100, y = 200, z = 0, color = "green", minutes = 20, id = "monmod:fusee", owner = "MonMod" }` (API 3) : elle pose la fusée sur la case chargée, la protège du nettoyage du sol et l'inscrit ; elle rend `id, item` ou `nil, erreur`. Ramassée, la fusée se consume sans éclairer et se rallume une fois reposée.
+
+`SignalSmoke.API_VERSION` : 1 (0.1.0), 2 (événements et bâtons lumineux, 0.2.0), 3 (`colorName`, `colorNameOf`, `placeFlare`). Absente : version 1 ou 2, tester les fonctions utilisées.
 
 ## Conseils
 
