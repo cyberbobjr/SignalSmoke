@@ -16,7 +16,7 @@ La présentation GitHub (anglais) est dans le [README](../README.md) du dépôt,
 | [wiki/fr/](wiki/fr/Home.md) | Même wiki en français. |
 | [images/](images/) | Images de la documentation ; captures en jeu dans [images/screenshots/](images/screenshots/). |
 | [annexes/recherches/](annexes/recherches/) | Recherches techniques de la v1 ([recherche-v1.md](annexes/recherches/recherche-v1.md)) et de la v2 ([recherche-v2.md](annexes/recherches/recherche-v2.md)) : preuves Java et vanilla des choix faits. |
-| [annexes/tests/](annexes/tests/) | Protocoles de test en jeu de la v0.1.0 ([test-v1.md](annexes/tests/test-v1.md)) et de la v0.2.0 ([test-v2.md](annexes/tests/test-v2.md)). |
+| [annexes/tests/](annexes/tests/) | Protocoles de test en jeu de la v0.1.0 ([test-v1.md](annexes/tests/test-v1.md)) et de la v0.2.0 ([test-v2.md](annexes/tests/test-v2.md)) ; scénario automatique pz-autotest, solo et MP ([autotest.md](annexes/tests/autotest.md)). |
 
 ## Captures disponibles
 

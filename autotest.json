@@ -1,0 +1,35 @@
+// pz-autotest configuration of Signal Smoke (.claude/tools/pz-autotest/README.md, docs/annexes/tests/autotest.md):
+//   python .claude/tools/pz-autotest/pz_autotest.py check SignalSmoke
+//   python .claude/tools/pz-autotest/pz_autotest.py sp    SignalSmoke --wait-idle 3600
+//   python .claude/tools/pz-autotest/pz_autotest.py mp    SignalSmoke --clients 1 --wait-idle 3600
+{
+  "name": "SignalSmoke",
+  "gameVersion": "42.21",
+  "mods": [
+    {"path": "Contents/mods/batman_SignalSmoke"}
+  ],
+  // Nominal path: client hooks (sp: both sides on one machine; mp: client 1 checks the visuals and picks the
+  // flare up), server hooks (mp: places the signals next to the first player).
+  "hooks": "autotest/ss_hooks.lua",
+  "params": {},
+  "sp": {
+    "save": "2026-10-17_17-50-04",
+    "gameMode": "Sandbox",
+    "saveMods": "replace",
+    "timeoutSec": 900,
+    "startDelaySec": 5
+  },
+  "mp": {
+    "serverName": "pzat_signalsmoke_mp",
+    "port": 17401,
+    // Medium house of Muldraugh (media/maps/Muldraugh, KY/spawnpoints.lua): fixed spawn, no spawn choice screen.
+    "spawn": "10656,10137,0",
+    "clients": 1,
+    "clientXmx": "3072m",
+    "serverRun": true,
+    "clientRun": true,
+    "timeoutSec": 1200,
+    "joinTimeoutSec": 600,
+    "ini": {"Map": "Muldraugh, KY", "MaxPlayers": 4}
+  }
+}
