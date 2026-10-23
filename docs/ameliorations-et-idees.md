@@ -1,9 +1,9 @@
 # Signal Smoke : améliorations et idées
 
 - **Mod** : Signal Smoke, `id=batman_SignalSmoke`, version `0.2.3` (`Contents/mods/batman_SignalSmoke/42.21/mod.info:2,7`), Workshop 3811010882.
-- **Date** : 2026-10-21. Cible : Build 42.21 (`versionMin=42.21`).
+- **Date** : 2026-10-21 ; **avancement mis à jour le 2026-10-23** (version publiée : 0.3.0, tag `v0.3.0`, commit `0e67e71`). Cible : Build 42.21 (`versionMin=42.21`).
 - **Périmètre lu** : tout le Lua (`shared/SignalSmoke/SignalSmoke.lua`, `server/SignalSmoke/SignalSmoke_Server.lua`, `server/Items/SignalSmoke_Distributions.lua`, `client/SignalSmoke/SignalSmoke_Client.lua`, `client/SignalSmoke/SignalSmoke_Menu.lua`, les deux actions chronométrées), les scripts (objets, recettes, modèles), `sandbox-options.txt`, les traductions EN/FR (les autres langues ont les mêmes clés, contrôlées par `tests/run_tests.py`), `README.md`, `CHANGELOG.md`, `docs/annexes/recherches/recherche-v1.md` et `recherche-v2.md`, `docs/annexes/tests/test-v1.md` et `test-v2.md`, `tests/run_tests.py`, `.luacheckrc`. Appels de l'API par les mods dépendants : `OperationArtemis` (`Artemis_Rendezvous.lua`, `Artemis_BeaconDirector.lua`) et `RadioSurvivor` (`RS_MissionSignal.lua`, `RS_RescueVisit.lua`, `RS_TradeRun.lua`). Base moteur : `.claude/pz-knowledge/staging-effects.md` (fumée, fusées, bâtons lumineux, sirène), `multiplayer.md`, `world-placement.md`, `sounds-and-noise.md`.
-- **Statut** : analyse statique seulement. Aucun test en jeu n'a été fait pour ce document. Les deux protocoles de test existants (`test-v1.md`, `test-v2.md`) ont encore toutes leurs cases vides (☐).
+- **Statut** : analyse statique seulement. Aucun test en jeu n'a été fait pour ce document. Les deux protocoles de test existants (`test-v1.md`, `test-v2.md`) ont encore toutes leurs cases vides (☐). Depuis, le scénario automatique `pz-autotest` a tourné en solo et en MP (voir C12 et C14).
 - Les chemins Lua ci-dessous partent de `Contents/mods/batman_SignalSmoke/42.21/media/lua/`.
 
 ### API publique réellement utilisée
@@ -20,6 +20,56 @@ Les mods consommateurs testent la présence des fonctions par leur type (`type(m
 
 ---
 
+## Tableau de bord — ce qui est fait et ce qui reste
+
+**Légende** : ✅ fait · 🟡 fait en partie · ⬜ pas commencé. « Publié » = présent dans une version du Workshop ; « non publié » = sur `main` mais pas encore publié. Détail de chaque point dans les parties 1 et 2 ; scénario automatique dans `docs/annexes/tests/autotest.md`.
+
+**Bilan** : améliorations du code **6 faites, 3 en partie, 7 à faire** (sur 16) ; idées de fonctionnalités **0 faite, 0 en partie, 16 à faire** (sur 16).
+
+### Améliorations du code
+
+| ID | Sujet | État | Testé | Publié | Commit | Ce qui reste |
+|---|---|---|---|---|---|---|
+| C01 | Fusée allumée ramassée qui reste « allumée » | ✅ Corrigé | hors jeu ; ramassage par pz-autotest sp et MP | 0.3.0 | `4215b9a` | Vérifier en jeu : fusée qui se consume dans l'inventaire, rallumage une fois reposée |
+| C02 | Objet suivi échu sur une case non chargée | ✅ Corrigé | hors jeu | 0.3.0 | `4215b9a` | Vérifier en jeu (fusée échue loin des joueurs) ; aucune liste `pending` pour d'autres types d'objets suivis |
+| C03 | Infobulles à durées fixes | ✅ Corrigé | — (texte) | 0.3.0 | `4215b9a` | Vérifier l'affichage en jeu |
+| C04 | Couleur nommée absente de l'entrée | 🟡 En partie | hors jeu | 0.3.0 | `4215b9a` | Faire passer RadioSurvivor à `colorNameOf` (autre dépôt) |
+| C05 | Aucune version d'API | ✅ Corrigé | hors jeu | 0.3.0 | `4215b9a` | — |
+| C06 | Pose d'une fusée recopiée dans Artemis | 🟡 En partie | hors jeu ; `placeFlare` et action réelle par pz-autotest sp et MP | 0.3.0 | `4215b9a` | Faire adopter `placeFlare` par Artemis (autre dépôt) ; modèle de fusée verte |
+| C07 | Migration relancée à chaque `registry()` | ✅ Corrigé | hors jeu | 0.3.0 | `4215b9a` | — |
+| C08 | Collision d'identifiants automatiques | ⬜ À faire | — | — | — | Tout |
+| C09 | Registre complet envoyé à chaque changement | ⬜ À faire | — | — | — | Tout |
+| C10 | Bâton reposé repéré seulement à 5 × 5 cases | ⬜ À faire | — | — | — | Tout |
+| C11 | Infobulle du bâton activé qui promet une lumière | ⬜ À faire | — | — | — | Tout (texte ou I02) |
+| C12 | Indices d'objets décalés par la fumée locale (MP) | 🟡 En partie | MP pz-autotest (fusée) | outil hors mod | `da8fdff` (constat) | Grenade : meubles, portes et cadavres dans la croix ; second client |
+| C13 | Calculs refaits chaque seconde côté client | ⬜ À faire | — | — | — | Tout |
+| C14 | Aucun test en jeu ni scénario automatique | ✅ Fait | sp 41/41 ; MP serveur 36/36 + client 11/11 | outil hors mod | `74f505f`, `4c5cf05`, `1c9cf6d` | Second client, reconnexion, rendu ; protocoles `test-v1/v2` toujours vides |
+| C15 | `list()` rend les tables vivantes, pas de `get(id)` | ⬜ À faire | — | — | — | Tout |
+| C16 | luacheck ne contrôle aucune globale | ⬜ À faire | — | — | — | Tout |
+
+### Idées de fonctionnalités
+
+| ID | Idée | État | Remarque |
+|---|---|---|---|
+| I01 | Pistolet lance-fusées | ⬜ Proposée | |
+| I02 | Bâton lumineux tenu qui éclaire | ⬜ Proposée | Réglerait C11 |
+| I03 | Fusée et grenade leurres | ⬜ Proposée | |
+| I04 | Infobulle avec le temps restant | ⬜ Proposée | Dépendance C01 faite : heure de fin `ssUntilH` sur l'objet |
+| I05 | Grenades orange, bleue et blanche | ⬜ Proposée | |
+| I06 | Outil d'administration des signaux | ⬜ Proposée | |
+| I07 | Flèche vers les signaux d'équipe | ⬜ Proposée | |
+| I08 | Fusée de route jetable | ⬜ Proposée | Dépendance C06 (`placeFlare`) faite |
+| I09 | Allumer un feu avec une fusée | ⬜ Proposée | |
+| I10 | Balise stroboscopique à piles | ⬜ Proposée | |
+| I11 | Événements `dud` et `refreshed` | ⬜ Proposée | C05 fait ; C15 (`extend`) à faire |
+| I12 | Requête `findNear` | ⬜ Proposée | Dépendance C04 (`colorName`) faite |
+| I13 | Fumée qui dérive avec le vent | ⬜ Proposée | |
+| I14 | Fumigènes et bâtons sur les zombies | ⬜ Proposée | |
+| I15 | Couleurs « daltonisme » et intensité | ⬜ Proposée | |
+| I16 | Fabriquer une fusée de route | ⬜ Proposée | Dépendance C01 faite |
+
+---
+
 ## Partie 1 : améliorations du code
 
 Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifier en jeu*. **Priorité** : P1 (à faire en premier) à P3. **Effort** : S (moins d'une heure), M (une demi-journée), L (plus).
@@ -31,7 +81,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : bug de jeu visible (un objet mort qui se présente comme allumé) ; incohérence avec les bâtons lumineux.
 - **Correction** : reprendre le modèle des bâtons lumineux. Option A : à l'allumage, écrire l'heure de fin dans la ModData de l'objet ; reposée, la fusée se rallume pour le temps qui lui reste (sondage générique sur une liste de types « suivis », pas seulement les bâtons) ; échue, elle devient `RoadFlareUsed` (nouvel objet « fusée consumée », type `Junk`). Option B, plus simple : au ramassage, la fusée devient tout de suite `RoadFlareUsed` (« une fusée ne se rallume pas »). Dans les deux cas : ajouter `Tooltip` et `StaticModel` à `RoadFlareLit`, passer `spentType` à l'entrée de la fusée et l'utiliser aussi chez Artemis.
 - **Statut** : confirmé statiquement ; ce qui se passe à l'écran est à vérifier en jeu. **Priorité** : P1. **Effort** : M (A) / S (B).
-- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — option A : heure de fin et couleur dans la ModData de l'objet (`markItemObject`), rallumage au sol par `startFlare` (sondage commun avec les bâtons), fusée consumée retirée de l'inventaire (pas d'objet `RoadFlareUsed` : elle disparaît comme au sol) ; `Tooltip` et `StaticModel` ajoutés à `RoadFlareLit`. Une fusée tenue en main ou accrochée attend d'être rangée.
+- **Avancement : ✅ corrigé, publié en 0.3.0 (commit 4215b9a), testé hors jeu, ramassage vérifié par pz-autotest (sp et MP), reste à vérifier en jeu** — option A : heure de fin et couleur dans la ModData de l'objet (`markItemObject`), rallumage au sol par `startFlare` (sondage commun avec les bâtons), fusée consumée retirée de l'inventaire (pas d'objet `RoadFlareUsed` : elle disparaît comme au sol) ; `Tooltip` et `StaticModel` ajoutés à `RoadFlareLit`. Une fusée tenue en main ou accrochée attend d'être rangée.
 
 ### C02 : un objet suivi dont l'entrée échoit sur une case non chargée n'est jamais retiré
 
@@ -40,7 +90,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : objets fantômes qui s'accumulent ; incohérence entre la sauvegarde et le registre.
 - **Correction** : garder dans la ModData une petite liste `pending = { [itemId] = { x, y, z, spentType } }` des retraits ratés, puis la retraiter au chargement de la case (`LoadGridsquare` côté serveur ou solo) ou au sondage des joueurs. Autre solution : étendre le sondage générique de C01 à tout type « allumé » sans entrée active. Une seule correction couvre C01 (option A) et C02.
 - **Statut** : confirmé statiquement. **Priorité** : P1. **Effort** : M.
-- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — rattrapage par le sondage près des joueurs (fusée échue ou sans heure de fin retirée). Les objets suivis d'un autre type (ni fusée ni bâton) n'ont toujours pas de liste `pending`.
+- **Avancement : ✅ corrigé, publié en 0.3.0 (commit 4215b9a), testé hors jeu, à vérifier en jeu** — rattrapage par le sondage près des joueurs (fusée échue ou sans heure de fin retirée). Les objets suivis d'un autre type (ni fusée ni bâton) n'ont toujours pas de liste `pending`.
 
 ### C03 : les infobulles annoncent des durées fixes que les options sandbox changent
 
@@ -49,7 +99,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : traduction et confiance du joueur.
 - **Correction** : soit des textes neutres (« pendant un moment, selon les réglages du serveur »), soit une infobulle dynamique avec une clé `%1` remplie par l'option (enveloppe de `ISToolTipInv:render`, technique décrite dans `ui-windows.md`). Le passage aux textes neutres reste une simple traduction (dix fichiers).
 - **Statut** : confirmé statiquement. **Priorité** : P2. **Effort** : S (textes neutres) / M (dynamique).
-- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — textes « par défaut, réglable par les options » dans les 10 langues (pas d'infobulle dynamique).
+- **Avancement : ✅ corrigé, publié en 0.3.0 (commit 4215b9a), à vérifier en jeu** — textes « par défaut, réglable par les options » dans les 10 langues (pas d'infobulle dynamique).
 
 ### C04 : la couleur nommée n'est pas dans l'entrée, et les mods dépendants la retrouvent par tolérance RGB
 
@@ -58,7 +108,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : stabilité de l'API publique (couplage caché à des valeurs internes).
 - **Correction** : ajouter un champ facultatif `colorName` (le nom si `opts.color` est une chaîne, sinon `nil`) et une fonction `SignalSmoke.colorNameOf(entry)` qui rend `colorName` ou, à défaut, le nom le plus proche (pour les entrées sauvegardées avant). Le changement est rétrocompatible. Il faut le documenter dans l'en-tête et le README, puis faire passer RadioSurvivor à `colorNameOf`.
 - **Statut** : confirmé statiquement. **Priorité** : P1. **Effort** : S.
-- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — champ `colorName` et `SignalSmoke.colorNameOf(entry)` ; RadioSurvivor n'est pas encore passé à `colorNameOf`.
+- **Avancement : 🟡 en partie, publié en 0.3.0 (commit 4215b9a), testé hors jeu** — champ `colorName` et `SignalSmoke.colorNameOf(entry)` ; RadioSurvivor n'est pas encore passé à `colorNameOf`.
 
 ### C05 : aucune version d'API ; `VERSION` (schéma) n'a pas bougé à la migration 0.2.3
 
@@ -67,7 +117,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : stabilité de l'API et maintenance des migrations futures.
 - **Correction** : `SignalSmoke.API_VERSION = 3` (1 : 0.1.0, 2 : événements et bâtons lumineux, 3 : `colorName` et `placeFlare`), plus un tableau des ajouts par version dans le README. Passer le schéma à `VERSION = 2` et ne migrer que si `data.v < 2` (voir C07).
 - **Statut** : confirmé statiquement. **Priorité** : P2. **Effort** : S.
-- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — `API_VERSION = 3`, schéma `VERSION = 2`.
+- **Avancement : ✅ corrigé, publié en 0.3.0 (commit 4215b9a), testé hors jeu** — `API_VERSION = 3`, schéma `VERSION = 2` ; ajouts par version documentés dans le wiki (`06-developer-api.md`, `06-api-developpeur.md`).
 
 ### C06 : la pose d'une fusée par script est recopiée dans Artemis
 
@@ -76,7 +126,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : maintenance ; incohérence visuelle.
 - **Correction** : ajouter à l'API `SignalSmoke.placeFlare{ x, y, z, color, minutes, id, owner, source, player }`. Côté autorité, la fonction pose l'objet, le protège du nettoyage, inscrit l'entrée avec `itemId` et `spentType`, puis rend l'identifiant. `LightFlareAction` et Artemis l'appellent tous les deux. Plus tard, éventuellement : des variantes `RoadFlareLit<Couleur>` ou une fusée verte.
 - **Statut** : confirmé statiquement. **Priorité** : P2. **Effort** : S à M.
-- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — `SignalSmoke.placeFlare` ajouté et utilisé par `LightFlareAction` ; Artemis ne l'a pas encore adopté (sa fusée verte posée à la main reçoit déjà heure de fin et couleur via `start`). Modèle vert non traité.
+- **Avancement : 🟡 en partie, publié en 0.3.0 (commit 4215b9a), testé hors jeu et par pz-autotest (sp et MP)** — `SignalSmoke.placeFlare` ajouté et utilisé par `LightFlareAction` ; Artemis ne l'a pas encore adopté (sa fusée verte posée à la main reçoit déjà heure de fin et couleur via `start`). Modèle vert non traité.
 
 ### C07 : `registry()` relance la migration à chaque appel
 
@@ -85,7 +135,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : coût linéaire inutile (faible tant que le registre reste petit), et une migration difficile à lire.
 - **Correction** : un indicateur local `migrated` dans une table d'état (pas sur la fonction), posé par `SignalSmoke.migrate()` ; garder `registry()` en simple `getOrCreate`. À combiner avec la version de schéma de C05.
 - **Statut** : confirmé statiquement. **Priorité** : P3. **Effort** : S.
-- **Statut : corrigé (commit 4215b9a), à vérifier en jeu** — migration une seule fois par chargement du Lua (table d'état `state.migrated`).
+- **Avancement : ✅ corrigé, publié en 0.3.0 (commit 4215b9a), testé hors jeu** — migration une seule fois par chargement du Lua (table d'état `state.migrated`).
 
 ### C08 : les identifiants automatiques peuvent entrer en collision après un rechargement
 
@@ -94,6 +144,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : bug rare, perte silencieuse d'un signal (une grenade lancée juste après un chargement).
 - **Correction** : garder le compteur dans le registre (`data.nextId`), ou ajouter un suffixe tiré au hasard. Le changement est rétrocompatible.
 - **Statut** : confirmé statiquement (collision rare). **Priorité** : P3. **Effort** : S.
+- **Avancement : ⬜ à faire.** `nextAutoId` repart toujours à 1 (`SignalSmoke.lua:177, 546-547`).
 
 ### C09 : le registre complet part à tous les clients à chaque changement
 
@@ -102,6 +153,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : réseau (faible) ; confidentialité des bases en MP (faible sur un serveur entre amis, comme le note la préférence « anti-triche peu prioritaire »).
 - **Correction** : (a) marquer le registre comme modifié et ne transmettre qu'une fois par minute, à la fin de `onEveryOneMinute`, avec un envoi immédiat seulement pour `start` (pour que la fumée apparaisse tout de suite). (b) Plus tard, si besoin : n'envoyer à chaque client que les entrées proches de lui (`sendServerCommand` par joueur, rayon de 150 cases), au prix d'un protocole plus complexe ; ce n'est pas indispensable.
 - **Statut** : confirmé statiquement. **Priorité** : P3. **Effort** : S (a) / L (b).
+- **Avancement : ⬜ à faire.** Un `ModData.transmit` par changement (`SignalSmoke.lua:403`).
 
 ### C10 : un bâton reposé n'est repéré que dans les 5 × 5 cases du joueur et à son étage
 
@@ -110,6 +162,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : un bâton posé dans le noir reste éteint, ce qui ressemble à un bug pour le joueur.
 - **Correction** : rayon 4 et étages z−1 à z+1 (coût : 9 × 9 × 3 cases par joueur et par minute, négligeable), ou mémoriser pour chaque joueur la dernière case examinée. Mieux encore : déclencher aussi le sondage pour ce joueur quand le serveur reçoit le transfert vers le sol (enveloppe légère de `ISDropWorldItemAction:complete` et du transfert vers le conteneur du sol), en gardant le sondage comme filet de sécurité.
 - **Statut** : à vérifier en jeu (portée réelle du curseur 3D). **Priorité** : P2. **Effort** : S (rayon) / M (déclenchement).
+- **Avancement : ⬜ à faire.** `CHEMLIGHT_SCAN_RADIUS = 2` inchangé (`SignalSmoke_Server.lua:30`).
 
 ### C11 : l'infobulle du bâton activé promet une lumière qu'il ne donne pas une fois ramassé
 
@@ -118,6 +171,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : texte trompeur.
 - **Correction** : reformuler (« ramassé, il reste activé et se rallume dès qu'on le repose ») ou réaliser I02.
 - **Statut** : confirmé statiquement. **Priorité** : P2. **Effort** : S.
+- **Avancement : ⬜ à faire.** La 0.3.0 a revu les autres infobulles (C03), pas celle-ci : `Tooltip_SignalSmoke_ChemlightLit` promet toujours que le bâton « continue de briller ».
 
 ### C12 : risque MP non testé, la fumée locale décale peut-être les indices d'objets de sa case
 
@@ -126,6 +180,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : MP, interactions qui échouent ou visent le mauvais objet (ramassage, conteneur, porte).
 - **Correction** : d'abord un test MP ciblé (ramasser la fusée qui brûle, ouvrir un meuble et une porte dans la croix d'une grenade, depuis deux clients). Si le décalage est confirmé : poser la fumée de la fusée sur une case voisine libre, et la fumée des grenades seulement sur des cases sans objet interactif.
 - **Statut** : **fusée : risque écarté en jeu** (pz-autotest MP du 2026-10-21, runs `20261021-160419-mp-42e6174e6261` et `20261021-165115-mp-1abe81ce1ddc`, serveur dédié + 1 client) : la fumée locale s'ajoute après la fusée dans la liste du client, l'indice de la fusée est identique sur le serveur et le client (1), et le ramassage par le client réussit (`flare.pickedUp`). Reste non testé : meubles, portes et cadavres dans la croix d'une grenade, et un second client. **Priorité** : P3 (grenade). **Effort** : S.
+- **Avancement : 🟡 en partie (constat : commit da8fdff)** — fusée : risque écarté par le test MP, aucune correction nécessaire ; grenade et second client à tester.
 
 ### C13 : le client refait chaque seconde des calculs qui pourraient être gardés
 
@@ -134,6 +189,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : coût faible (rayon ≤ 2, au plus 40 feux), mais du travail pour le ramasse-miettes sur un client qui a déjà fort à faire.
 - **Correction** : garder les décalages par rayon (3 tables fixes), tenir à jour un compteur de feux (création +1, extinction ou disparition −1), ne recalculer la signature que lorsqu'une nouvelle copie du registre arrive (`setReceived`) ou qu'une entrée change en solo.
 - **Statut** : confirmé statiquement. **Priorité** : P3. **Effort** : S.
+- **Avancement : ⬜ à faire.**
 
 ### C14 : rien n'a été testé en jeu, et il n'existe aucun scénario automatique
 
@@ -141,7 +197,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Preuve** : `docs/annexes/tests/test-v1.md:9-15`, `test-v2.md:9-17` ; `tests/run_tests.py` (Lua pur avec `lupa`, cohérence, luacheck : rien dans le moteur).
 - **Risque** : les régressions passent inaperçues chez les mods dépendants ; les hypothèses MP (C12) restent sans réponse.
 - **Correction** : un scénario `pz-autotest` minimal, d'abord le parcours nominal : `start` vert de rayon 1 → présence d'`IsoFire` marqués et d'une lampe la nuit → `stop` → plus aucun feu ; fusée allumée par l'action → ramassage → événement `pickedUp` ; bâton activé → `expire` → `ChemlightUsed`. Ensuite le même scénario en MP avec deux clients (`autoclient --mp`), en comptant les erreurs avec `getLuaDebuggerErrorCount`.
-- **Statut : corrigé (commit 74f505f), à vérifier en jeu** — scénario `pz-autotest` nominal `sp` et `mp` (`autotest.json`, `autotest/ss_hooks.lua`, `docs/annexes/tests/autotest.md`), jamais lancé. **Priorité** : P1. **Effort** : M.
+- **Avancement : ✅ fait (commits 74f505f, sondes 4c5cf05 et 1c9cf6d), outil hors mod** — scénario `pz-autotest` nominal `sp` et `mp` (`autotest.json`, `autotest/ss_hooks.lua`, `docs/annexes/tests/autotest.md`), lancé le 2026-10-21 : solo 41 PASS / 0 FAIL (`runs/20261021-165557-sp-9a46edb60d98`, après correction des sondes), MP serveur dédié + 1 client : serveur 36 PASS, client 11 PASS (`runs/20261021-160419-mp-42e6174e6261`, `runs/20261021-165115-mp-1abe81ce1ddc`). Reste : second client, reconnexion, rendu (couleur, scintillement, son) ; les protocoles manuels `test-v1.md` et `test-v2.md` restent vides. **Priorité** : P1. **Effort** : M.
 
 ### C15 : `list()` et `event.entry` rendent les tables vivantes du registre, et il n'existe pas de `get(id)`
 
@@ -150,6 +206,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : stabilité de l'API (corruption par un consommateur), petit coût.
 - **Correction** : ajouter `SignalSmoke.get(id)`, qui rend une **copie** de l'entrée active ou `nil`, et le documenter comme le moyen conseillé. Pour `event.entry`, garder la table actuelle (compatibilité) mais documenter `get` ou une copie. Plus tard, éventuellement : `extend(id, minutes)` pour prolonger une balise sans redéclencher `started` (Artemis rappelle `start` toutes les heures pour la même balise).
 - **Statut** : confirmé statiquement. **Priorité** : P3. **Effort** : S.
+- **Avancement : ⬜ à faire.**
 
 ### C16 : luacheck ne contrôle aucune globale
 
@@ -158,6 +215,7 @@ Légende. **Statut** : *confirmé statiquement* (lu dans le code) ou *à vérifi
 - **Risque** : maintenance, car une variable globale créée par erreur peut entrer en collision avec un autre mod.
 - **Correction** : `allow_defined_top = false`, `globals = { "SignalSmoke_LightFlareAction", "SignalSmoke_ActivateChemlightAction" }`, `read_globals` alimenté par une liste des globales du jeu (une liste du même genre existe peut-être dans un autre dépôt de l'utilisateur, à réutiliser), ou au minimum `ignore = { "113" }` limité aux accès en lecture (code 113) pour garder l'alerte sur les écritures (code 111).
 - **Statut** : confirmé statiquement. **Priorité** : P3. **Effort** : S.
+- **Avancement : ⬜ à faire.** `.luacheckrc` garde `global = false`.
 
 ---
 
@@ -313,16 +371,16 @@ Rien de ce qui suit n'est décidé. **Effort** : S / M / L comme plus haut.
 
 ## Partie 3 : priorisation
 
-Les cinq actions qui rapportent le plus, dans l'ordre :
+Les cinq actions qui rapportent le plus, dans l'ordre, avec leur avancement au 2026-10-23 :
 
-1. **C01 + C02 : cycle de vie des fusées** (fusée consumée `RoadFlareUsed`, heure de fin sur l'objet, retraits ratés repris au chargement de la case). C'est le seul bug que les joueurs voient vraiment, et il touche aussi Artemis. Effort M.
-2. **C04 + C05 : `colorName`, `colorNameOf` et `API_VERSION`**. Pour un coût minime, ces ajouts suppriment le couplage caché qui lie RadioSurvivor aux valeurs RGB de `COLORS`, et donnent une base saine aux évolutions de l'API (C06, I11, I12). Effort S.
-3. **C14 + C12 : scénario `pz-autotest` nominal, en solo puis en MP**, qui tranche en particulier l'hypothèse du décalage d'indices sous la fusée. La bibliothèque est requise par deux autres mods et n'a jamais tourné sous test. Effort M.
-4. **C06 : `SignalSmoke.placeFlare`**, adopté par `LightFlareAction` et par Artemis, pour qu'une correction de la fusée ne soit faite qu'une fois. Effort S à M.
-5. **C03 + C11 (textes) puis I04 (temps restant)** : rendre les infobulles justes quelles que soient les options, puis afficher la durée restante. C'est le gain le plus visible pour le joueur au moindre coût. Effort S.
+1. ✅ **C01 + C02 : cycle de vie des fusées** (fusée consumée `RoadFlareUsed`, heure de fin sur l'objet, retraits ratés repris au chargement de la case). C'est le seul bug que les joueurs voient vraiment, et il touche aussi Artemis. Effort M. (Fait en 0.3.0 selon l'option A, sans objet `RoadFlareUsed` : la fusée consumée disparaît.)
+2. 🟡 **C04 + C05 : `colorName`, `colorNameOf` et `API_VERSION`**. Pour un coût minime, ces ajouts suppriment le couplage caché qui lie RadioSurvivor aux valeurs RGB de `COLORS`, et donnent une base saine aux évolutions de l'API (C06, I11, I12). Effort S. (Fait dans Signal Smoke 0.3.0 ; RadioSurvivor n'utilise pas encore `colorNameOf`.)
+3. 🟡 **C14 + C12 : scénario `pz-autotest` nominal, en solo puis en MP**, qui tranche en particulier l'hypothèse du décalage d'indices sous la fusée. La bibliothèque est requise par deux autres mods et n'a jamais tourné sous test. Effort M. (C14 fait et passé en solo et en MP ; C12 écarté pour la fusée, grenade à tester.)
+4. 🟡 **C06 : `SignalSmoke.placeFlare`**, adopté par `LightFlareAction` et par Artemis, pour qu'une correction de la fusée ne soit faite qu'une fois. Effort S à M. (Adopté par `LightFlareAction`, pas encore par Artemis.)
+5. 🟡 **C03 + C11 (textes) puis I04 (temps restant)** : rendre les infobulles justes quelles que soient les options, puis afficher la durée restante. C'est le gain le plus visible pour le joueur au moindre coût. Effort S. (C03 fait ; C11 et I04 à faire.)
 
-Ensuite, au choix de l'utilisateur : I03 (leurre, très court à faire) et I01 (pistolet lance-fusées, la fonctionnalité la plus « signal »).
+Ensuite, au choix de l'utilisateur : ⬜ I03 (leurre, très court à faire) et ⬜ I01 (pistolet lance-fusées, la fonctionnalité la plus « signal »).
 
 ---
 
-> **Note** : ce document propose des pistes et ne décide rien. Rien n'y est implémenté. Chaque correction (Partie 1) et chaque fonctionnalité (Partie 2) attend une validation explicite de l'utilisateur avant d'être codée, et aucune option ou fonctionnalité citée ici ne doit être livrée sans cet accord.
+> **Note** : document de proposition mis à jour au fil des corrections : l'état de chaque point est dans le tableau de bord en tête (C01 à C07 publiés en 0.3.0, scénario automatique C14 en place). Les points encore à faire, corrections (Partie 1) comme fonctionnalités (Partie 2), attendent une validation explicite de l'utilisateur avant d'être codés, et aucune option ou fonctionnalité citée ici ne doit être livrée sans cet accord.
