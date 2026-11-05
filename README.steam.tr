@@ -1,0 +1,88 @@
+[h1]Signal Smoke — Renkli Duman Bombaları, Yol İşaret Fişekleri ve Kimyasal Işıklar[/h1]
+
+[b]Build 42.21 · Tek oyunculu ve çok oyunculu[/b]
+
+Bir helikopterin çatını fark etmesini, bir arkadaşın kampını bulmasını ya da eve giden yolu işaretlemeyi mi istiyorsun? Renkli duman patlat, bir yol işaret fişeği yak ya da bir kimyasal ışık bırak: herkes görür.
+
+[h2]Kısaca[/h2]
+
+[list]
+[*][b]Dört duman bombası[/b]: yeşil, kırmızı, sarı ve mor; kendi 3B modelleri ve simgeleriyle.
+[*][b]Yol işaret fişekleri[/b]: yerde yaklaşık bir oyun saati boyunca kırmızı yanar.
+[*][b]Kimyasal ışıklar[/b]: dört renkte; saatlerce süren sessiz bir parıltı, bir yolu ya da bodrumu işaretlemek için.
+[*][b]Yapımı duman bombaları[/b]: kendi renkli dumanını üret.
+[*][b]Sandbox seçenekleri[/b]: süreler, bozuk çıkma şansı, ganimet.
+[*][b]Çok oyunculu[/b]: karar sunucuda verilir, herkes aynı duman ve fişekleri görür.
+[*][b]Diğer modlar için küçük bir kütüphane[/b]: betikle yerleştirilen renkli duman ve fişekler.
+[/list]
+
+[h2]Duman bombaları[/h2]
+
+[list]
+[*]Vanilla sis bombası gibi at: renkli duman küçük bir kare alanın üzerinde yaklaşık bir buçuk dakika yükselir ve uzaktan görülür. Gece, kendi renginde parlar.
+[*]Dumanın içinde duran zombiler hedeflerini gözden kaybeder.
+[*]Gri duman yok, ateş yok, hasar yok: bu bir sinyal, silah değil.
+[*]Askerî depolarda, askerî fazla eşya dükkânlarında ve polis dolaplarında bulunur.
+[/list]
+
+[h2]Yol işaret fişekleri[/h2]
+
+[list]
+[*]Fişeğe sağ tıkla, [b]Yak ve yere koy[/b].
+[*]Titreyen kırmızı bir ışık, biraz kırmızı duman ve çıtırtılı bir ses eşliğinde yaklaşık bir oyun saati yanar, sonra biter.
+[*]Söndürmek için yerden al.
+[*]Benzin istasyonlarının acil durum malzemelerinde, araba bakım aletlerinde, itfaiye ve polis dolaplarında bulunur.
+[/list]
+
+[h2]Kimyasal ışıklar[/h2]
+
+[list]
+[*]Yeşil, kırmızı, mavi ya da sarı. Sağ tıkla, [b]Etkinleştir ve yere koy[/b].
+[*]Küçük renkli bir parıltı (yaklaşık 3 kare), duman ve ses yok, 8 oyun saati boyunca.
+[*]Etkinleştirildikten sonra kapatılamaz: al ve başka yere bırak, tükenene kadar parlamaya devam eder.
+[*]Askerî depolarda ve fazla eşya dükkânlarında, polis ve itfaiye dolaplarında, kamp ve hayatta kalma malzemelerinde bulunur.
+[/list]
+
+[h2]Yapımı duman bombaları[/h2]
+
+[list]
+[*]Tarif [b]Yapımı Duman Bombası Yap[/b] (Aşçılık 2): boş bir teneke, şeker, bir soğuk paket ya da suni gübre, istediğin renkte boya (yeşil, kırmızı, sarı veya mor) ve bir fitil (hasır ip ya da kumaş şeridi).
+[*]Vanilla duman bombası gibi fırlatılır, ama daha az güvenilirdir: duman daha kısa sürer ve beşte bir bozuk çıkar.
+[/list]
+
+[h2]Sandbox seçenekleri[/h2]
+
+Duman, işaret fişeği ve kimyasal ışık süreleri; yapımı duman bombasının süresi ve bozuk çıkma şansı; ganimet çarpanı; polis arabalarının bagajındaki işaret fişekleri.
+
+[h2]Çok oyunculu[/h2]
+
+Sunucu aktif duman ve fişeklerin listesini tutar ve her oyuncuya gönderir: sonradan gelen oyuncular da onları görür; kayıt yüklendikten sonra geri gelirler.
+
+[h2]Modcular için[/h2]
+
+mod.info dosyana [b]require=\batman_SignalSmoke[/b] ekle, sonra sunucuda ya da tek oyunculuda:
+[code]
+local SignalSmoke = require "SignalSmoke/SignalSmoke"
+local id = SignalSmoke.start{ x = 100, y = 200, z = 0, color = "green", minutes = 30 }
+SignalSmoke.stop(id)
+[/code]
+Adlandırılmış renkler: green, red, yellow, purple, orange, blue, white ya da herhangi bir { r, g, b } tablosu. Yol işaret fişeği için kind = "flare", kimyasal ışık için kind = "chemlight" kullan.
+[b]Olaylar[/b]: SignalSmoke.onSignal(function(event) ... end), bir duman bombası, fişek, kimyasal ışık ya da betik sinyali başladığında, durduğunda veya sona erdiğinde sunucuda çağrılır (type, id, entry, source, username). Tam API GitHub'da.
+
+[h2]Discord[/h2]
+
+Soru, hata bildirimi ya da fikrin mi var? Discord'a katıl:
+[url=https://discord.gg/QEsBya7hUA]https://discord.gg/QEsBya7hUA[/url]
+
+[h2]Yapay zekâ hakkında bir not[/h2]
+
+Yıllardır geliştiriciyim ve kodlama ajanları ortaya çıkmadan çok önce mod yapıyordum; bu da çoğu zaman ailemle geçirdiğim zamandan çalıyordu. Claude Code ve Codex'i açıkça kullanıyorum: her özellik hâlâ tartışılıyor, tasarlanıyor ve planlanıyor; körü körüne "vibe coding" yapılmıyor. Yapay zekâ kalıcı; direnmek yerine uyum sağlamayı seçtim. Kişisel saldırılara karşı duran herkese teşekkür ederim.
+
+[h2]Projeye destek ol[/h2]
+
+Modu beğendin mi? Bir kahve yeni özelliklerin ve çevirilerin finanse edilmesine yardımcı olur.
+[url=https://ko-fi.com/Z8Z8QJV31][img]https://storage.ko-fi.com/cdn/kofi6.png?v=6[/img][/url]
+
+[h2]Katkıda bulunanlar[/h2]
+
+Orijinal modeller, dokular ve simgeler Blender ile yapıldı. Duman ve sesler oyunun kendisinden alındı. Kaynak kodu MIT lisansıyla: [url=https://github.com/cyberbobjr/SignalSmoke]GitHub[/url].
