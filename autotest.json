@@ -1,7 +1,7 @@
-// pz-autotest configuration of Signal Smoke (.claude/tools/pz-autotest/README.md, docs/annexes/tests/autotest.md):
-//   python .claude/tools/pz-autotest/pz_autotest.py check SignalSmoke
-//   python .claude/tools/pz-autotest/pz_autotest.py sp    SignalSmoke --wait-idle 3600
-//   python .claude/tools/pz-autotest/pz_autotest.py mp    SignalSmoke --clients 1 --wait-idle 3600
+// pzdev configuration of Signal Smoke (PZDevKit/docs/wiki/fr/01-tests-automatiques.md, docs/annexes/tests/autotest.md):
+//   python PZDevKit/pzdev.py check SignalSmoke
+//   python PZDevKit/pzdev.py sp    SignalSmoke --wait-idle 3600
+//   python PZDevKit/pzdev.py mp    SignalSmoke --clients 1 --wait-idle 3600
 {
   "name": "SignalSmoke",
   "gameVersion": "42.21",

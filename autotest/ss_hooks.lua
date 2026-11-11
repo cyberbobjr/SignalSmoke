@@ -1,4 +1,4 @@
--- Signal Smoke in-game test (pz-autotest): nominal path, single player and multiplayer.
+-- Signal Smoke in-game test (pzdev): nominal path, single player and multiplayer.
 -- Single player (sp): the client hooks play both sides on the same machine.
 -- Multiplayer (mp, clientRun): the server hooks place the signals next to the first player, the client 1 hooks
 -- check what the client draws (marked IsoFire, lamps), compare the object indices of the burning flare square

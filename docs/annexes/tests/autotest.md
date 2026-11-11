@@ -1,7 +1,7 @@
-# Signal Smoke — scénario automatique pz-autotest
+# Signal Smoke — scénario automatique pzdev
 
 - Build : 42.21 — Rédigé le 2026-10-21 — Points C12 et C14 de [ameliorations-et-idees.md](../../ameliorations-et-idees.md).
-- Fichiers : [`autotest.json`](../../../autotest.json) (configuration) et [`autotest/ss_hooks.lua`](../../../autotest/ss_hooks.lua) (hooks). Outil générique : `C:\Users\cyber\Zomboid\Workshop\.claude\tools\pz-autotest` (`README.md`).
+- Fichiers : [`autotest.json`](../../../autotest.json) (configuration) et [`autotest/ss_hooks.lua`](../../../autotest/ss_hooks.lua) (hooks). Outil générique : `C:\Users\cyber\Zomboid\Workshop\.claude\tools\pzdev` (`README.md`).
 - **État** : vert en solo et en MP le 2026-10-21, sur le mod publié en 0.3.0 (code de sortie 0, aucune erreur Lua) : `sp` 41 PASS (`runs/20261021-165557-sp-9a46edb60d98`) ; `mp` 1 client, serveur 36 PASS et client 11 PASS (`runs/20261021-165115-mp-1abe81ce1ddc`, déjà vert au premier passage `…160419-mp-42e6174e6261`). C12 : `INFO C12 flare index identical on the client`, ramassage réussi : risque écarté pour la fusée (`da8fdff`). Voir « Historique des passages ».
 
 ## Commandes
@@ -9,9 +9,9 @@
 Depuis `C:\Users\cyber\Zomboid\Workshop` :
 
 ```powershell
-python .claude/tools/pz-autotest/pz_autotest.py check SignalSmoke
-python .claude/tools/pz-autotest/pz_autotest.py sp    SignalSmoke --wait-idle 3600
-python .claude/tools/pz-autotest/pz_autotest.py mp    SignalSmoke --clients 1 --wait-idle 3600
+python PZDevKit/pzdev.py check SignalSmoke
+python PZDevKit/pzdev.py sp    SignalSmoke --wait-idle 3600
+python PZDevKit/pzdev.py mp    SignalSmoke --clients 1 --wait-idle 3600
 ```
 
 - `sp` copie la sauvegarde `Sandbox/2026-10-17_17-50-04` (celle de Live Wire) avec le seul mod `batman_SignalSmoke` et le pilote.
