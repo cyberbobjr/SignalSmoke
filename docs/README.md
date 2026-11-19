@@ -1,6 +1,6 @@
 # Signal Smoke — documentation
 
-Mod Project Zomboid Build 42.21 (`batman_SignalSmoke`, Workshop 3811010882) : grenades fumigènes colorées, fusées de route, bâtons lumineux, bombes fumigènes artisanales, et une petite bibliothèque Lua qui permet aux autres mods de poser des signaux colorés décidés par le serveur et vus de tous les joueurs.
+Mod Project Zomboid Build 42.22 (`batman_SignalSmoke`, Workshop 3811010882) : grenades fumigènes colorées, fusées de route, bâtons lumineux, bombes fumigènes artisanales, et une petite bibliothèque Lua qui permet aux autres mods de poser des signaux colorés décidés par le serveur et vus de tous les joueurs.
 
 La présentation GitHub (anglais) est dans le [README](../README.md) du dépôt, les notes de version dans le [CHANGELOG](../CHANGELOG.md).
 

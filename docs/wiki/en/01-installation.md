@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Project Zomboid **Build 42.21** or later (`versionMin=42.21`).
+- Project Zomboid **Build 42.22** (works from 42.21, `versionMin=42.21`).
 - No other mod is required.
 
 ## Steps

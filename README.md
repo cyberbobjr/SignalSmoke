@@ -1,6 +1,6 @@
 # Signal Smoke (batman_SignalSmoke)
 
-Project Zomboid Build 42.21 mod: colored smoke grenades, road flares, chemlights, improvised smoke bombs, sandbox options, and a small library for other mods (colored smoke, flares and chemlight glows placed by the server, seen by every player, restored after loading, with events for dependent mods).
+Project Zomboid Build 42.22 mod: colored smoke grenades, road flares, chemlights, improvised smoke bombs, sandbox options, and a small library for other mods (colored smoke, flares and chemlight glows placed by the server, seen by every player, restored after loading, with events for dependent mods).
 
 ![Colored smoke and glows at night](docs/images/screenshots/shot1.png)
 

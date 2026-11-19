@@ -1,6 +1,6 @@
 # Signal Smoke
 
-**Signal Smoke** (mod ID `batman_SignalSmoke`) is a Project Zomboid Build 42.21 mod that adds colored smoke grenades, road flares, chemlights and improvised smoke bombs, in singleplayer and multiplayer. It is also a small library: other mods can place colored smoke, flares and glows decided by the server and seen by every player.
+**Signal Smoke** (mod ID `batman_SignalSmoke`) is a Project Zomboid Build 42.22 mod that adds colored smoke grenades, road flares, chemlights and improvised smoke bombs, in singleplayer and multiplayer. It is also a small library: other mods can place colored smoke, flares and glows decided by the server and seen by every player.
 
 ![Colored smoke and glows at night](../../images/screenshots/shot1.png)
 

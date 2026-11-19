@@ -1,6 +1,6 @@
 [h1]Signal Smoke — Grenades fumigènes colorées, fusées de route et bâtons lumineux[/h1]
 
-[b]Build 42.21 · Solo et multijoueur[/b]
+[b]Build 42.22 · Solo et multijoueur[/b]
 
 Un hélicoptère doit repérer votre toit, un ami doit trouver votre camp, ou vous voulez baliser la route du retour ? Lancez une fumée colorée, allumez une fusée de route ou posez un bâton lumineux : visible par tout le monde.
 

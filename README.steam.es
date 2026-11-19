@@ -1,6 +1,6 @@
 [h1]Signal Smoke — Granadas de humo de colores, bengalas de carretera y barras luminosas[/h1]
 
-[b]Build 42.21 · Un jugador y multijugador[/b]
+[b]Build 42.22 · Un jugador y multijugador[/b]
 
 ¿Un helicóptero tiene que ver tu tejado, un amigo tiene que encontrar tu campamento o quieres marcar el camino de vuelta? Suelta humo de color, enciende una bengala de carretera o deja una barra luminosa: visible para todos.
 

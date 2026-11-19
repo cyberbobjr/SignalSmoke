@@ -2,7 +2,7 @@
 
 ## Prérequis
 
-- Project Zomboid **Build 42.21** ou plus récent (`versionMin=42.21`).
+- Project Zomboid **Build 42.22** (fonctionne dès la 42.21, `versionMin=42.21`).
 - Aucun autre mod n'est nécessaire.
 
 ## Étapes

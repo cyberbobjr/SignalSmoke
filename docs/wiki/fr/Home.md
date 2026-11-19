@@ -1,6 +1,6 @@
 # Signal Smoke
 
-**Signal Smoke** (ID du mod `batman_SignalSmoke`) est un mod Project Zomboid Build 42.21 qui ajoute des grenades fumigènes colorées, des fusées de route, des bâtons lumineux et des bombes fumigènes artisanales, en solo comme en multijoueur. C'est aussi une petite bibliothèque : d'autres mods peuvent poser des fumées, des fusées et des lueurs colorées décidées par le serveur et vues de tous les joueurs.
+**Signal Smoke** (ID du mod `batman_SignalSmoke`) est un mod Project Zomboid Build 42.22 qui ajoute des grenades fumigènes colorées, des fusées de route, des bâtons lumineux et des bombes fumigènes artisanales, en solo comme en multijoueur. C'est aussi une petite bibliothèque : d'autres mods peuvent poser des fumées, des fusées et des lueurs colorées décidées par le serveur et vues de tous les joueurs.
 
 ![Fumées et lueurs colorées de nuit](../../images/screenshots/shot1.png)
 
